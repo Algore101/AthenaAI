@@ -1,0 +1,2 @@
+prefix=.
+token=MTA5MjgzNDIyNjAxNTA0MzU5NA.GeYcHm.-BpyujKd4fOuOKvlaUTDINi8qPqNlolqqzNP74
