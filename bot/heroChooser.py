@@ -136,7 +136,7 @@ def select_random_hero_in_category(category=None) -> str:
     """
     all_heroes = get_heroes_in_category(category)
     if len(all_heroes) > 0:
-        return all_heroes[random.randint(0, len(all_heroes) - 1)]
+        return random.choice(all_heroes)
     return ''
 
 
@@ -171,9 +171,9 @@ def select_duo_in_category(category=None) -> list:
     if len(duo_list) == 0:
         return []
 
-    return duo_list[random.randint(0, len(duo_list) - 1)]
+    return random.choice(duo_list)
 
 
 def select_role() -> str:
     roles = list(heroes.keys())
-    return roles[random.randint(0, len(roles) - 1)].capitalize()
+    return random.choice(roles).capitalize()

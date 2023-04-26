@@ -65,7 +65,7 @@ def choose_hero(username, category) -> str:
             'If you have unlocked {hero}, try him out',
         ]
     responses += additional_responses
-    return responses[random.randint(0, len(responses) - 1)].format(hero=hero)
+    return random.choice(responses).format(hero=hero)
 
 
 def choose_duo(username, category, random_duo=True) -> str:
@@ -79,7 +79,7 @@ def choose_duo(username, category, random_duo=True) -> str:
             'Overwatch 2 does not have two tanks.',
             'Overwatch 2 only has one tank.'
         ]
-        return responses[random.randint(0, len(responses) - 1)]
+        return random.choice(responses)
 
     # Get available heroes
     available_heroes = heroChooser.get_heroes_in_category(category)
@@ -101,7 +101,7 @@ def choose_duo(username, category, random_duo=True) -> str:
     if random_duo:
         duo = heroChooser.select_random_duo_in_category(category)
     else:
-        duo = matched_duos[random.randint(0, len(matched_duos) - 1)]
+        duo = random.choice(matched_duos)
 
     return f'{duo[0]} & {duo[1]}'
 
@@ -125,7 +125,7 @@ def greet_privately() -> list:
         'How can I help?',
         'How can I be of assistance?',
     ]
-    return [responses[random.randint(0, len(responses) - 1)], greetings[random.randint(0, len(greetings) - 1)]]
+    return [random.choice(responses), random.choice(greetings)]
 
 
 def get_profile(username) -> str:
@@ -151,7 +151,7 @@ def avoid_hero(username, hero_to_avoid: str) -> str:
             'Alright, I will avoid suggesting- wait. You did not tell me which hero to avoid.',
             'In order for me to follow your command, I need all the information.',
         ]
-        return f'{responses[random.randint(0, len(responses))]}\nE.g. `.avoid Symmetra`'
+        return f'{random.choice(responses)}\nE.g. `.avoid Symmetra`'
 
     # Correct common name spellings
     if hero_to_avoid.lower() == 'torbjorn':
@@ -181,7 +181,7 @@ def unavoid_hero(username, hero_to_unavoid) -> str:
             'You forgot to tell me who to unavoid.',
             'In order for me to follow your command, I need all the information.',
         ]
-        return f'{responses[random.randint(0, len(responses))]}\nE.g. `.unavoid Reinhardt`'
+        return f'{random.choice(responses)}\nE.g. `.unavoid Reinhardt`'
 
     # Correct common name spellings
     if hero_to_unavoid.lower() == 'torbjorn':
@@ -218,4 +218,4 @@ def choose_role():
         'You do know Overwatch 2 has a feature for this, right? It is called queueing as "All" and it is a lot '
         'simpler than typing that command.\nAnyway, I suggest playing {role}.',
     ]
-    return responses[random.randint(0, len(responses) - 1)].format(role=heroChooser.select_role())
+    return random.choice(responses).format(role=heroChooser.select_role())
