@@ -1,5 +1,6 @@
 import discord
 import responses
+import datetime
 
 ALT_COMMANDS = {
     'hero': 'all',
@@ -46,7 +47,7 @@ def run_discord_bot():
             argument += f'{word} '
         argument = argument.strip()
 
-        print(f'{username} used command: "{user_message}" ({channel})')
+        print(f'[{datetime.datetime.now()}] {username}: "{user_message}" ({channel})')
         # Convert alt commands
         if command in ALT_COMMANDS:
             command = ALT_COMMANDS[command]
