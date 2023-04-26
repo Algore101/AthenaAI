@@ -1,5 +1,5 @@
 import discord
-from bot.libraries import responses
+from libraries import responses
 import datetime
 import os
 

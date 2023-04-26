@@ -1,6 +1,5 @@
 import random
-from bot.libraries import heroChooser
-from bot.libraries import profiles
+from libraries import heroChooser, profiles
 import os
 import json
 
