@@ -1,10 +1,10 @@
 import random
-import heroChooser
-import profiles
+from bot.libraries import heroChooser
+from bot.libraries import profiles
 import os
 import json
 
-MISSPELLINGS_FILE = os.path.join(os.path.dirname(__file__), 'misspellings.json')
+MISSPELLINGS_FILE = os.path.join(os.path.dirname(__file__), '../data/misspellings.json')
 
 
 def _correct_spelling(hero_name: str) -> str:

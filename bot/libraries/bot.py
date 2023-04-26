@@ -1,5 +1,5 @@
 import discord
-import responses
+from bot.libraries import responses
 import datetime
 import os
 
@@ -9,7 +9,7 @@ ALT_COMMANDS = {
     'healer': 'support',
     'user': 'profile',
 }
-TOKEN_FILE = os.path.join(os.path.dirname(__file__), 'discord_token.txt')
+TOKEN_FILE = os.path.join(os.path.dirname(__file__), '../data/discord_token.txt')
 DISCORD_TOKEN = open(TOKEN_FILE, 'r').read()
 
 

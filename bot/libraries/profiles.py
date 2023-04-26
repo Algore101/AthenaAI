@@ -1,7 +1,7 @@
 import json
 import os
 
-USERS_FILE = os.path.join(os.path.dirname(__file__), 'users.json')
+USERS_FILE = os.path.join(os.path.dirname(__file__), '../data/users.json')
 
 
 def make_account_if_none(username: str) -> None:
