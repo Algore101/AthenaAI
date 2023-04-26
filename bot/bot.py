@@ -1,6 +1,7 @@
 import discord
 import responses
 import datetime
+import os
 
 ALT_COMMANDS = {
     'hero': 'all',
@@ -8,6 +9,8 @@ ALT_COMMANDS = {
     'healer': 'support',
     'user': 'profile',
 }
+TOKEN_FILE = os.path.join(os.path.dirname(__file__), 'discord_token.txt')
+DISCORD_TOKEN = open(TOKEN_FILE, 'r').read()
 
 
 async def send_message(message, response, is_private=False):
@@ -53,7 +56,6 @@ async def _process_command(command, **kwargs) -> list:
 
 
 def run_discord_bot():
-    token = 'MTA5MjgzNDIyNjAxNTA0MzU5NA.GeYcHm.-BpyujKd4fOuOKvlaUTDINi8qPqNlolqqzNP74'
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents=intents)
@@ -100,4 +102,4 @@ def run_discord_bot():
             # Send a private message to the user.
             await send_message(message, reply[1], is_private=True)
 
-    client.run(token)
+    client.run(DISCORD_TOKEN)
