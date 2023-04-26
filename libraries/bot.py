@@ -85,7 +85,7 @@ def run_discord_bot(token, prefix='.'):
             command = ALT_COMMANDS[command]
         # Process commands
         reply = await _process_command(
-            command, username=username, duo=argument, hero_to_avoid=argument, hero_to_unavoid=argument
+            command, username=username, duo=argument, hero_to_avoid=argument, hero_to_unavoid=argument, prefix=prefix
         )
         if command != 'dm':
             try:

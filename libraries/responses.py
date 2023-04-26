@@ -24,35 +24,37 @@ def help_menu(**kwargs) -> str:
     response = 'Hi there! My name is *AthenaAI*, the Overwatch 2 hero choosing bot.\n' \
                'Below are all the ways you can interact with me!\n\n' \
                '**Get a hero:**\n' \
-               '`.hero` `.all` – Returns a random hero from all the categories\n' \
-               '`.tank` – Returns a random tank hero\n' \
-               '`.damage` `.dps` – Returns a random damage hero\n' \
-               '`.support` `.healer` – Returns a random support hero\n\n' \
+               '`{prefix}hero` `{prefix}all` – Returns a random hero from all the categories\n' \
+               '`{prefix}tank` – Returns a random tank hero\n' \
+               '`{prefix}damage` `{prefix}dps` – Returns a random damage hero\n' \
+               '`{prefix}support` `{prefix}healer` – Returns a random support hero\n\n' \
                '**Get a duo:**\n' \
                'Add `duo` after any of the hero commands\n' \
-               'E.g. `.support duo`\n\n' \
+               'E.g. `{prefix}support duo`\n\n' \
                '**Get a random duo:**\n' \
                'Add `rduo` after any of the hero commands\n' \
-               'E.g. `.damage rduo`\n\n' \
+               'E.g. `{prefix}damage rduo`\n\n' \
                '**Select a role**\n' \
-               '`.role` - Returns a random role to queue as\n\n' \
+               '`{prefix}role` - Returns a random role to queue as\n\n' \
                '**Profile based commands:**\n' \
-               '`.profile` - View your profile\n' \
-               '`.avoid [hero]` - Adds the hero to your avoid list\n' \
-               '`.unavoid [hero]` - Removes the hero from your avoid list\n' \
-               '`.unavoid all` - Removes all heroes from your avoid list\n\n' \
+               '`{prefix}profile` - View your profile\n' \
+               '`{prefix}avoid [hero]` - Adds the hero to your avoid list\n' \
+               '`{prefix}unavoid [hero]` - Removes the hero from your avoid list\n' \
+               '`{prefix}unavoid all` - Removes all heroes from your avoid list\n\n' \
                '**Other commands:**\n' \
-               '`.dm` - Interact with me in your DMs\n' \
-               '`.help` - Returns this message\n'
-    return response
+               '`{prefix}dm` - Interact with me in your DMs\n' \
+               '`{prefix}help` - Returns this message\n'
+    return response.format(prefix=kwargs['prefix'])
 
 
 def choose_hero(**kwargs) -> str:
     username = kwargs['username']
     category = kwargs['category']
+    prefix = kwargs['prefix']
     available_heroes = heroChooser.get_heroes_in_category(category)
     if len(available_heroes) == 0:
-        return 'That is not a valid category. Please try using `.tank` `.damage` `.support` or `.all`'
+        return 'That is not a valid category. Please try using `{prefix}tank` `{prefix}damage` ' \
+               '`{prefix}support` or `{prefix}all`'.format(prefix=prefix)
     # Remove avoided heroes
     available_heroes = [x for x in available_heroes if not profiles.is_hero_avoided(username, x)]
 
@@ -90,6 +92,7 @@ def choose_hero(**kwargs) -> str:
 def choose_duo(**kwargs) -> str:
     username = kwargs['username']
     category = kwargs['category']
+    prefix = kwargs['prefix']
     random_duo = kwargs['random_duo']
     if category == 'tank':
         responses = [
@@ -106,7 +109,8 @@ def choose_duo(**kwargs) -> str:
     # Get available heroes
     available_heroes = heroChooser.get_heroes_in_category(category)
     if len(available_heroes) == 0:
-        return 'That is not a valid category. Please try using `.tank` `.damage` `.support` or `.all`'
+        return 'That is not a valid category. Please try using `{prefix}tank` `{prefix}damage` ' \
+               '`{prefix}support` or `{prefix}all`'.format(prefix=prefix)
     # Remove avoided heroes
     available_heroes = [x for x in available_heroes if not profiles.is_hero_avoided(username, x)]
 
@@ -167,6 +171,7 @@ def get_profile(**kwargs) -> str:
 def avoid_hero(**kwargs) -> str:
     username = kwargs['username']
     hero_to_avoid = kwargs['hero_to_avoid']
+    prefix = kwargs['prefix']
     all_heroes = heroChooser.get_heroes_in_category('all')
     if len(hero_to_avoid) == 0:
         responses = [
@@ -176,7 +181,7 @@ def avoid_hero(**kwargs) -> str:
             'Alright, I will avoid suggesting- wait. You did not tell me which hero to avoid.',
             'In order for me to follow your command, I need all the information.',
         ]
-        return f'{random.choice(responses)}\nE.g. `.avoid Symmetra`'
+        return f'{random.choice(responses)}\nE.g. `{prefix}avoid Symmetra`'
 
     # Correct common name spellings
     hero_to_avoid = _correct_spelling(hero_to_avoid)
@@ -195,6 +200,7 @@ def avoid_hero(**kwargs) -> str:
 def unavoid_hero(**kwargs) -> str:
     username = kwargs['username']
     hero_to_unavoid = kwargs['hero_to_unavoid']
+    prefix = kwargs['prefix']
     all_heroes = heroChooser.get_heroes_in_category('all')
     if len(hero_to_unavoid) == 0:
         responses = [
@@ -203,7 +209,7 @@ def unavoid_hero(**kwargs) -> str:
             'You forgot to tell me who to unavoid.',
             'In order for me to follow your command, I need all the information.',
         ]
-        return f'{random.choice(responses)}\nE.g. `.unavoid Reinhardt`'
+        return f'{random.choice(responses)}\nE.g. `{prefix}unavoid Reinhardt`'
 
     # Correct common name spellings
     hero_to_unavoid = _correct_spelling(hero_to_unavoid)
@@ -240,11 +246,11 @@ def choose_role(**kwargs):
 
 def duo(**kwargs):
     return 'Please try using `duo` as an argument and not a command.\n' \
-           'E.g. `.support duo` for supports that work well together\n' \
-           'Tip: Also try using `rduo` as an argument for two random heroes.'
+           'E.g. `{prefix}support duo` for supports that work well together\n' \
+           'Tip: Also try using `rduo` as an argument for two random heroes.'.format(prefix=kwargs['prefix'])
 
 
 def rduo(**kwargs):
     return 'Please try using `rduo` as an argument and not a command.\n' \
-           'E.g. `.damage rduo` for two random damage characters\n' \
-           'Tip: Also try using `rduo` as an argument for two random heroes.'
+           'E.g. `{prefix}damage rduo` for two random damage characters\n' \
+           'Tip: Also try using `rduo` as an argument for two random heroes.'.format(prefix=kwargs['prefix'])
