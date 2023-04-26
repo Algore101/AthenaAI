@@ -3,6 +3,64 @@ import heroChooser
 import profiles
 
 
+def _correct_spelling(hero_name: str) -> str:
+    hero_name = hero_name.lower()
+    # Tank heroes
+    if hero_name in ['dva', 'd va']:
+        hero_name = 'D.Va'
+    elif hero_name in ['doom']:
+        hero_name = 'Doomfist'
+    elif hero_name in ['jq', 'queen']:
+        hero_name = 'Junker Queen'
+    elif hero_name in ['ram', 'ramatra']:
+        hero_name = 'Ramattra'
+    elif hero_name in ['rein', 'reinhart', 'reinhard']:
+        hero_name = 'Reinhardt'
+    elif hero_name in ['hog', 'road']:
+        hero_name = 'Roadhog'
+    elif hero_name in ['sig']:
+        hero_name = 'Sigma'
+    elif hero_name in ['monkey', 'winton', 'monki']:
+        hero_name = 'Winston'
+    elif hero_name in ['ball', 'hammond']:
+        hero_name = 'Wrecking Ball'
+    # Damage heroes
+    elif hero_name in ['ash']:
+        hero_name = 'Ashe'
+    elif hero_name in ['cass']:
+        hero_name = 'Cassidy'
+    elif hero_name in ['junk', 'rat']:
+        hero_name = 'Junkrat'
+    elif hero_name in ['may']:
+        hero_name = 'Mei'
+    elif hero_name in ['farah', 'fara', 'phara']:
+        hero_name = 'Pharah'
+    elif hero_name in ['sojorn', 'sojurn', 'sojon', 'sojun']:
+        hero_name = 'Sojourn'
+    elif hero_name in ['soldier 76', 'soldier', '76']:
+        hero_name = 'Soldier: 76'
+    elif hero_name in ['sym', 'symm', 'symetra']:
+        hero_name = 'Symmetra'
+    elif hero_name in ['torbjorn', 'torb', 'torbyorn']:
+        hero_name = 'Torbjörn'
+    elif hero_name in ['widow']:
+        hero_name = 'Widowmaker'
+    # Support heroes
+    elif hero_name in ['bap', 'baptist']:
+        hero_name = 'Baptiste'
+    elif hero_name in ['brig', 'brigit', 'brigite']:
+        hero_name = 'Brigitte'
+    elif hero_name in ['kiri']:
+        hero_name = 'Kiriko'
+    elif hero_name in ['life', 'weaver']:
+        hero_name = 'Lifeweaver'
+    elif hero_name in ['lucio']:
+        hero_name = 'Lúcio'
+    elif hero_name in ['zen', 'zenyata']:
+        hero_name = 'Zenyatta'
+    return hero_name
+
+
 def help_menu() -> str:
     response = 'Hi there! My name is *AthenaAI*, the Overwatch 2 hero choosing bot.\n' \
                'Below are all the ways you can interact with me!\n\n' \
@@ -154,12 +212,7 @@ def avoid_hero(username, hero_to_avoid: str) -> str:
         return f'{random.choice(responses)}\nE.g. `.avoid Symmetra`'
 
     # Correct common name spellings
-    if hero_to_avoid.lower() == 'torbjorn':
-        hero_to_avoid = 'Torbjörn'
-    elif hero_to_avoid.lower() == 'dva' or hero_to_avoid.lower() == 'd va':
-        hero_to_avoid = 'D.Va'
-    elif hero_to_avoid.lower() == 'soldier 76' or hero_to_avoid.lower() == 'soldier':
-        hero_to_avoid = 'Soldier: 76'
+    hero_to_avoid = _correct_spelling(hero_to_avoid)
 
     for hero in all_heroes:
         # Add hero to avoid list
@@ -184,12 +237,7 @@ def unavoid_hero(username, hero_to_unavoid) -> str:
         return f'{random.choice(responses)}\nE.g. `.unavoid Reinhardt`'
 
     # Correct common name spellings
-    if hero_to_unavoid.lower() == 'torbjorn':
-        hero_to_unavoid = 'Torbjörn'
-    elif hero_to_unavoid.lower() == 'dva' or hero_to_unavoid.lower() == 'd va':
-        hero_to_unavoid = 'D.Va'
-    elif hero_to_unavoid.lower() == 'soldier 76' or hero_to_unavoid.lower() == 'soldier':
-        hero_to_unavoid = 'Soldier: 76'
+    hero_to_unavoid = _correct_spelling(hero_to_unavoid)
 
     if hero_to_unavoid == 'all':
         for hero in all_heroes:
