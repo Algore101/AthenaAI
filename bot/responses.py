@@ -61,7 +61,7 @@ def _correct_spelling(hero_name: str) -> str:
     return hero_name
 
 
-def help_menu() -> str:
+def help_menu(**kwargs) -> str:
     response = 'Hi there! My name is *AthenaAI*, the Overwatch 2 hero choosing bot.\n' \
                'Below are all the ways you can interact with me!\n\n' \
                '**Get a hero:**\n' \
@@ -88,7 +88,9 @@ def help_menu() -> str:
     return response
 
 
-def choose_hero(username, category) -> str:
+def choose_hero(**kwargs) -> str:
+    username = kwargs['username']
+    category = kwargs['category']
     available_heroes = heroChooser.get_heroes_in_category(category)
     if len(available_heroes) == 0:
         return 'That is not a valid category. Please try using `.tank` `.damage` `.support` or `.all`'
@@ -126,7 +128,10 @@ def choose_hero(username, category) -> str:
     return random.choice(responses).format(hero=hero)
 
 
-def choose_duo(username, category, random_duo=True) -> str:
+def choose_duo(**kwargs) -> str:
+    username = kwargs['username']
+    category = kwargs['category']
+    random_duo = kwargs['random_duo']
     if category == 'tank':
         responses = [
             'This is Overwatch ***2***, meaning there is only one tank.',
@@ -164,7 +169,7 @@ def choose_duo(username, category, random_duo=True) -> str:
     return f'{duo[0]} & {duo[1]}'
 
 
-def greet_privately() -> list:
+def greet_privately(**kwargs) -> list:
     responses = [
         'Check your DMs ;)',
         'I sent you a little something <3',
@@ -186,7 +191,8 @@ def greet_privately() -> list:
     return [random.choice(responses), random.choice(greetings)]
 
 
-def get_profile(username) -> str:
+def get_profile(**kwargs) -> str:
+    username = kwargs['username']
     user_data = profiles.get_profile(username)
     output = f'Profile: `{user_data["username"]}`\nAvoided heroes:\n'
     # Get avoided heroes
@@ -199,7 +205,9 @@ def get_profile(username) -> str:
     return output
 
 
-def avoid_hero(username, hero_to_avoid: str) -> str:
+def avoid_hero(**kwargs) -> str:
+    username = kwargs['username']
+    hero_to_avoid = kwargs['hero_to_avoid']
     all_heroes = heroChooser.get_heroes_in_category('all')
     if len(hero_to_avoid) == 0:
         responses = [
@@ -225,7 +233,9 @@ def avoid_hero(username, hero_to_avoid: str) -> str:
     return 'I could not seem to find the hero you entered. Please make sure you spelled their name correctly.'
 
 
-def unavoid_hero(username, hero_to_unavoid) -> str:
+def unavoid_hero(**kwargs) -> str:
+    username = kwargs['username']
+    hero_to_unavoid = kwargs['hero_to_unavoid']
     all_heroes = heroChooser.get_heroes_in_category('all')
     if len(hero_to_unavoid) == 0:
         responses = [
@@ -255,7 +265,7 @@ def unavoid_hero(username, hero_to_unavoid) -> str:
     return 'If you want me to remove a hero from your avoid list, you are going to have to spell their name correctly.'
 
 
-def choose_role():
+def choose_role(**kwargs):
     responses = [
         'You seem to be in a {role} mood.',
         'I suggest queuing for {role} heroes.',
@@ -267,3 +277,15 @@ def choose_role():
         'simpler than typing that command.\nAnyway, I suggest playing {role}.',
     ]
     return random.choice(responses).format(role=heroChooser.select_role())
+
+
+def duo(**kwargs):
+    return 'Please try using `duo` as an argument and not a command.\n' \
+           'E.g. `.support duo` for supports that work well together\n' \
+           'Tip: Also try using `rduo` as an argument for two random heroes.'
+
+
+def rduo(**kwargs):
+    return 'Please try using `rduo` as an argument and not a command.\n' \
+           'E.g. `.damage rduo` for two random damage characters\n' \
+           'Tip: Also try using `rduo` as an argument for two random heroes.'

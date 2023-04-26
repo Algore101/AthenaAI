@@ -9,8 +9,6 @@ ALT_COMMANDS = {
     'user': 'profile',
 }
 
-HERO_COMMANDS = ['tank', 'damage', 'support', 'all']
-
 
 async def send_message(message, response, is_private=False):
     if 'direct message' in str(message.channel).lower():
@@ -20,9 +18,44 @@ async def send_message(message, response, is_private=False):
             if is_private else await message.channel.send(response, reference=message)
 
 
+async def _process_command(command, **kwargs) -> list:
+    reply = []
+    category_args = {'duo': False, 'rduo': True}
+    commands = {
+        'tank': responses.choose_duo if kwargs['duo'] in list(category_args.keys()) else responses.choose_hero,
+        'damage': responses.choose_duo if kwargs['duo'] in list(category_args.keys()) else responses.choose_hero,
+        'support': responses.choose_duo if kwargs['duo'] in list(category_args.keys()) else responses.choose_hero,
+        'all': responses.choose_duo if kwargs['duo'] in list(category_args.keys()) else responses.choose_hero,
+        'dm': responses.greet_privately,
+        'help': responses.help_menu,
+        'profile': responses.get_profile,
+        'avoid': responses.avoid_hero,
+        'unavoid': responses.unavoid_hero,
+        'role': responses.choose_role,
+        'duo': responses.duo,
+        'rduo': responses.rduo,
+    }
+    try:
+        # Set category for hero commands
+        if command in ['tank', 'damage', 'support', 'all']:
+            kwargs['category'] = command
+            # Set duo type
+            if kwargs['duo'] in list(category_args.keys()):
+                kwargs['random_duo'] = category_args[kwargs['duo']]
+                del kwargs['duo']
+        if command != 'dm':
+            reply.append(commands[command](**kwargs))
+        else:
+            reply += commands[command](**kwargs)
+        return reply
+    except KeyError:
+        return reply
+
+
 def run_discord_bot():
     token = 'MTA5MjgzNDIyNjAxNTA0MzU5NA.GeYcHm.-BpyujKd4fOuOKvlaUTDINi8qPqNlolqqzNP74'
     intents = discord.Intents.default()
+    intents.message_content = True
     client = discord.Client(intents=intents)
 
     @client.event
@@ -51,45 +84,20 @@ def run_discord_bot():
         # Convert alt commands
         if command in ALT_COMMANDS:
             command = ALT_COMMANDS[command]
-        # Run commands
-        if command in HERO_COMMANDS:
-            # Return random hero from selected category.
-            if argument == '':
-                await send_message(message, responses.choose_hero(username, command))
-            elif argument.lower() == 'duo':
-                await send_message(message, responses.choose_duo(username, command, False))
-            elif argument.lower() == 'rduo':
-                await send_message(message, responses.choose_duo(username, command))
-            return
-        elif command == 'dm':
+        # Process commands
+        reply = await _process_command(
+            command, username=username, duo=argument, hero_to_avoid=argument, hero_to_unavoid=argument
+        )
+        if command != 'dm':
+            try:
+                await send_message(message, reply[0])
+            except IndexError:
+                pass
+        else:
             # Respond to the message
             if 'direct message' not in str(message.channel).lower():
-                await send_message(message, responses.greet_privately()[0])
+                await send_message(message, reply[0])
             # Send a private message to the user.
-            await send_message(message, responses.greet_privately()[1], is_private=True)
-            return
-        elif command == 'help':
-            # Send a help message
-            await send_message(message, responses.help_menu())
-            return
-        elif command == 'profile':
-            # Send information of user profile
-            await send_message(message, responses.get_profile(username))
-            return
-        elif command == 'avoid':
-            # Add hero to avoid list
-            await send_message(message, responses.avoid_hero(username, argument))
-            return
-        elif command == 'unavoid':
-            # Remove hero from avoid list
-            await send_message(message, responses.unavoid_hero(username, argument))
-            return
-        elif command == 'duo':
-            response = 'Please try using `duo` as an argument.\n' \
-                      'E.g. `.support duo` for supports that work well together\n' \
-                      'Tip: also try using `rduo` as an argument for two random heroes.'
-            await send_message(message, response)
-        elif command == 'role':
-            await send_message(message, responses.choose_role())
+            await send_message(message, reply[1], is_private=True)
 
     client.run(token)
