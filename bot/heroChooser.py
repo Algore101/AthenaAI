@@ -39,7 +39,7 @@ heroes = {
         "Brigitte",
         "Kiriko",
         "Lifeweaver",
-        "Lucio",
+        "Lúcio",
         "Mercy",
         "Moira",
         "Zenyatta",
