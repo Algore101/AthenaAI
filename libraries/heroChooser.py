@@ -1,95 +1,11 @@
 import random
+import os
+import json
 
-heroes = {
-    'tank': [
-        "D.Va",
-        "Doomfist",
-        "Junker Queen",
-        "Orisa",
-        "Ramattra",
-        "Reinhardt",
-        "Roadhog",
-        "Sigma",
-        "Winston",
-        "Wrecking Ball",
-        "Zarya",
-    ],
-    'damage': [
-        "Ashe",
-        "Bastion",
-        "Cassidy",
-        "Echo",
-        "Genji",
-        "Hanzo",
-        "Junkrat",
-        "Mei",
-        "Pharah",
-        "Reaper",
-        "Soldier: 76",
-        "Sojourn",
-        "Sombra",
-        "Symmetra",
-        "Torbjörn",
-        "Tracer",
-        "Widowmaker",
-    ],
-    'support': [
-        "Ana",
-        "Baptiste",
-        "Brigitte",
-        "Kiriko",
-        "Lifeweaver",
-        "Lúcio",
-        "Mercy",
-        "Moira",
-        "Zenyatta",
-    ],
-}
-duos = {
-    'damage': [
-        ['Ashe', 'Echo'],
-        ['Ashe', 'Hanzo'],
-        ['Ashe', 'Junkrat'],
-        ['Ashe', 'Pharah'],
-        ['Bastion', 'Mei'],
-        ['Cassidy', 'Mei'],
-        ['Echo', 'Hanzo'],
-        ['Echo', 'Sojourn'],
-        ['Echo', 'Sombra'],
-        ['Echo', 'Tracer'],
-        ['Echo', 'Widowmaker'],
-        ['Genji', 'Soldier: 76'],
-        ['Genji', 'Tracer'],
-        ['Hanzo', 'Junkrat'],
-        ['Hanzo', 'Pharah'],
-        ['Hanzo', 'Sojourn'],
-        ['Hanzo', 'Sombra'],
-        ['Hanzo', 'Tracer'],
-        ['Hanzo', 'Widowmaker'],
-        ['Junkrat', 'Sojourn'],
-        ['Junkrat', 'Sombra'],
-        ['Junkrat', 'Tracer'],
-        ['Junkrat', 'Widowmaker'],
-        ['Mei', 'Reaper'],
-        ['Mei', 'Symmetra'],
-        ['Pharah', 'Sojourn'],
-        ['Pharah', 'Sombra'],
-        ['Pharah', 'Tracer'],
-        ['Pharah', 'Widowmaker'],
-        ['Sombra', 'Tracer'],
-    ],
-    'support': [
-        ['Ana', 'Lucio'],
-        ['Ana', 'Mercy'],
-        ['Ana', 'Zenyatta'],
-        ['Baptiste', 'Brigitte'],
-        ['Baptiste', 'Lucio'],
-        ['Baptiste', 'Zenyatta'],
-        ['Brigitte', 'Zenyatta'],
-        ['Kiriko', 'Lucio'],
-        ['Lucio', 'Moira'],
-    ],
-}
+HEROES_FILE = os.path.join(os.path.dirname(__file__), '../data/heroes.json')
+
+heroes = dict(json.load(open(HEROES_FILE, 'r')))['heroes']
+duos = dict(json.load(open(HEROES_FILE, 'r')))['duos']
 
 
 def get_heroes_in_category(category=None) -> list:
