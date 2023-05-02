@@ -4,8 +4,8 @@ import json
 
 HEROES_FILE = os.path.join(os.path.dirname(__file__), '../data/heroes.json')
 
-heroes = dict(json.load(open(HEROES_FILE, 'r')))['heroes']
-duos = dict(json.load(open(HEROES_FILE, 'r')))['duos']
+heroes = dict(json.load(open(HEROES_FILE, 'r', encoding='utf-8')))['heroes']
+duos = dict(json.load(open(HEROES_FILE, 'r', encoding='utf-8')))['duos']
 
 
 def get_heroes_in_category(category=None) -> list:

@@ -9,7 +9,7 @@ MISSPELLINGS_FILE = os.path.join(os.path.dirname(__file__), '../data/misspelling
 def _correct_spelling(hero_name: str) -> str:
     hero_name = hero_name.lower()
 
-    with open(MISSPELLINGS_FILE, 'r') as file:
+    with open(MISSPELLINGS_FILE, 'r', encoding='utf-8') as file:
         misspellings_data = dict(json.load(file))
         file.close()
         for hero, misspells in misspellings_data.items():
