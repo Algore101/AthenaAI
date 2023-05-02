@@ -43,7 +43,8 @@ def help_menu(**kwargs) -> str:
                '`{prefix}unavoid all` - Removes all heroes from your avoid list\n\n' \
                '**Other commands:**\n' \
                '`{prefix}dm` - Interact with me in your DMs\n' \
-               '`{prefix}help` - Returns this message\n'
+               '`{prefix}help` - Returns this message\n' \
+               '`{prefix}list [role]` - Returns a list of all the heroes in the role\n'
     return response.format(prefix=kwargs['prefix'])
 
 
@@ -254,3 +255,24 @@ def rduo(**kwargs):
     return 'Please try using `rduo` as an argument and not a command.\n' \
            'E.g. `{prefix}damage rduo` for two random damage characters\n' \
            'Tip: Also try using `rduo` as an argument for two random heroes.'.format(prefix=kwargs['prefix'])
+
+
+def get_heroes_in_category(**kwargs):
+    category = kwargs['category']
+    prefix = kwargs['prefix']
+    if category == '':
+        return 'Please try using "tank", "damage", "support" or "all" as an argument.\n' \
+               'E.g. `{prefix}list all`'.format(prefix=prefix)
+    heroes = heroChooser.get_heroes_in_category(category)
+    if len(heroes) == 0:
+        return 'That is not a valid role. Please try using "tank", "damage", "support" or "all" as an argument.\n' \
+               'E.g. `{prefix}list all`'.format(prefix=prefix)
+    if category == 'all':
+        response = 'Here is a list of all the heroes:'
+    else:
+        response = f'Here are all the heroes in the {category.lower()} category:'
+
+    for hero in heroes:
+        response += f'\n- {hero}'
+
+    return response

@@ -1,7 +1,8 @@
 import discord
 from libraries import responses
 import datetime
-
+# TODO: Format profile information as embed
+# TODO: Implement trivia code
 ALT_COMMANDS = {
     'hero': 'all',
     'dps': 'damage',
@@ -34,6 +35,7 @@ async def _process_command(command, **kwargs) -> list:
         'role': responses.choose_role,
         'duo': responses.duo,
         'rduo': responses.rduo,
+        'list': responses.get_heroes_in_category,
     }
     try:
         # Set category for hero commands
@@ -43,6 +45,10 @@ async def _process_command(command, **kwargs) -> list:
             if kwargs['duo'] in list(category_args.keys()):
                 kwargs['random_duo'] = category_args[kwargs['duo']]
                 del kwargs['duo']
+        elif command == 'list':
+            if kwargs['duo'] in ALT_COMMANDS:
+                kwargs['duo'] = ALT_COMMANDS[kwargs['duo']]
+            kwargs['category'] = kwargs['duo']
         if command != 'dm':
             reply.append(commands[command](**kwargs))
         else:
