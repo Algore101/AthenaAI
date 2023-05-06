@@ -1,7 +1,9 @@
 import random
-from libraries import heroChooser, profiles
+import discord
+from libraries import heroChooser, profiles, trivia
 import os
 import json
+from discord import Embed
 
 MISSPELLINGS_FILE = os.path.join(os.path.dirname(__file__), '../data/misspellings.json')
 
@@ -155,17 +157,35 @@ def greet_privately(**kwargs) -> list:
     return [random.choice(responses), random.choice(greetings)]
 
 
-def get_profile(**kwargs) -> str:
+def get_profile(**kwargs) -> Embed:
     username = kwargs['username']
+    # Update users
+    profiles.update_trivia_score(username, 0, 0)
     user_data = profiles.get_profile(username)
-    output = f'Profile: `{user_data["username"]}`\nAvoided heroes:\n'
+    output = Embed(title=f'Profile: {username}', colour=discord.Color.from_rgb(38, 99, 199))
     # Get avoided heroes
-    if len(user_data['avoided_heroes']) > 0:
-        for hero in user_data['avoided_heroes']:
-            output += f'\t{hero}\n'
+    avoided_heroes = ''
+    if len(user_data['avoided_heroes']) == 0:
+        avoided_heroes = 'None\n'
     else:
-        output += '\tNone\n'
-    # Get preferred heroes
+        for hero in user_data['avoided_heroes']:
+            avoided_heroes += f'{hero}\n'
+    output.add_field(
+        name='🚫 Avoided Heroes',
+        value=avoided_heroes
+    )
+    # Get trivia score
+    total_questions = int(user_data['total_questions'])
+    if total_questions == 0:
+        success_rate = 0
+    else:
+        success_rate = int(int(user_data['successful_questions']) / total_questions * 100)
+    output.add_field(
+        name='✏️ Trivia statistics',
+        value=f'Success rate: {success_rate}%\n'
+              f'Questions attempted: {total_questions}',
+        inline=False
+    )
     return output
 
 
@@ -276,3 +296,16 @@ def get_heroes_in_category(**kwargs):
         response += f'\n- {hero}'
 
     return response
+
+
+def get_trivia_question(**kwargs):
+    prefix = kwargs['prefix']
+    try:
+        if kwargs['number_of_questions'] == '':
+            return trivia.get_questions()
+        else:
+            number_of_questions = int(kwargs['number_of_questions'])
+            return trivia.get_questions(number_of_questions)
+    except ValueError:
+        return 'Invalid argument for command `trivia`. Please enter a number for the amount of questions you want.' \
+               'E.g. `{prefix}trivia 3`'.format(prefix=prefix)

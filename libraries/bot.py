@@ -1,32 +1,44 @@
+import asyncio
 import discord
-from libraries import responses
+from libraries import responses, profiles
 import datetime
-# TODO: Format profile information as embed
-# TODO: Implement trivia code
+
 ALT_COMMANDS = {
     'hero': 'all',
     'dps': 'damage',
     'healer': 'support',
     'user': 'profile',
 }
+TRIVIA_EMOJIS = ["🇦", "🇧", "🇨", "🇩"]
 
 
-async def send_message(message, response, is_private=False):
-    if 'direct message' in str(message.channel).lower():
-        await message.author.send(response) if is_private else await message.channel.send(response)
+async def send_message(context: discord.Message, response, is_private=False) -> discord.Message:
+    if type(response) == discord.Embed:
+        embed = response
+        content = None
     else:
-        await message.author.send(response) \
-            if is_private else await message.channel.send(response, reference=message)
+        content = response
+        embed = None
+
+    if is_private:
+        return await context.author.send(content=content, embed=embed)
+    else:
+        # Reply to server message
+        if 'direct message' not in str(context.channel).lower():
+            return await context.channel.send(content=content, embed=embed, reference=context)
+        else:
+            return await context.channel.send(content=content, embed=embed)
 
 
-async def _process_command(command, **kwargs) -> list:
+async def _process_command(command, argument, username, prefix) -> list:
+    kwargs = {'username': username, 'prefix': prefix}
     reply = []
     category_args = {'duo': False, 'rduo': True}
     commands = {
-        'tank': responses.choose_duo if kwargs['duo'] in list(category_args.keys()) else responses.choose_hero,
-        'damage': responses.choose_duo if kwargs['duo'] in list(category_args.keys()) else responses.choose_hero,
-        'support': responses.choose_duo if kwargs['duo'] in list(category_args.keys()) else responses.choose_hero,
-        'all': responses.choose_duo if kwargs['duo'] in list(category_args.keys()) else responses.choose_hero,
+        'tank': responses.choose_duo if argument in list(category_args.keys()) else responses.choose_hero,
+        'damage': responses.choose_duo if argument in list(category_args.keys()) else responses.choose_hero,
+        'support': responses.choose_duo if argument in list(category_args.keys()) else responses.choose_hero,
+        'all': responses.choose_duo if argument in list(category_args.keys()) else responses.choose_hero,
         'dm': responses.greet_privately,
         'help': responses.help_menu,
         'profile': responses.get_profile,
@@ -36,19 +48,27 @@ async def _process_command(command, **kwargs) -> list:
         'duo': responses.duo,
         'rduo': responses.rduo,
         'list': responses.get_heroes_in_category,
+        'trivia': responses.get_trivia_question,
     }
     try:
-        # Set category for hero commands
+        # Set arguments
         if command in ['tank', 'damage', 'support', 'all']:
             kwargs['category'] = command
             # Set duo type
-            if kwargs['duo'] in list(category_args.keys()):
-                kwargs['random_duo'] = category_args[kwargs['duo']]
-                del kwargs['duo']
+            if argument in list(category_args.keys()):
+                kwargs['random_duo'] = category_args[argument]
         elif command == 'list':
-            if kwargs['duo'] in ALT_COMMANDS:
-                kwargs['duo'] = ALT_COMMANDS[kwargs['duo']]
-            kwargs['category'] = kwargs['duo']
+            if argument in ALT_COMMANDS:
+                argument = ALT_COMMANDS[argument]
+            kwargs['category'] = argument
+        elif command == 'avoid':
+            kwargs['hero_to_avoid'] = argument
+        elif command == 'unavoid':
+            kwargs['hero_to_unavoid'] = argument
+        elif command == 'trivia':
+            kwargs['number_of_questions'] = argument
+
+        # Build reply
         if command != 'dm':
             reply.append(commands[command](**kwargs))
         else:
@@ -58,27 +78,64 @@ async def _process_command(command, **kwargs) -> list:
         return reply
 
 
+async def _send_trivia_questions(bot: discord.Client, context: discord.Message, reply: list):
+    total_questions = 0
+    successful_questions = 0
+    for trivia_object in reply[0]:
+        embed = trivia_object['embed']
+        correct = trivia_object['correct']
+        sent_message = await send_message(context, embed)
+
+        # Add reactions to message
+        for emoji in TRIVIA_EMOJIS:
+            await sent_message.add_reaction(emoji)
+
+        # Check if user answered correctly
+        def check(reaction, user):
+            # Check if the reaction is valid and from the same user and channel as the command
+            return reaction.message.id == sent_message.id and user.id == context.author.id and str(
+                reaction.emoji) in TRIVIA_EMOJIS
+
+        try:
+            # Wait for 10 seconds or until a valid reaction is added
+            total_questions += 1
+            reaction, user = await bot.wait_for('reaction_add', timeout=20.0, check=check)
+        except asyncio.TimeoutError:
+            await send_message(context, f'Sorry {context.author.name}, you ran out of time')
+            break
+        if correct == TRIVIA_EMOJIS.index(str(reaction.emoji)):
+            successful_questions += 1
+            await send_message(context, 'Correct!')
+        else:
+            await send_message(context, f'That\'s wrong. Sorry {context.author.name}')
+    # Update score
+    await send_message(context, f'You scored {successful_questions}/{total_questions}')
+    profiles.update_trivia_score(str(context.author), successful_questions, total_questions)
+
+
 def run_discord_bot(token, prefix='.'):
+    # Define bot intents
     intents = discord.Intents.default()
     intents.message_content = True
-    client = discord.Client(intents=intents)
+    intents.members = True
+    bot = discord.Client(intents=intents)
 
-    @client.event
+    @bot.event
     async def on_ready():
-        print(f'{client.user} is now running.')
+        print(f'{bot.user} is now running.')
 
-    @client.event
-    async def on_message(message):
-        if message.author == client.user:
+    @bot.event
+    async def on_message(context: discord.Message):
+        if context.author == bot.user:
             return
-        user_message = str(message.content).lower()
-        if len(message.content) == 0:
+        user_message = str(context.content).lower()
+        if len(context.content) == 0:
             return
-        if message.content[0] != prefix:
+        if context.content[0] != prefix:
             return
 
-        username = str(message.author)
-        channel = str(message.channel)
+        username = str(context.author)
+        channel = str(context.channel)
         command = user_message.split(' ')[0][1:]
         argument = ''
         for word in user_message.split(' ')[1:]:
@@ -90,19 +147,19 @@ def run_discord_bot(token, prefix='.'):
         if command in ALT_COMMANDS:
             command = ALT_COMMANDS[command]
         # Process commands
-        reply = await _process_command(
-            command, username=username, duo=argument, hero_to_avoid=argument, hero_to_unavoid=argument, prefix=prefix
-        )
-        if command != 'dm':
+        reply = await _process_command(command, argument, username, prefix)
+        if command == 'dm':
+            # Respond to the message
+            if 'direct message' not in str(context.channel).lower():
+                await send_message(context, reply[0])
+            # Send a private message to the user.
+            await send_message(context, reply[1], is_private=True)
+        elif command == 'trivia':
+            await _send_trivia_questions(bot, context, reply)
+        else:
             try:
-                await send_message(message, reply[0])
+                await send_message(context, reply[0])
             except IndexError:
                 pass
-        else:
-            # Respond to the message
-            if 'direct message' not in str(message.channel).lower():
-                await send_message(message, reply[0])
-            # Send a private message to the user.
-            await send_message(message, reply[1], is_private=True)
 
-    client.run(token)
+    bot.run(token)
