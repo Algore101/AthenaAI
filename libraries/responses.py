@@ -61,7 +61,7 @@ def help_menu(**kwargs) -> Embed:
     # Trivia commands
     response.add_field(name='**Trivia commands**', inline=False,
                        value='`trivia [number of questions]` - Play a trivia game\n'
-                             '`guess [number of questions]` - Play \"Guess The Hero\"'
+                             '`guess [difficulty]` - Play \"Guess The Hero\" (easy/hard)'
                        )
     # Other commands
     response.add_field(name='**Other commands**', inline=False,
@@ -328,16 +328,43 @@ def get_trivia_question(**kwargs):
             return trivia.get_questions()
         else:
             number_of_questions = int(kwargs['number_of_questions'])
+            if number_of_questions < 1:
+                response = [
+                    f'I cannot provide you with {number_of_questions} questions...',
+                    'Error: `number of questions` < 1',
+                    'I see what you did there',
+                    'I know what you are doing and it is pretty funny',
+                    '*[Sarcastically:]* Haha, very funny.',
+                    '...',
+                    'Did you really think that would work?',
+                    'Please enter a value greater than 0'
+                ]
+                return random.choice(response)
             return trivia.get_questions(number_of_questions)
     except ValueError:
-        return 'Invalid argument for command `trivia`. Please enter a number for the amount of questions you want.' \
+        return 'Invalid argument for command `trivia`. Please enter a number for the amount of questions you want.\n' \
                'E.g. `{prefix}trivia 3`'.format(prefix=prefix)
+
+
+def get_trivia_image(**kwargs):
+    if kwargs['difficulty'].lower() == '':
+        return trivia.get_images()
+    elif kwargs['difficulty'].lower() not in ['easy', 'hard', 'e', 'h']:
+        return 'Invalid argument for command `guess`. Please enter easy/hard as an argument.\n' \
+               'E.g. {prefix}guess hard'.format(prefix=kwargs['prefix'])
+    else:
+        if kwargs['difficulty'] == 'e':
+            kwargs['difficulty'] = 'easy'
+        elif kwargs['difficulty'] == 'h':
+            kwargs['difficulty'] = 'hard'
+        return trivia.get_images(difficulty=kwargs['difficulty'])
 
 
 def trivia_response(correct: bool, username: str) -> str:
     if correct:
         responses = [
             'Correct!',
+            f'Well done {username}!',
         ]
     else:
         responses = [
@@ -345,10 +372,3 @@ def trivia_response(correct: bool, username: str) -> str:
             'Incorrect',
         ]
     return random.choice(responses)
-
-
-def get_trivia_image(**kwargs):
-    if kwargs['difficulty'] == '':
-        return trivia.get_images()
-    else:
-        return trivia.get_images(difficulty=kwargs['difficulty'])

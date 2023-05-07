@@ -84,6 +84,9 @@ async def _process_command(command, argument, username, prefix) -> list:
 async def _send_trivia_questions(bot: discord.Client, context: discord.Message, reply: list):
     total_questions = 0
     successful_questions = 0
+    if type(reply[0]) is str:
+        await send_message(context, reply[0])
+        return
     for trivia_object in reply[0]:
         embed = trivia_object['embed']
         correct = trivia_object['correct']
@@ -94,10 +97,11 @@ async def _send_trivia_questions(bot: discord.Client, context: discord.Message, 
             await sent_message.add_reaction(emoji)
 
         # Check if user answered correctly
-        def check(reaction, user):
+        def check(user_reaction, reacting_user):
             # Check if the reaction is valid and from the same user and channel as the command
-            return reaction.message.id == sent_message.id and user.id == context.author.id and str(
-                reaction.emoji) in TRIVIA_EMOJIS
+            return user_reaction.message.id == sent_message.id \
+                and reacting_user.id == context.author.id \
+                and str(user_reaction.emoji) in TRIVIA_EMOJIS
 
         try:
             # Wait for 10 seconds or until a valid reaction is added
