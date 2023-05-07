@@ -1,192 +1,830 @@
-[
+{
+  "questions": [
     {
-        "question": "Which hero says “Justice rains from above!” when using their ultimate ability?",
-        "answers": ["Pharah", "Mercy", "Reinhardt", "Soldier: 76"],
-        "correct": 0
+      "question": "Which hero says “Justice rains from above!” when using their ultimate ability?",
+      "answers": [
+        "Pharah",
+        "Mercy",
+        "Reinhardt",
+        "Soldier: 76"
+      ],
+      "correct": 0
     },
     {
-        "question": "Which hero is a former professional gamer from South Korea?",
-        "answers": ["D.Va", "Mei", "Genji", "Sombra"],
-        "correct": 0
+      "question": "Which hero is a former professional gamer from South Korea?",
+      "answers": [
+        "D.Va",
+        "Mei",
+        "Genji",
+        "Sombra"
+      ],
+      "correct": 0
     },
     {
-        "question": "Which hero is the leader of the Deadlock Gang?",
-        "answers": ["Cassidy", "Ashe", "Roadhog", "Reaper"],
-        "correct": 1
+      "question": "Which hero is the leader of the Deadlock Gang?",
+      "answers": [
+        "Cassidy",
+        "Ashe",
+        "Roadhog",
+        "Reaper"
+      ],
+      "correct": 1
     },
     {
-        "question": "Which hero is a former member of the Australian Liberation Front?",
-        "answers": ["Symmetra", "Zenyatta", "Junkrat", "Bastion"],
-        "correct": 2
+      "question": "Which hero is a former member of the Australian Liberation Front?",
+      "answers": [
+        "Symmetra",
+        "Zenyatta",
+        "Junkrat",
+        "Bastion"
+      ],
+      "correct": 2
     },
     {
-        "question": "Which hero is a former Talon operative who defected to Overwatch?",
-        "answers": ["Widowmaker", "Moira", "Genji", "Baptiste"],
-        "correct": 3
+      "question": "Which hero is a former Talon operative who defected to Overwatch?",
+      "answers": [
+        "Widowmaker",
+        "Moira",
+        "Genji",
+        "Baptiste"
+      ],
+      "correct": 3
     },
     {
-        "question": "Which hero is a former Overwatch agent who was presumed dead after a mission in Venice?",
-        "answers": ["Ana", "Reinhardt", "Soldier: 76", "Winston"],
-        "correct": 0
+      "question": "Which hero is a former Overwatch agent who was presumed dead after a mission in Venice?",
+      "answers": [
+        "Ana",
+        "Reinhardt",
+        "Soldier: 76",
+        "Winston"
+      ],
+      "correct": 0
     },
     {
-        "question": "Which hero is a hacker who was part of the Los Muertos gang in Mexico?",
-        "answers": ["Sombra", "Echo", "Ashe", "Hanzo"],
-        "correct": 0
+      "question": "Which hero is a hacker who was part of the Los Muertos gang in Mexico?",
+      "answers": [
+        "Sombra",
+        "Echo",
+        "Ashe",
+        "Hanzo"
+      ],
+      "correct": 0
     },
     {
-        "question": "Which hero is a former Overwatch agent who was the leader of Blackwatch?",
-        "answers": ["Moira", "Genji", "Reaper", "Tracer"],
-        "correct": 2
+      "question": "Which hero is a former Overwatch agent who was the leader of Blackwatch?",
+      "answers": [
+        "Moira",
+        "Genji",
+        "Reaper",
+        "Tracer"
+      ],
+      "correct": 2
     },
     {
-        "question": "Which hero was the test pilot of the Slipstream project?",
-        "answers": ["Pharah", "Mercy", "Winston", "Tracer"],
-        "correct": 3
+      "question": "Which hero was the test pilot of the Slipstream project?",
+      "answers": [
+        "Pharah",
+        "Mercy",
+        "Winston",
+        "Tracer"
+      ],
+      "correct": 3
     },
     {
-        "question": "Which hero was the mentor of Genji?",
-        "answers": ["Hanzo", "Zenyatta", "Reinhardt", "Lifeweaver"],
-        "correct": 1
+      "question": "Which hero was the mentor of Genji?",
+      "answers": [
+        "Hanzo",
+        "Zenyatta",
+        "Reinhardt",
+        "Lifeweaver"
+      ],
+      "correct": 1
     },
     {
-        "question": "Which hero is the daughter of Torbjörn?",
-        "answers": ["Bastion", "Mei", "Brigitte", "Echo"],
-        "correct": 2
+      "question": "Which hero is the daughter of Torbjörn?",
+      "answers": [
+        "Bastion",
+        "Mei",
+        "Brigitte",
+        "Echo"
+      ],
+      "correct": 2
     },
     {
-        "question": "Which hero has the highest base health pool?",
-        "answers": ["Reinhardt", "Roadhog", "Wrecking Ball", "D.Va"],
-        "correct": 1
+      "question": "Which hero has the highest base health pool?",
+      "answers": [
+        "Reinhardt",
+        "Roadhog",
+        "Wrecking Ball",
+        "D.Va"
+      ],
+      "correct": 1
     },
     {
-        "question": "Which hero has the shortest ultimate charge time?",
-        "answers": ["Tracer", "Zarya", "Genji", "Junkrat"],
-        "correct": 0
+      "question": "Which hero has the shortest ultimate charge time?",
+      "answers": [
+        "Tracer",
+        "Zarya",
+        "Genji",
+        "Junkrat"
+      ],
+      "correct": 0
     },
     {
-        "question": "Which hero is the leader of Junkertown and a former mech fighter?",
-        "answers": ["Junker Queen", "Junkrat", "Roadhog", "Reaper"],
-        "correct": 0
+      "question": "Which hero is the leader of Junkertown and a former mech fighter?",
+      "answers": [
+        "Junker Queen",
+        "Junkrat",
+        "Roadhog",
+        "Reaper"
+      ],
+      "correct": 0
     },
     {
-        "question": "Which hero is a ruthless leader of Talon who believes that conflict is the only way to strengthen humanity?",
-        "answers": ["Genji", "Moira", "Doomfist", "Sombra"],
-        "correct": 2
+      "question": "Which hero is a ruthless leader of Talon who believes that conflict is the only way to strengthen humanity?",
+      "answers": [
+        "Genji",
+        "Moira",
+        "Doomfist",
+        "Sombra"
+      ],
+      "correct": 2
     },
     {
-        "question": "Which hero is a new model of OR15 defense robot?",
-        "answers": ["Reinhardt", "Echo", "Bastion", "Orisa"],
-        "correct": 3
+      "question": "Which hero is a new model of OR15 defense robot?",
+      "answers": [
+        "Reinhardt",
+        "Echo",
+        "Bastion",
+        "Orisa"
+      ],
+      "correct": 3
     },
     {
-        "question": "Which hero is an advanced robot created by Dr. Mina Liao?",
-        "answers": ["Torbjörn", "Echo", "Orisa", "Lifeweaver"],
-        "correct": 1
+      "question": "Which hero is an advanced robot created by Dr. Mina Liao?",
+      "answers": [
+        "Torbjörn",
+        "Echo",
+        "Orisa",
+        "Lifeweaver"
+      ],
+      "correct": 1
     },
     {
-        "question": "Which hero is a freedom fighter who stole Vishkar’s sonic technology?",
-        "answers": ["Torbjörn", "Symmetra", "Lúcio", "Mei"],
-        "correct": 2
+      "question": "Which hero is a freedom fighter who stole Vishkar’s sonic technology?",
+      "answers": [
+        "Torbjörn",
+        "Symmetra",
+        "Lúcio",
+        "Mei"
+      ],
+      "correct": 2
     },
     {
-        "question": "Which hero is a shrine maiden and a protector of Kanezaka?",
-        "answers": ["Kiriko", "Genji", "Tracer", "Hanzo"],
-        "correct": 0
+      "question": "Which hero is a shrine maiden and a protector of Kanezaka?",
+      "answers": [
+        "Kiriko",
+        "Genji",
+        "Tracer",
+        "Hanzo"
+      ],
+      "correct": 0
     },
     {
-        "question": "Which hero was fascinated by the potential of hard-light to manipulate life forms and create new ones?",
-        "answers": ["Symmetra", "Ana", "Moira", "Lifeweaver"],
-        "correct": 3
+      "question": "Which hero was fascinated by the potential of hard-light to manipulate life forms and create new ones?",
+      "answers": [
+        "Symmetra",
+        "Ana",
+        "Moira",
+        "Lifeweaver"
+      ],
+      "correct": 3
     },
     {
-        "question": "Which hero is a bounty hunter who was caught by Overwatch during a sting operation and given a choice to join them or rot in prison?",
-        "answers": ["Hanzo", "Cassidy", "Ashe", "Ramattra"],
-        "correct": 1
+      "question": "Which hero is a bounty hunter who was caught by Overwatch during a sting operation and given a choice to join them or rot in prison?",
+      "answers": [
+        "Hanzo",
+        "Cassidy",
+        "Ashe",
+        "Ramattra"
+      ],
+      "correct": 1
     },
     {
-        "question": "Which hero is a brilliant astrophysicist who was exposed to a black hole experiment that gave him the ability to manipulate gravity?",
-        "answers": ["Winston", "Reaper", "Sigma", "Mercy"],
-        "correct": 2
+      "question": "Which hero is a brilliant astrophysicist who was exposed to a black hole experiment that gave him the ability to manipulate gravity?",
+      "answers": [
+        "Winston",
+        "Reaper",
+        "Sigma",
+        "Mercy"
+      ],
+      "correct": 2
     },
     {
-        "question": "Which hero is a scientist who was raised on the moon and joined Overwatch?",
-        "answers": ["Winston", "Wrecking Ball", "Mercy", "Moira"],
-        "correct": 0
+      "question": "Which hero is a scientist who was raised on the moon and joined Overwatch?",
+      "answers": [
+        "Winston",
+        "Wrecking Ball",
+        "Mercy",
+        "Moira"
+      ],
+      "correct": 0
     },
     {
-        "question": "Which hero is a climatologist and an adventurer who uses her endothermic blaster and weather drones to study and preserve the environment?",
-        "answers": ["Kiriko", "Ramattra", "Mei", "Lúcio"],
-        "correct": 2
+      "question": "Which hero is a climatologist and an adventurer who uses her endothermic blaster and weather drones to study and preserve the environment?",
+      "answers": [
+        "Kiriko",
+        "Ramattra",
+        "Mei",
+        "Lúcio"
+      ],
+      "correct": 2
     },
     {
-        "question": "Which hero is a Canadian soldier and an Overwatch agent who leads the team in Overwatch 2",
-        "answers": ["Soldier: 76", "Reaper", "Mercy", "Sojourn"],
-        "correct": 3
+      "question": "Which hero is a Canadian soldier and an Overwatch agent who leads the team in Overwatch 2",
+      "answers": [
+        "Soldier: 76",
+        "Reaper",
+        "Mercy",
+        "Sojourn"
+      ],
+      "correct": 3
     },
     {
-        "question": "Which hero is an engineer and an inventor who helped design many weapons for Overwatch?",
-        "answers": ["Ana", "Torbjörn", "Winston", "Echo"],
-        "correct": 1
+      "question": "Which hero is an engineer and an inventor who helped design many weapons for Overwatch?",
+      "answers": [
+        "Ana",
+        "Torbjörn",
+        "Winston",
+        "Echo"
+      ],
+      "correct": 1
     },
     {
-        "question": "Which hero was the head of medical research for Overwatch?",
-        "answers": ["Moira", "Mercy", "Lifeweaver", "Kiriko"],
-        "correct": 1
+      "question": "Which hero was the head of medical research for Overwatch?",
+      "answers": [
+        "Moira",
+        "Mercy",
+        "Lifeweaver",
+        "Kiriko"
+      ],
+      "correct": 1
     },
     {
-        "question": "Which hero is the heir of the Shimada clan but who left his family after killing his brother?",
-        "answers": ["Reaper", "Genji", "Sombra", "Hanzo"],
-        "correct": 3
+      "question": "Which hero is the heir of the Shimada clan but who left his family after killing his brother?",
+      "answers": [
+        "Reaper",
+        "Genji",
+        "Sombra",
+        "Hanzo"
+      ],
+      "correct": 3
     },
     {
-        "question": "Which hero is a crusader who fights with honor and courage?",
-        "answers": ["Zarya", "Pharah", "Reinhardt", "Brigitte"],
-        "correct": 2
+      "question": "Which hero is a crusader who fights with honor and courage?",
+      "answers": [
+        "Zarya",
+        "Pharah",
+        "Reinhardt",
+        "Brigitte"
+      ],
+      "correct": 2
     },
     {
-        "question": "Which hero was student and brother to Zenyatta?",
-        "answers": ["Ramattra", "Echo", "Hanzo", "Tracer"],
-        "correct": 0
+      "question": "Which hero was student and brother to Zenyatta?",
+      "answers": [
+        "Ramattra",
+        "Echo",
+        "Hanzo",
+        "Tracer"
+      ],
+      "correct": 0
     },
     {
-        "question": "Which hero is a Russian soldier and a weightlifting champion?",
-        "answers": ["Reinhardt", "Zarya", "Baptiste", "Soldier 24"],
-        "correct": 1
+      "question": "Which hero is a Russian soldier and a weightlifting champion?",
+      "answers": [
+        "Reinhardt",
+        "Zarya",
+        "Baptiste",
+        "Soldier 24"
+      ],
+      "correct": 1
     },
     {
-        "question": "Which hero escaped from the lunar colony with Winston and built a combat mech from junk parts?",
-        "answers": ["Roadhog", "Sigma", "D.Va", "Wrecking Ball"],
-        "correct": 3
+      "question": "Which hero escaped from the lunar colony with Winston and built a combat mech from junk parts?",
+      "answers": [
+        "Roadhog",
+        "Sigma",
+        "D.Va",
+        "Wrecking Ball"
+      ],
+      "correct": 3
     },
     {
-        "question": "Which hero is a combat omnic who developed a curious personality and a fondness for nature?",
-        "answers": ["Echo", "Torbjörn", "Bastion", "Orisa"],
-        "correct": 2
+      "question": "Which hero is a combat omnic who developed a curious personality and a fondness for nature?",
+      "answers": [
+        "Echo",
+        "Torbjörn",
+        "Bastion",
+        "Orisa"
+      ],
+      "correct": 2
     },
     {
-        "question": "Which hero was saved by Overwatch and trained by Zenyatta to find peace with himself?",
-        "answers": ["Ramattra", "Genji", "Reaper", "Widowmaker"],
-        "correct": 1
+      "question": "Which hero was saved by Overwatch and trained by Zenyatta to find peace with himself?",
+      "answers": [
+        "Ramattra",
+        "Genji",
+        "Reaper",
+        "Widowmaker"
+      ],
+      "correct": 1
     },
     {
-        "question": "Which hero is a vigilante and a former leader of Overwatch who was presumed dead after an explosion at the headquarters?",
-        "answers": ["Soldier: 76", "Ana", "Winston", "Sojourn"],
-        "correct": 0
+      "question": "Which hero is a vigilante and a former leader of Overwatch who was presumed dead after an explosion at the headquarters?",
+      "answers": [
+        "Soldier: 76",
+        "Ana",
+        "Winston",
+        "Sojourn"
+      ],
+      "correct": 0
     },
     {
-        "question": "Which hero is an architect and an agent of Vishkar Corporation?",
-        "answers": ["Ana", "Dr. Mina Liao", "Maximillian", "Symmetra"],
-        "correct": 3
+      "question": "Which hero is an architect and an agent of Vishkar Corporation?",
+      "answers": [
+        "Ana",
+        "Dr. Mina Liao",
+        "Maximillian",
+        "Symmetra"
+      ],
+      "correct": 3
     },
     {
-        "question": "Which hero was brainwashed and turned into a cold-blooded killer by Talon?",
-        "answers": ["Moira", "Reaper", "Widowmaker", "Sigma"],
-        "correct": 2
+      "question": "Which hero was brainwashed and turned into a cold-blooded killer by Talon?",
+      "answers": [
+        "Moira",
+        "Reaper",
+        "Widowmaker",
+        "Sigma"
+      ],
+      "correct": 2
     },
     {
-        "question": "Which hero is a geneticist and a member of Talon who seeks to unlock the secrets of life?",
-        "answers": ["Mercy", "Moira", "Lifeweaver", "Doomfist"],
-        "correct": 1
+      "question": "Which hero is a geneticist and a member of Talon who seeks to unlock the secrets of life?",
+      "answers": [
+        "Mercy",
+        "Moira",
+        "Lifeweaver",
+        "Doomfist"
+      ],
+      "correct": 1
     }
-]
+  ],
+  "images": [
+    {
+      "hero": "D.Va",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409295707189398/dva.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418153582313582/D.Va.png",
+      "answers": [
+        "D.Va",
+        "Mei",
+        "Genji",
+        "Sombra"
+      ],
+      "correct": 0
+    },
+    {
+      "hero": "Doomfist",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409296004976720/doomfist.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418153330647171/Doomfist.png",
+      "answers": [
+        "Genji",
+        "Moira",
+        "Doomfist",
+        "Sombra"
+      ],
+      "correct": 2
+    },
+    {
+      "hero": "Junker Queen",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409296244047953/junker_queen.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418154291150868/Junker_Queen.png",
+      "answers": [
+        "Junker Queen",
+        "Junkrat",
+        "Roadhog",
+        "Reaper"
+      ],
+      "correct": 0
+    },
+    {
+      "hero": "Orisa",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409296470544394/orisa.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418154043678740/Orisa.png",
+      "answers": [
+        "Reinhardt",
+        "Echo",
+        "Bastion",
+        "Orisa"
+      ],
+      "correct": 3
+    },
+    {
+      "hero": "Ramattra",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409296776724620/ramattra.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418153804607579/Ramattra.png",
+      "answers": [
+        "Ramattra",
+        "Echo",
+        "Hanzo",
+        "Tracer"
+      ],
+      "correct": 0
+    },
+    {
+      "hero": "Reinhardt",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409297087115324/reinhardt.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418152886059078/Reinhardt.png",
+      "answers": [
+        "Zarya",
+        "Pharah",
+        "Reinhardt",
+        "Brigitte"
+      ],
+      "correct": 2
+    },
+    {
+      "hero": "Roadhog",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409297321988166/roadhog.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418153137713192/Roadhog.png",
+      "answers": [
+        "Reinhardt",
+        "Roadhog",
+        "Wrecking Ball",
+        "D.Va"
+      ],
+      "correct": 1
+    },
+    {
+      "hero": "Sigma",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409297577836564/sigma.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104470651932246086/Sigma.png",
+      "answers": [
+        "Winston",
+        "Reaper",
+        "Sigma",
+        "Mercy"
+      ],
+      "correct": 2
+    },
+    {
+      "hero": "Winston",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409359993274499/winston.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418152617615453/Winston.png",
+      "answers": [
+        "Winston",
+        "Wrecking Ball",
+        "Mercy",
+        "Moira"
+      ],
+      "correct": 0
+    },
+    {
+      "hero": "Wrecking Ball",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409360274305114/wrecking_ball.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418302329106543/Wrecking_Ball.png",
+      "answers": [
+        "Roadhog",
+        "Sigma",
+        "D.Va",
+        "Wrecking Ball"
+      ],
+      "correct": 3
+    },
+    {
+      "hero": "Zarya",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409360517582948/zarya.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418302618505316/Zarya.png",
+      "answers": [
+        "Reinhardt",
+        "Zarya",
+        "Baptiste",
+        "Soldier: 24"
+      ],
+      "correct": 1
+    },
+    {
+      "hero": "Ashe",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409454637756486/ashe.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418302937280552/Ashe.png",
+      "answers": [
+        "Cassidy",
+        "Ashe",
+        "Roadhog",
+        "Reaper"
+      ],
+      "correct": 1
+    },
+    {
+      "hero": "Bastion",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409407690916030/bastion.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418303197323275/Bastion.png",
+      "answers": [
+        "Echo",
+        "Torbjörn",
+        "Bastion",
+        "Orisa"
+      ],
+      "correct": 2
+    },
+    {
+      "hero": "Cassidy",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409407443447908/cassidy.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418303469949049/Cassidy.png",
+      "answers": [
+        "Hanzo",
+        "Cassidy",
+        "Ashe",
+        "Ramattra"
+      ],
+      "correct": 1
+    },
+    {
+      "hero": "Echo",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409407221141746/echo.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418303717417141/Echo.png",
+      "answers": [
+        "Torbjörn",
+        "Echo",
+        "Orisa",
+        "Lifeweaver"
+      ],
+      "correct": 1
+    },
+    {
+      "hero": "Genji",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409406965301388/genji.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418301754482760/Genji.png",
+      "answers": [
+        "Ramattra",
+        "Genji",
+        "Reaper",
+        "Widowmaker"
+      ],
+      "correct": 1
+    },
+    {
+      "hero": "Hanzo",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409406755582064/hanzo.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418302043885608/Hanzo.png",
+      "answers": [
+        "Reaper",
+        "Genji",
+        "Sombra",
+        "Hanzo"
+      ],
+      "correct": 3
+    },
+    {
+      "hero": "Junkrat",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409406503915540/junkrat.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418430720950292/Junkrat.png",
+      "answers": [
+        "Symmetra",
+        "Zenyatta",
+        "Junkrat",
+        "Bastion"
+      ],
+      "correct": 2
+    },
+    {
+      "hero": "Mei",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409406034165881/mei.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418430972612698/Mei.png",
+      "answers": [
+        "Kiriko",
+        "Ramattra",
+        "Mei",
+        "Lúcio"
+      ],
+      "correct": 2
+    },
+    {
+      "hero": "Pharah",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409405799280811/pharah.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418431228448869/Pharah.png",
+      "answers": [
+        "Pharah",
+        "Mercy",
+        "Reinhardt",
+        "Soldier: 76"
+      ],
+      "correct": 0
+    },
+    {
+      "hero": "Reaper",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409405551808632/reaper.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418431530450954/Reaper.png",
+      "answers": [
+        "Moira",
+        "Genji",
+        "Reaper",
+        "Tracer"
+      ],
+      "correct": 2
+    },
+    {
+      "hero": "Soldier: 76",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409362170138634/soldier_76.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418432105070703/Soldier_76.png",
+      "answers": [
+        "Soldier: 76",
+        "Ana",
+        "Winston",
+        "Sojourn"
+      ],
+      "correct": 0
+    },
+    {
+      "hero": "Sojourn",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409362463719424/sojourn.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418431840817273/Sojourn.png",
+      "answers": [
+        "Soldier 76",
+        "Reaper",
+        "Mercy",
+        "Sojourn"
+      ],
+      "correct": 3
+    },
+    {
+      "hero": "Sombra",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409361926860880/sombra.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418432499339294/Sombra.png",
+      "answers": [
+        "Sombra",
+        "Echo",
+        "Ashe",
+        "Hanzo"
+      ],
+      "correct": 0
+    },
+    {
+      "hero": "Symmetra",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409361566138528/symmetra.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418432792924160/Symmetra.png",
+      "answers": [
+        "Ana",
+        "Dr. Mina Liao",
+        "Maximillian",
+        "Symmetra"
+      ],
+      "correct": 3
+    },
+    {
+      "hero": "Torbjörn",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409361280946297/torbjorn.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418433124286516/Torbjorn.png",
+      "answers": [
+        "Ana",
+        "Torbjörn",
+        "Winston",
+        "Echo"
+      ],
+      "correct": 1
+    },
+    {
+      "hero": "Tracer",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409361041862717/tracer.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418430477668412/Tracer.png",
+      "answers": [
+        "Pharah",
+        "Mercy",
+        "Winston",
+        "Tracer"
+      ],
+      "correct": 3
+    },
+    {
+      "hero": "Widowmaker",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409360748249199/widowmaker.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418710258733196/Widowmaker.png",
+      "answers": [
+        "Moira",
+        "Reaper",
+        "Widowmaker",
+        "Sigma"
+      ],
+      "correct": 2
+    },
+    {
+      "hero": "Ana",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409454910390272/ana.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418707809243227/Ana.png",
+      "answers": [
+        "Ana",
+        "Reinhardt",
+        "Soldier: 76",
+        "Winston"
+      ],
+      "correct": 0
+    },
+    {
+      "hero": "Baptiste",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409455220756629/baptiste.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418708107055215/Baptiste.png",
+      "answers": [
+        "Widowmaker",
+        "Moira",
+        "Genji",
+        "Baptiste"
+      ],
+      "correct": 3
+    },
+    {
+      "hero": "Brigitte",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409455489200128/brigitte.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418708329336982/Brigitte.png",
+      "answers": [
+        "Bastion",
+        "Mei",
+        "Brigitte",
+        "Echo"
+      ],
+      "correct": 2
+    },
+    {
+      "hero": "Kiriko",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409455724085380/kiriko.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418708597780490/Kiriko.png",
+      "answers": [
+        "Kiriko",
+        "Genji",
+        "Tracer",
+        "Hanzo"
+      ],
+      "correct": 0
+    },
+    {
+      "hero": "Lifeweaver",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456013480046/lifeweaver.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418708941721660/Lifeweaver.png",
+      "answers": [
+        "Symmetra",
+        "Ana",
+        "Moira",
+        "Lifeweaver"
+      ],
+      "correct": 3
+    },
+    {
+      "hero": "Lúcio",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456239980634/lucio.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418709210140682/Lucio.png",
+      "answers": [
+        "Torbjörn",
+        "Symmetra",
+        "Lúcio",
+        "Mei"
+      ],
+      "correct": 2
+    },
+    {
+      "hero": "Mercy",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456525197353/mercy.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418709608616047/Mercy.png",
+      "answers": [
+        "Moira",
+        "Mercy",
+        "Lifeweaver",
+        "Kiriko"
+      ],
+      "correct": 1
+    },
+    {
+      "hero": "Moira",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456772649010/moira.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418709860257874/Moira.png",
+      "answers": [
+        "Mercy",
+        "Moira",
+        "Lifeweaver",
+        "Doomfist"
+      ],
+      "correct": 1
+    },
+    {
+      "hero": "Zenyatta",
+      "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456986566726/zenyatta.png",
+      "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418707494686720/Zenyatta.png",
+      "answers": [
+        "Hanzo",
+        "Zenyatta",
+        "Reinhardt",
+        "Lifeweaver"
+      ],
+      "correct": 1
+    }
+  ]
+}

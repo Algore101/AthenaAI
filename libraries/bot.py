@@ -49,6 +49,7 @@ async def _process_command(command, argument, username, prefix) -> list:
         'rduo': responses.rduo,
         'list': responses.get_heroes_in_category,
         'trivia': responses.get_trivia_question,
+        'guess': responses.get_trivia_image,
     }
     try:
         # Set arguments
@@ -67,6 +68,8 @@ async def _process_command(command, argument, username, prefix) -> list:
             kwargs['hero_to_unavoid'] = argument
         elif command == 'trivia':
             kwargs['number_of_questions'] = argument
+        elif command == 'guess':
+            kwargs['difficulty'] = argument
 
         # Build reply
         if command != 'dm':
@@ -105,9 +108,9 @@ async def _send_trivia_questions(bot: discord.Client, context: discord.Message, 
             break
         if correct == TRIVIA_EMOJIS.index(str(reaction.emoji)):
             successful_questions += 1
-            await send_message(context, 'Correct!')
+            await send_message(context, responses.trivia_response(True, user.name))
         else:
-            await send_message(context, f'That\'s wrong. Sorry {context.author.name}')
+            await send_message(context, responses.trivia_response(False, user.name))
     # Update score
     await send_message(context, f'You scored {successful_questions}/{total_questions}')
     profiles.update_trivia_score(str(context.author), successful_questions, total_questions)
@@ -154,7 +157,7 @@ def run_discord_bot(token, prefix='.'):
                 await send_message(context, reply[0])
             # Send a private message to the user.
             await send_message(context, reply[1], is_private=True)
-        elif command == 'trivia':
+        elif command in ['trivia', 'guess']:
             await _send_trivia_questions(bot, context, reply)
         else:
             try:

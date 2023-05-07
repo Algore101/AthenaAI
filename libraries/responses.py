@@ -309,3 +309,25 @@ def get_trivia_question(**kwargs):
     except ValueError:
         return 'Invalid argument for command `trivia`. Please enter a number for the amount of questions you want.' \
                'E.g. `{prefix}trivia 3`'.format(prefix=prefix)
+
+
+def trivia_response(correct: bool, username: str) -> str:
+    if correct:
+        responses = [
+            'Correct!',
+        ]
+    else:
+        responses = [
+            'That\'s wrong, sorry',
+            'Incorrect',
+        ]
+    return random.choice(responses)
+
+
+def get_trivia_image(**kwargs):
+    if kwargs['difficulty'] == '':
+        return trivia.get_images()
+    else:
+        return trivia.get_images(difficulty=kwargs['difficulty'])
+
+
