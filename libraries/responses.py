@@ -1,9 +1,8 @@
 import random
-import discord
 from libraries import heroChooser, profiles, trivia
 import os
 import json
-from discord import Embed
+from discord import Embed, Color
 
 MISSPELLINGS_FILE = os.path.join(os.path.dirname(__file__), '../data/misspellings.json')
 
@@ -22,32 +21,56 @@ def _correct_spelling(hero_name: str) -> str:
     return hero_name
 
 
-def help_menu(**kwargs) -> str:
-    response = 'Hi there! My name is *AthenaAI*, the Overwatch 2 hero choosing bot.\n' \
-               'Below are all the ways you can interact with me!\n\n' \
-               '**Get a hero:**\n' \
-               '`{prefix}hero` `{prefix}all` – Returns a random hero from all the categories\n' \
-               '`{prefix}tank` – Returns a random tank hero\n' \
-               '`{prefix}damage` `{prefix}dps` – Returns a random damage hero\n' \
-               '`{prefix}support` `{prefix}healer` – Returns a random support hero\n\n' \
-               '**Get a duo:**\n' \
-               'Add `duo` after any of the hero commands\n' \
-               'E.g. `{prefix}support duo`\n\n' \
-               '**Get a random duo:**\n' \
-               'Add `rduo` after any of the hero commands\n' \
-               'E.g. `{prefix}damage rduo`\n\n' \
-               '**Select a role**\n' \
-               '`{prefix}role` - Returns a random role to queue as\n\n' \
-               '**Profile based commands:**\n' \
-               '`{prefix}profile` - View your profile\n' \
-               '`{prefix}avoid [hero]` - Adds the hero to your avoid list\n' \
-               '`{prefix}unavoid [hero]` - Removes the hero from your avoid list\n' \
-               '`{prefix}unavoid all` - Removes all heroes from your avoid list\n\n' \
-               '**Other commands:**\n' \
-               '`{prefix}dm` - Interact with me in your DMs\n' \
-               '`{prefix}help` - Returns this message\n' \
-               '`{prefix}list [role]` - Returns a list of all the heroes in the role\n'
-    return response.format(prefix=kwargs['prefix'])
+def help_menu(**kwargs) -> Embed:
+    prefix = kwargs['prefix']
+    response = Embed(
+        title='AthenaAI Help Menu',
+        description='Hi there! My name is *AthenaAI*, the Overwatch 2 hero choosing bot.\n'
+                    'Below are all the ways you can interact with me!\n'
+                    f'*Note that all the commands below are prefixed with `{prefix}`*',
+        colour=Color.from_rgb(38, 99, 199)
+    )
+    # Hero commands
+    response.add_field(name='**Get a hero**', inline=False,
+                       value='`hero` / `all` – Returns a random hero from all the categories\n'
+                             '`tank` – Returns a random tank hero\n'
+                             '`damage` / `dps` – Returns a random damage hero\n'
+                             '`support` / `healer` – Returns a random support hero'
+                       )
+    # Duo commands
+    response.add_field(name='**Get a duo**', inline=False,
+                       value='Add `duo` after any of the hero commands\n'
+                             'E.g. `support duo`'
+                       )
+    # Random duo commands
+    response.add_field(name='**Get a random duo**', inline=False,
+                       value='Add `rduo` after any of the hero commands\n'
+                             'E.g. `damage rduo`'
+                       )
+    # Role command
+    response.add_field(name='**Select a role**', inline=False,
+                       value='`role` - Returns a random role to queue as'
+                       )
+    # Profile commands
+    response.add_field(name='**Profile based commands**', inline=False,
+                       value='`profile` - View your profile\n'
+                             '`avoid [hero]` - Adds the hero to your avoid list\n'
+                             '`unavoid [hero]` - Removes the hero from your avoid list\n'
+                             '`unavoid all` - Removes all heroes from your avoid list'
+                       )
+    # Trivia commands
+    response.add_field(name='**Trivia commands**', inline=False,
+                       value='`trivia [number of questions]` - Play a trivia game\n'
+                             '`guess [number of questions]` - Play \"Guess The Hero\"'
+                       )
+    # Other commands
+    response.add_field(name='**Other commands**', inline=False,
+                       value='`dm` - Interact with me in your DMs\n'
+                             '`help` - Returns this message\n'
+                             '`list [role]` - Returns a list of all the heroes in the role'
+                       )
+
+    return response
 
 
 def choose_hero(**kwargs) -> str:
@@ -162,7 +185,7 @@ def get_profile(**kwargs) -> Embed:
     # Update users
     profiles.update_trivia_score(username, 0, 0)
     user_data = profiles.get_profile(username)
-    output = Embed(title=f'Profile: {username}', colour=discord.Color.from_rgb(38, 99, 199))
+    output = Embed(title=f'Profile: {username}', colour=Color.from_rgb(38, 99, 199))
     # Get avoided heroes
     avoided_heroes = ''
     if len(user_data['avoided_heroes']) == 0:
@@ -329,5 +352,3 @@ def get_trivia_image(**kwargs):
         return trivia.get_images()
     else:
         return trivia.get_images(difficulty=kwargs['difficulty'])
-
-
