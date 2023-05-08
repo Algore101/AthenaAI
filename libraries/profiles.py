@@ -122,3 +122,9 @@ def update_trivia_score(username: str, successful_questions: int, total_question
             all_users[all_users.index(x)] = user
             break
     _update_user_file(all_users)
+
+
+def get_trivia_scoreboard() -> list:
+    def get_success_rate(user: dict):
+        return int(user['successful_questions'] / user['total_questions'] * 100)
+    return sorted(_get_all_users(), key=get_success_rate, reverse=True)

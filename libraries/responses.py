@@ -5,6 +5,8 @@ import json
 from discord import Embed, Color
 
 MISSPELLINGS_FILE = os.path.join(os.path.dirname(__file__), '../data/misspellings.json')
+RANK_EMOJIS = ['🥇', '🥈', '🥉']
+DEFAULT_EMBED_COLOUR = Color.from_rgb(38, 99, 199)
 
 
 def _correct_spelling(hero_name: str) -> str:
@@ -28,7 +30,7 @@ def help_menu(**kwargs) -> Embed:
         description='Hi there! My name is *AthenaAI*, the Overwatch 2 hero choosing bot.\n'
                     'Below are all the ways you can interact with me!\n'
                     f'*Note that all the commands below are prefixed with `{prefix}`*',
-        colour=Color.from_rgb(38, 99, 199)
+        colour=DEFAULT_EMBED_COLOUR
     )
     # Hero commands
     response.add_field(name='**Get a hero**', inline=False,
@@ -61,7 +63,8 @@ def help_menu(**kwargs) -> Embed:
     # Trivia commands
     response.add_field(name='**Trivia commands**', inline=False,
                        value='`trivia [number of questions]` - Play a trivia game\n'
-                             '`guess [difficulty]` - Play \"Guess The Hero\" (easy/hard)'
+                             '`guess [difficulty]` - Play \"Guess The Hero\" (easy/hard)\n'
+                             '`scores` - Shows the top trivia players'
                        )
     # Other commands
     response.add_field(name='**Other commands**', inline=False,
@@ -185,7 +188,7 @@ def get_profile(**kwargs) -> Embed:
     # Update users
     profiles.update_trivia_score(username, 0, 0)
     user_data = profiles.get_profile(username)
-    output = Embed(title=f'Profile: {username}', colour=Color.from_rgb(38, 99, 199))
+    output = Embed(title=f'Profile: {username}', colour=DEFAULT_EMBED_COLOUR)
     # Get avoided heroes
     avoided_heroes = ''
     if len(user_data['avoided_heroes']) == 0:
@@ -198,15 +201,14 @@ def get_profile(**kwargs) -> Embed:
         value=avoided_heroes
     )
     # Get trivia score
-    total_questions = int(user_data['total_questions'])
-    if total_questions == 0:
+    if user_data['total_questions'] == 0:
         success_rate = 0
     else:
-        success_rate = int(int(user_data['successful_questions']) / total_questions * 100)
+        success_rate = int(user_data['successful_questions'] / user_data['total_questions'] * 100)
     output.add_field(
         name='✏️ Trivia statistics',
         value=f'Success rate: {success_rate}%\n'
-              f'Questions attempted: {total_questions}',
+              f'Questions attempted: {user_data["total_questions"]}',
         inline=False
     )
     return output
@@ -372,3 +374,24 @@ def trivia_response(correct: bool, username: str) -> str:
             'Incorrect',
         ]
     return random.choice(responses)
+
+
+def get_scoreboard(**kwargs):
+    scoreboard = profiles.get_trivia_scoreboard()
+    usernames_text = ''
+    rate_text = ''
+    total_text = ''
+    for rank, user in enumerate(scoreboard):
+        if rank < 3:
+            usernames_text += RANK_EMOJIS[rank]
+        usernames_text += f'{user["username"][:-5]}\n'
+        rate = int(user['successful_questions'] / user['total_questions'] * 100)
+        rate_text += f'\n{rate}%'
+        total_text += f'\n{user["total_questions"]}'
+    # Build embed
+    response = Embed(title='Trivia scoreboard', description='Here are the top trivia players!',
+                     colour=DEFAULT_EMBED_COLOUR)
+    response.add_field(name='Username', value=usernames_text)
+    response.add_field(name='Success Rate', value=rate_text)
+    response.add_field(name='Questions attempted', value=total_text)
+    return response

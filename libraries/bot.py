@@ -8,6 +8,9 @@ ALT_COMMANDS = {
     'dps': 'damage',
     'healer': 'support',
     'user': 'profile',
+    'score': 'scores',
+    'scoreboard': 'scores',
+    'leaderboard': 'scores',
 }
 TRIVIA_EMOJIS = ["🇦", "🇧", "🇨", "🇩"]
 
@@ -50,6 +53,7 @@ async def _process_command(command, argument, username, prefix) -> list:
         'list': responses.get_heroes_in_category,
         'trivia': responses.get_trivia_question,
         'guess': responses.get_trivia_image,
+        'scores': responses.get_scoreboard,
     }
     try:
         # Set arguments
