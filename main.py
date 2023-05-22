@@ -10,4 +10,4 @@ if __name__ == '__main__':
         for line in file:
             line = line.strip()
             settings[line.split('=')[0]] = line.split('=')[1]
-    bot.run_discord_bot(token=settings['token'], prefix=settings['prefix'])
+    bot.run_discord_bot(token=os.getenv('BOT_TOKEN'), prefix=settings['prefix'])
