@@ -1,7 +1,11 @@
-import asyncio
+import random
+import os
 import discord
-from libraries import responses, profiles
-import datetime
+from discord.ext.commands import Bot
+from discord import app_commands, Embed, Color
+from libraries import profiles, heroChooser
+import json
+from datetime import datetime
 
 ALT_COMMANDS = {
     'hero': 'all',
@@ -13,164 +17,465 @@ ALT_COMMANDS = {
     'leaderboard': 'scores',
 }
 TRIVIA_EMOJIS = ["🇦", "🇧", "🇨", "🇩"]
+MISSPELLINGS_FILE = os.path.join(os.path.dirname(__file__), '../data/misspellings.json')
+RANK_EMOJIS = ['🥇', '🥈', '🥉']
+DEFAULT_EMBED_COLOUR = Color.from_rgb(38, 99, 199)
 
 
-async def send_message(context: discord.Message, response, is_private=False) -> discord.Message:
-    if type(response) == discord.Embed:
-        embed = response
-        content = None
-    else:
-        content = response
-        embed = None
+def _correct_spelling(hero_name: str) -> str:
+    hero_name = hero_name.lower()
 
-    if is_private:
-        return await context.author.send(content=content, embed=embed)
-    else:
-        # Reply to server message
-        if 'direct message' not in str(context.channel).lower():
-            return await context.channel.send(content=content, embed=embed, reference=context)
-        else:
-            return await context.channel.send(content=content, embed=embed)
+    with open(MISSPELLINGS_FILE, 'r', encoding='utf-8') as file:
+        misspellings_data = dict(json.load(file))
+        file.close()
+        for hero, misspells in misspellings_data.items():
+            if hero_name in misspells:
+                hero_name = hero
+                break
+
+    return hero_name
 
 
-async def _process_command(command, argument, username, prefix) -> list:
-    kwargs = {'username': username, 'prefix': prefix}
-    reply = []
-    category_args = {'duo': False, 'rduo': True}
-    commands = {
-        'tank': responses.choose_duo if argument in list(category_args.keys()) else responses.choose_hero,
-        'damage': responses.choose_duo if argument in list(category_args.keys()) else responses.choose_hero,
-        'support': responses.choose_duo if argument in list(category_args.keys()) else responses.choose_hero,
-        'all': responses.choose_duo if argument in list(category_args.keys()) else responses.choose_hero,
-        'dm': responses.greet_privately,
-        'help': responses.help_menu,
-        'profile': responses.get_profile,
-        'avoid': responses.avoid_hero,
-        'unavoid': responses.unavoid_hero,
-        'role': responses.choose_role,
-        'duo': responses.duo,
-        'rduo': responses.rduo,
-        'list': responses.get_heroes_in_category,
-        'trivia': responses.get_trivia_question,
-        'guess': responses.get_trivia_image,
-        'scores': responses.get_scoreboard,
-    }
-    try:
-        # Set arguments
-        if command in ['tank', 'damage', 'support', 'all']:
-            kwargs['category'] = command
-            # Set duo type
-            if argument in list(category_args.keys()):
-                kwargs['random_duo'] = category_args[argument]
-        elif command == 'list':
-            if argument in ALT_COMMANDS:
-                argument = ALT_COMMANDS[argument]
-            kwargs['category'] = argument
-        elif command == 'avoid':
-            kwargs['hero_to_avoid'] = argument
-        elif command == 'unavoid':
-            kwargs['hero_to_unavoid'] = argument
-        elif command == 'trivia':
-            kwargs['number_of_questions'] = argument
-        elif command == 'guess':
-            kwargs['difficulty'] = argument
-
-        # Build reply
-        if command != 'dm':
-            reply.append(commands[command](**kwargs))
-        else:
-            reply += commands[command](**kwargs)
-        return reply
-    except KeyError:
-        return reply
+def _log_line(message: str):
+    print(f'[{datetime.now()}]\t> {message}')
 
 
-async def _send_trivia_questions(bot: discord.Client, context: discord.Message, reply: list):
-    total_questions = 0
-    successful_questions = 0
-    if type(reply[0]) is str:
-        await send_message(context, reply[0])
-        return
-    for trivia_object in reply[0]:
-        embed = trivia_object['embed']
-        correct = trivia_object['correct']
-        sent_message = await send_message(context, embed)
-
-        # Add reactions to message
-        for emoji in TRIVIA_EMOJIS:
-            await sent_message.add_reaction(emoji)
-
-        # Check if user answered correctly
-        def check(user_reaction, reacting_user):
-            # Check if the reaction is valid and from the same user and channel as the command
-            return user_reaction.message.id == sent_message.id \
-                and reacting_user.id == context.author.id \
-                and str(user_reaction.emoji) in TRIVIA_EMOJIS
-
-        try:
-            # Wait for 10 seconds or until a valid reaction is added
-            total_questions += 1
-            reaction, user = await bot.wait_for('reaction_add', timeout=20.0, check=check)
-        except asyncio.TimeoutError:
-            await send_message(context, f'Sorry {context.author.name}, you ran out of time')
-            break
-        if correct == TRIVIA_EMOJIS.index(str(reaction.emoji)):
-            successful_questions += 1
-            await send_message(context, responses.trivia_response(True, user.name))
-        else:
-            await send_message(context, responses.trivia_response(False, user.name))
-    # Update score
-    await send_message(context, f'You scored {successful_questions}/{total_questions}')
-    profiles.update_trivia_score(str(context.author), successful_questions, total_questions)
-
-
-def run_discord_bot(token, prefix='.'):
+def run_discord_bot(token):
     # Define bot intents
     intents = discord.Intents.default()
     intents.message_content = True
     intents.members = True
-    bot = discord.Client(intents=intents)
+    bot = Bot(command_prefix='.', intents=intents)
 
     @bot.event
     async def on_ready():
-        print(f'{bot.user} is now running.')
+        await bot.tree.sync()
+        print(f'{bot.user} is now running!')
 
-    @bot.event
-    async def on_message(context: discord.Message):
-        if context.author == bot.user:
-            return
-        user_message = str(context.content).lower()
-        if len(context.content) == 0:
-            return
-        if context.content[0] != prefix:
+    # Get random hero/role
+    @bot.tree.command(name='hero', description='Respond with a random hero in the selected role')
+    @app_commands.describe(role='The role to get a hero from',
+                           duo='The type of hero duo to return, `optimal` or `random`')
+    @app_commands.choices(role=[
+        app_commands.Choice(name='all', value='all'),
+        app_commands.Choice(name='tank', value='tank'),
+        app_commands.Choice(name='damage', value='damage'),
+        app_commands.Choice(name='support', value='support')
+    ], duo=[
+        app_commands.Choice(name='optimal', value='optimal'),
+        app_commands.Choice(name='random', value='random')
+    ])
+    async def get_hero(ctx, role: str = None, duo: str = None):
+        """
+        Respond with a random hero in the selected category
+
+        :param ctx: The interaction that triggered this command
+        :param role: The role to get a hero from
+        :param duo: The type of hero duo to return, `optimal` or `random`
+        :return:
+        """
+        _log_line(f'hero ({ctx.user})')
+        if role is None:
+            role = 'all'
+
+        available_heroes = [x for x in heroChooser.get_heroes_in_category(role)
+                            if not profiles.is_hero_avoided(str(ctx.user), x)]
+
+        if len(available_heroes) == 0:
+            await ctx.response.send_message(
+                'I cannot suggest a hero to play because you have avoided everyone in this category.')
             return
 
-        username = str(context.author)
-        channel = str(context.channel)
-        command = user_message.split(' ')[0][1:]
-        argument = ''
-        for word in user_message.split(' ')[1:]:
-            argument += f'{word} '
-        argument = argument.strip()
+        if duo is None:
+            hero = heroChooser.select_random_hero_in_category(role)
+            while hero not in available_heroes:
+                hero = heroChooser.select_random_hero_in_category(role)
 
-        print(f'[{datetime.datetime.now()}] {username}: "{user_message}" ({channel})')
-        # Convert alt commands
-        if command in ALT_COMMANDS:
-            command = ALT_COMMANDS[command]
-        # Process commands
-        reply = await _process_command(command, argument, username, prefix)
-        if command == 'dm':
-            # Respond to the message
-            if 'direct message' not in str(context.channel).lower():
-                await send_message(context, reply[0])
-            # Send a private message to the user.
-            await send_message(context, reply[1], is_private=True)
-        elif command in ['trivia', 'guess']:
-            await _send_trivia_questions(bot, context, reply)
+            if hero == 'Winston' and random.randint(1, 10) == 1:
+                hero = 'Winton.'
+
+            responses = [
+                '{hero}',
+                'Hmm... how about giving {hero} a shot?',
+                'I suggest you play {hero}',
+                'I do not know the context, but {hero} could work',
+                'How about {hero}?',
+                '{hero} might be a good pick'
+            ]
+            # Hero specific responses
+            additional_responses = []
+            if hero == 'Lifeweaver':
+                additional_responses = [
+                    'Since {hero} is new, why not try playing him?',
+                    'Have you played {hero} yet?',
+                    'If you have unlocked {hero}, try him out',
+                ]
+            responses += additional_responses
+            await ctx.response.send_message(random.choice(responses).format(hero=hero))
+        elif duo == 'random':
+            if role == 'tank':
+                responses = [
+                    'This is Overwatch ***2***, meaning there is only one tank.',
+                    'Tank duos do not exist in Overwatch 2.',
+                    'Last I checked, there is only one tank.',
+                    '*[Sarcastically:]* Haha, very funny.',
+                    '...',
+                    'Overwatch 2 does not have two tanks.',
+                    'Overwatch 2 only has one tank.'
+                ]
+                await ctx.response.send_message(random.choice(responses))
+                return
+            response_duo = heroChooser.select_random_duo_in_category(role)
+            while True:
+                if response_duo[0] in available_heroes or response_duo[1] in available_heroes:
+                    break
+            await ctx.response.send_message(f'{response_duo[0]} & {response_duo[1]}')
+        elif duo == 'optimal':
+            if role == 'tank':
+                responses = [
+                    'This is Overwatch ***2***, meaning there is only one tank.',
+                    'Tank duos do not exist in Overwatch 2.',
+                    'Last I checked, there is only one tank.',
+                    '*[Sarcastically:]* Haha, very funny.',
+                    '...',
+                    'Overwatch 2 does not have two tanks.',
+                    'Overwatch 2 only has one tank.'
+                ]
+                await ctx.response.send_message(random.choice(responses))
+                return
+            all_duos = heroChooser.get_duos_in_category(role)
+            matched_duos = []
+            for hero_duo in all_duos:
+                if hero_duo[0] in available_heroes or hero_duo[1] in available_heroes:
+                    matched_duos.append(hero_duo)
+
+            if len(matched_duos) == 0:
+                await ctx.response.send_message('There are no duos that I can suggest with your avoid list in mind.')
+                return
+
+            response_duo = random.choice(matched_duos)
+            await ctx.response.send_message(f'{response_duo[0]} & {response_duo[1]}')
+
+    @bot.tree.command(name='role', description='Respond with a role')
+    async def get_role(ctx):
+        """
+        Respond with a role
+
+        :param ctx: The interaction that triggered this command
+        :return:
+        """
+        _log_line(f'role ({ctx.user})')
+        responses = [
+            'You seem to be in a {role} mood.',
+            'I suggest queuing for {role} heroes.',
+            'How about {role}?',
+            'Are you willing to give {role} a try?',
+            'If I were you I would select {role}.',
+            'You humans really are indecisive. Might I suggest {role}?',
+            'You do know Overwatch 2 has a feature for this, right? It is called queueing as "All" and it is a lot '
+            'simpler than typing that command.\nAnyway, I suggest playing {role}.',
+        ]
+        await ctx.response.send_message(random.choice(responses).format(role=heroChooser.select_role()))
+
+    # Other commands
+    # TODO: Rewrite help menu
+    @bot.tree.command(name='help', description='Respond with a list of commands')
+    async def get_help(ctx):
+        """
+        Respond with a list of commands
+
+        :param ctx: The interaction that triggered this command
+        :return:
+        """
+        _log_line(f'help ({ctx.user})')
+        response = Embed(
+            title='AthenaAI Help Menu',
+            description='Hi there! My name is *AthenaAI*, the Overwatch 2 hero choosing bot.\n'
+                        'Below are all the ways you can interact with me!\n'
+                        f'*Note that all the commands below are prefixed with `{bot.command_prefix}`*',
+            colour=DEFAULT_EMBED_COLOUR
+        )
+        # Hero commands
+        response.add_field(name='**Get a hero**', inline=False,
+                           value='`hero` / `all` – Returns a random hero from all the categories\n'
+                                 '`tank` – Returns a random tank hero\n'
+                                 '`damage` / `dps` – Returns a random damage hero\n'
+                                 '`support` / `healer` – Returns a random support hero'
+                           )
+        # Duo commands
+        response.add_field(name='**Get a duo**', inline=False,
+                           value='Add `duo` after any of the hero commands\n'
+                                 'E.g. `support duo`'
+                           )
+        # Random duo commands
+        response.add_field(name='**Get a random duo**', inline=False,
+                           value='Add `rduo` after any of the hero commands\n'
+                                 'E.g. `damage rduo`'
+                           )
+        # Role command
+        response.add_field(name='**Select a role**', inline=False,
+                           value='`role` - Returns a random role to queue as'
+                           )
+        # Profile commands
+        response.add_field(name='**Profile based commands**', inline=False,
+                           value='`profile` - View your profile\n'
+                                 '`avoid [hero]` - Adds the hero to your avoid list\n'
+                                 '`unavoid [hero]` - Removes the hero from your avoid list\n'
+                                 '`unavoid all` - Removes all heroes from your avoid list'
+                           )
+        # Trivia commands
+        response.add_field(name='**Trivia commands**', inline=False,
+                           value='`trivia [number of questions]` - Play a trivia game\n'
+                                 '`guess [difficulty]` - Play \"Guess The Hero\" (easy/hard)\n'
+                                 '`scores` - Shows the top trivia players'
+                           )
+        # Other commands
+        response.add_field(name='**Other commands**', inline=False,
+                           value='`dm` - Interact with me in your DMs\n'
+                                 '`help` - Returns this message\n'
+                                 '`list [role]` - Returns a list of all the heroes in the role'
+                           )
+        await ctx.response.send_message(embed=response)
+
+    @bot.tree.command(name='list', description='Respond with a list of all the heroes in the selected role')
+    @app_commands.describe(role='The role to get the heroes from')
+    @app_commands.choices(role=[
+        app_commands.Choice(name='all', value='all'),
+        app_commands.Choice(name='tank', value='tank'),
+        app_commands.Choice(name='damage', value='damage'),
+        app_commands.Choice(name='support', value='support')
+    ])
+    async def get_list(ctx, role: str = None):
+        """
+        Respond with a list of all the heroes in the selected role
+
+        :param ctx: The interaction that triggered this command
+        :param role: The role to get the heroes from
+        :return:
+        """
+        _log_line(f'list ({ctx.user})')
+        if role is None:
+            role = 'all'
+
+        heroes = heroChooser.get_heroes_in_category(role)
+        response = f'{role.capitalize()} heroes:'
+        for hero in heroes:
+            response += f'\n- {hero}'
+        await ctx.response.send_message(response)
+
+    @bot.tree.command(name='dm', description='Interact with me in your DMs')
+    async def dm(ctx):
+        """
+        Send the user a message in their DMs
+
+        :param ctx: The interaction that triggered this command
+        :return:
+        """
+        _log_line(f'dm ({ctx.user})')
+        responses = [
+            'Check your DMs ;)',
+            'I sent you a little something <3',
+        ]
+        greetings = [
+            'Hey there!',
+            'Hello!',
+            'Greetings!',
+            'Hello world!',
+            'Hi! I am AthenaAI, here to assist you in deciding on which Overwatch 2 hero to select.',
+            'Hello there',
+            'Welcome to my DMs.',
+            'Now entering the chat.',
+            'Traveling to the chatroom.',
+            'Now arriving at your DMs.',
+            'How can I help?',
+            'How can I be of assistance?',
+        ]
+        await ctx.response.send_message(random.choice(responses))
+        await ctx.user.send(random.choice(greetings))
+
+    # Profile based commands
+    @bot.tree.command(name='profile', description='View your profile')
+    async def get_profile(ctx):
+        """
+        Respond with information about the user
+
+        :param ctx: The interaction that triggered this command
+        :return:
+        """
+        _log_line(f'profile ({ctx.user})')
+        # Update users
+        profiles.update_trivia_score(str(ctx.user), 0, 0)
+        user_data = profiles.get_profile(str(ctx.user))
+        response = Embed(title=f'Profile: {str(ctx.user)}', colour=DEFAULT_EMBED_COLOUR)
+        # Get avoided heroes
+        avoided_heroes = ''
+        if len(user_data['avoided_heroes']) == 0:
+            avoided_heroes = 'None\n'
         else:
-            try:
-                await send_message(context, reply[0])
-            except IndexError:
-                pass
+            for hero in user_data['avoided_heroes']:
+                avoided_heroes += f'{hero}\n'
+        response.add_field(
+            name='🚫 Avoided Heroes',
+            value=avoided_heroes
+        )
+        # Get trivia score
+        if user_data['total_questions'] == 0:
+            success_rate = 0
+        else:
+            success_rate = int(user_data['successful_questions'] / user_data['total_questions'] * 100)
+        response.add_field(
+            name='✏️ Trivia statistics',
+            value=f'Success rate: {success_rate}%\n'
+                  f'Questions attempted: {user_data["total_questions"]}',
+            inline=False
+        )
+        await ctx.response.send_message(embed=response)
+
+    @bot.tree.command(name='avoid', description='Add a hero to your avoid list')
+    @app_commands.describe(hero='The name of the hero to avoid')
+    async def avoid_hero(ctx, hero: str):
+        """
+        Add a hero to the user's avoid list
+
+        :param ctx: The interaction that triggered this command
+        :param hero: The name of the hero to avoid
+        :return:
+        """
+        _log_line(f'avoid ({ctx.user})')
+        hero = _correct_spelling(hero)
+        for x in heroChooser.get_heroes_in_category('all'):
+            if hero.lower() == x.lower():
+                if not profiles.is_hero_avoided(str(ctx.user), x):
+                    profiles.avoid_hero(str(ctx.user), x)
+                    await ctx.response.send_message(f'Done! I will no longer suggest {x}.')
+                else:
+                    await ctx.response.send_message(f'I have already avoided {x} for you.')
+                return
+
+        await ctx.response.send_message('I could not seem to find the hero you entered. '
+                                        'Please make sure you spelled their name correctly.')
+
+    @bot.tree.command(name='unavoid', description='Remove a hero from your avoid list')
+    @app_commands.describe(hero='The name of the hero to remove from your avoid list, all to clear avoid list')
+    async def unavoid_hero(ctx, hero: str):
+        """
+        Remove a hero from the user's avoid list
+
+        :param ctx: The interaction that triggered this command
+        :param hero: The name of the hero to remove, `all` to clear avoid list
+        :return:
+        """
+        _log_line(f'unavoid ({ctx.user})')
+        if hero == 'all':
+            for x in heroChooser.get_heroes_in_category('all'):
+                profiles.unavoid_hero(str(ctx.user), x)
+            await ctx.response.send_message('I have cleared your avoid list for you.')
+            return
+        else:
+            hero = _correct_spelling(hero)
+            for x in heroChooser.get_heroes_in_category('all'):
+                if hero.lower() == x.lower():
+                    if profiles.is_hero_avoided(str(ctx.user), x):
+                        profiles.unavoid_hero(str(ctx.user), x)
+                        await ctx.response.send_message(f'{x} has been removed from your avoid list.')
+                    else:
+                        await ctx.response.send_message(f'I cannot remove {x} because you have not avoided them.')
+                    return
+        await ctx.response.send_message('If you want me to remove a hero from your avoid list, '
+                                        'you are going to have to spell their name correctly.')
+
+    # Trivia commands
+    # TODO: Add trivia functionality
+    # TODO: Add guess functionality
+    # TODO Add geoguess functionality
+    @bot.tree.command(name='trivia', description='Play an Overwatch 2 hero trivia game')
+    @app_commands.describe(difficulty='The difficulty level of the questions',
+                           questions='The number of questions (limit of 10)')
+    @app_commands.choices(difficulty=[
+        app_commands.Choice(name='easy', value='easy'),
+        app_commands.Choice(name='hard', value='hard')
+    ])
+    async def play_trivia(ctx, questions: app_commands.Range[int, 1, 10], difficulty: str = None):
+        """
+        Respond with a number of trivia questions for the user to play
+
+        :param ctx: The interaction that triggered this command
+        :param questions: The number of questions
+        :param difficulty: The difficulty level of the questions
+        :return:
+        """
+        _log_line(f'trivia ({ctx.user})')
+        await ctx.response.send_message('We are working on it')
+
+    @bot.tree.command(name='guess', description='Play a game of \"Guess The Hero\"')
+    @app_commands.describe(difficulty='The difficulty level of the questions',
+                           questions='The number of questions (limit of 10)')
+    @app_commands.choices(difficulty=[
+        app_commands.Choice(name='easy', value='easy'),
+        app_commands.Choice(name='hard', value='hard')
+    ])
+    async def play_guess(ctx, questions: app_commands.Range[int, 1, 10], difficulty: str = None):
+        """
+        Respond with a number of guessing questions for the user to play
+
+        :param ctx: The interaction that triggered this command
+        :param questions: The number of questions
+        :param difficulty: The difficulty level of the questions
+        :return:
+        """
+        _log_line(f'guess ({ctx.user})')
+        if difficulty is None:
+            difficulty = 'easy'
+        await ctx.response.send_message('We are working on it')
+
+    @bot.tree.command(name='geoguess', description='Play a game of \"Guess The Map\"')
+    @app_commands.describe(difficulty='The difficulty level of the questions',
+                           questions='The number of questions (limit 10)')
+    @app_commands.choices(difficulty=[
+        app_commands.Choice(name='easy', value='easy'),
+        app_commands.Choice(name='hard', value='hard')
+    ])
+    async def play_geoguess(ctx, questions: app_commands.Range[int, 1,  10], difficulty: str = None):
+        """
+        Respond with a number of map guessing questions for the user to play
+
+        :param ctx: The interaction that triggered this command
+        :param questions: The number of questions
+        :param difficulty: The difficulty level of the questions
+        :return:
+        """
+        _log_line(f'geoguess ({ctx.user})')
+        if difficulty is None:
+            difficulty = 'easy'
+        await ctx.response.send_message('We are working on it')
+
+    @bot.tree.command(name='scoreboard', description='Show the top trivia players')
+    async def get_scoreboard(ctx):
+        """
+        Respond with a scoreboard of all the trivia players
+
+        :param ctx: The interaction that triggered this command
+        :return:
+        """
+        _log_line(f'scoreboard ({ctx.user})')
+        scoreboard = profiles.get_trivia_scoreboard()
+        usernames = ''
+        rate = ''
+        total = ''
+        # Get data
+        for rank, user in enumerate(scoreboard):
+            if rank < 3:
+                usernames += RANK_EMOJIS[rank]
+            usernames += f'{user["username"][:-5]}\n'
+            success_rate = int(user['successful_questions'] / user['total_questions'] * 100)
+            rate += f'{success_rate}%\n'
+            total += f'{user["total_questions"]}\n'
+        # Build embed
+        response = Embed(title='Trivia scoreboard', description='Here are the top trivia players!',
+                         colour=DEFAULT_EMBED_COLOUR)
+        response.add_field(name='Username', value=usernames)
+        response.add_field(name='Success Rate', value=rate)
+        response.add_field(name='Questions attempted', value=total)
+        await ctx.response.send_message(embed=response)
 
     bot.run(token)
