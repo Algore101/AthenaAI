@@ -45,7 +45,7 @@ def run_discord_bot(token):
     intents = discord.Intents.default()
     intents.message_content = True
     intents.members = True
-    bot = Bot(command_prefix='.', intents=intents)
+    bot = Bot(command_prefix='[]', intents=intents)
 
     @bot.event
     async def on_ready():
