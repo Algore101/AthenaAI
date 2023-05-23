@@ -1,10 +1,9 @@
-import asyncio
 import random
 import os
 import discord
 from discord.ext.commands import Bot
 from discord import app_commands, Embed, Color
-from libraries import profiles, heroChooser, trivia
+from libraries import profiles, heroChooser
 import json
 from datetime import datetime
 
