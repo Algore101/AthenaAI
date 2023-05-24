@@ -7,14 +7,32 @@ from libraries import profiles, heroChooser
 import json
 from datetime import datetime
 
-ALT_COMMANDS = {
-    'hero': 'all',
-    'dps': 'damage',
-    'healer': 'support',
-    'user': 'profile',
-    'score': 'scores',
-    'scoreboard': 'scores',
-    'leaderboard': 'scores',
+COMMANDS = {
+    'avoid': 'Add a hero to your avoid list\n'
+             '- hero: The name of the hero to avoid',
+    'dm': 'Interact with me in your DMs',
+    'geoguess': 'Play a game of "Guess The Map"\n'
+                '- questions (1-10): The number of questions to play\n'
+                '- difficulty (`easy`,`hard`): The difficulty level of the questions',
+    'guess': 'Play a game of "Guess The Hero"\n'
+             '- questions (1-10): The number of questions to play\n'
+             '- difficulty (`easy`,`hard`): The difficulty level of the questions',
+    'help': 'Respond with a list of commands\n'
+            '- command: The command you need help with',
+    'hero': 'Respond with a random hero/duo in the selected role\n'
+            '- \\*role (`all`,`tank`,`damage`,`support`): '
+            'The role of the hero/duo you want to get a hero from, all by default\n'
+            '- \\*duo (`optimal`,`random`): The type of duo, leave empty for a single hero',
+    'list': 'Respond with a list of all the heroes in the selected role\n'
+            '- \\*role (`all`,`tank`,`damage`,`support`): The role get the hero list from',
+    'profile': 'View your profile',
+    'role': 'Respond with a role',
+    'scoreboard': 'Show the top trivia players',
+    'trivia': 'Play an Overwatch 2 hero trivia game\n'
+              '- questions (1-10): The number of questions to play\n'
+              '- difficulty (`easy`,`hard`): The difficulty level of the questions',
+    'unavoid': 'Remove a hero from your avoid list\n'
+               '- hero: The name of the hero to remove from avoid list',
 }
 TRIVIA_EMOJIS = ["🇦", "🇧", "🇨", "🇩"]
 MISSPELLINGS_FILE = os.path.join(os.path.dirname(__file__), '../data/misspellings.json')
@@ -178,16 +196,46 @@ def run_discord_bot(token):
         await ctx.response.send_message(random.choice(responses).format(role=heroChooser.select_role()))
 
     # Other commands
-    # TODO: Rewrite help menu
     @bot.tree.command(name='help', description='Respond with a list of commands')
-    async def get_help(ctx):
+    @app_commands.choices(command=[app_commands.Choice(name=x, value=x) for x in list(COMMANDS.keys())])
+    async def get_help(ctx, command: str = None):
         """
         Respond with a list of commands
 
         :param ctx: The interaction that triggered this command
+        :param command: The command to describe to the user
         :return:
         """
         _log_line(f'help ({ctx.user})')
+
+        if command is not None:
+            if command == 'help':
+                responses = [
+                    'Did you seriously just type that?',
+                    'Do you really need help with that?',
+                    'You must be joking',
+                    '...',
+                    'You just used the command. I do not think you need help with it',
+                    'If you are trying to get a list of all the commands, '
+                    'try </help:1110474733213982722> with no arguments',
+                    COMMANDS['help']
+                ]
+                output = random.choice(responses)
+                if output != COMMANDS['help']:
+                    await ctx.response.send_message(output)
+                    return
+
+            response = Embed(title=command, description=COMMANDS[command].split('\n')[0], colour=DEFAULT_EMBED_COLOUR)
+            lines = COMMANDS[command].strip().split('\n')
+            if len(lines) > 1:
+                response_description = 'Arguments marked with an \\*asterisk are optional\n' \
+                    if '*' in COMMANDS[command] else ''
+                for line in lines[1:]:
+                    response_description += f'\n{line}'
+                response.add_field(name='ARGUMENTS:', inline=False, value=response_description)
+            await ctx.response.send_message(embed=response)
+            return
+
         response = Embed(
             title='Help',
             description='Hi there! My name is *AthenaAI*, the Overwatch 2 hero choosing bot.\n'
@@ -215,7 +263,7 @@ def run_discord_bot(token):
                            value='Add a hero to your avoid list')
         response.add_field(name='/unavoid', inline=False,
                            value='Remove a hero from your avoid list')
-        response.add_field(name='/help', inline=False,
+        response.add_field(name='/help [*command]', inline=False,
                            value='Respond with a list of commands')
         response.add_field(name='/list [\\*role]', inline=False,
                            value='Respond with a list of all the heroes in the selected role')
