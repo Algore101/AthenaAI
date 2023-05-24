@@ -567,10 +567,11 @@ def run_discord_bot(token):
     @app_commands.describe(difficulty='The difficulty level of the questions',
                            questions='The number of questions (limit 10)')
     @app_commands.choices(difficulty=[
-        app_commands.Choice(name='easy', value='easy'),
-        app_commands.Choice(name='hard', value='hard')
+        app_commands.Choice(name='easy', value=1),
+        app_commands.Choice(name='hard', value=2)
     ])
-    async def play_geoguess(ctx, questions: app_commands.Range[int, 1, 10], difficulty: str = None):
+    async def play_geoguess(interaction: discord.Interaction, questions: app_commands.Range[int, 1, 10],
+                         difficulty: app_commands.Choice[int]):
         """
         Respond with a number of map guessing questions for the user to play
 
@@ -579,10 +580,83 @@ def run_discord_bot(token):
         :param difficulty: The difficulty level of the questions
         :return:
         """
-        _log_line(f'geoguess ({ctx.user})')
-        if difficulty is None:
-            difficulty = 'easy'
-        await ctx.response.send_message('We are working on it')
+
+        difficulty = difficulty.name
+        rounds = questions
+
+        # Get the json file
+        QUESTIONS_FILE = os.path.join(os.path.dirname(__file__), '../data/questions.json')
+
+        # Getting the information from the json file
+        def _get_all_questions() -> dict:
+            with open(QUESTIONS_FILE, 'r', encoding='utf-8') as file:
+                question_data = dict(json.load(file))
+                file.close()
+            return question_data
+
+        # Store the information in a variable
+        question_dict = _get_all_questions()
+
+        # Make a copy to not remove anything from the original file
+        maps = question_dict.get('maps').copy()
+
+        # The score for the game
+        score = 0
+
+        await interaction.response.send_message(
+            f'You want to play {rounds} rounds of Guess the Hero on {difficulty} difficulty :black_heart:')
+
+        # Start of the game
+        for i in range(rounds):
+
+            # Getting a random question from the json file
+            random_question = random.choice(maps)
+
+            # Getting the question itself
+            question = random.choice(random_question[difficulty])
+
+            # Getting the correct answer
+            correct_answer = random_question['correct']
+
+            # Alternatives
+            answer_list = question_dict.get('maps_list').copy()
+            answer_list.remove(correct_answer)
+            random.shuffle(answer_list)
+            answers = [correct_answer, answer_list[1], answer_list[2], answer_list[3]]
+
+            # Shuffle the answers
+            random.shuffle(answers)
+
+            # Getting the index of the correct answer
+            correct_index = answers.index(correct_answer)
+
+            # Getting the correct letter for the game
+            correct_letter = ['A', 'B', 'C', 'D'][correct_index]
+
+            # Answer text for the embed
+            answer_text = '\n'.join([f"{letter}) {answer}" for letter, answer in zip(["A", "B", "C", "D"], answers)])
+
+            # Remove the question to not get duplicates in the same game
+            maps.remove(random_question)
+
+            # Make the embed for the question
+            embed = discord.Embed(title=f'Round {i + 1}')
+            embed.add_field(name='Answers', value=answer_text)
+            embed.set_image(url=question)
+            view = classes.TriviaView(question, correct_letter)
+            await interaction.followup.send(embed=embed, view=view)
+            await view.wait()
+
+            # Check if the user answered correctly
+            if view.response == correct_letter:
+                await interaction.followup.send('That is correct!')
+                score += 1
+            else:
+                await interaction.followup.send('That isn\'t correct!')
+
+        await interaction.followup.send(f'Game over! Your final score is {score}/{rounds} :heart:')
+
+        _log_line(f'geoguess ({interaction.user})')
 
     @bot.tree.command(name='scoreboard', description='Show the top trivia players')
     async def get_scoreboard(ctx):
