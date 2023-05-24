@@ -189,52 +189,38 @@ def run_discord_bot(token):
         """
         _log_line(f'help ({ctx.user})')
         response = Embed(
-            title='AthenaAI Help Menu',
+            title='Help',
             description='Hi there! My name is *AthenaAI*, the Overwatch 2 hero choosing bot.\n'
-                        'Below are all the ways you can interact with me!\n'
-                        f'*Note that all the commands below are prefixed with `{bot.command_prefix}`*',
+                        '\n**NOTES:**\n'
+                        'Arguments marked with an \\*asterisk are optional\n'
+                        'The [docs](https://github.com/Algore101/AthenaAI/tree/master#readme) have more info\n'
+                        '\n**COMMANDS:**\n',
             colour=DEFAULT_EMBED_COLOUR
         )
-        # Hero commands
-        response.add_field(name='**Get a hero**', inline=False,
-                           value='`hero` / `all` – Returns a random hero from all the categories\n'
-                                 '`tank` – Returns a random tank hero\n'
-                                 '`damage` / `dps` – Returns a random damage hero\n'
-                                 '`support` / `healer` – Returns a random support hero'
-                           )
-        # Duo commands
-        response.add_field(name='**Get a duo**', inline=False,
-                           value='Add `duo` after any of the hero commands\n'
-                                 'E.g. `support duo`'
-                           )
-        # Random duo commands
-        response.add_field(name='**Get a random duo**', inline=False,
-                           value='Add `rduo` after any of the hero commands\n'
-                                 'E.g. `damage rduo`'
-                           )
-        # Role command
-        response.add_field(name='**Select a role**', inline=False,
-                           value='`role` - Returns a random role to queue as'
-                           )
-        # Profile commands
-        response.add_field(name='**Profile based commands**', inline=False,
-                           value='`profile` - View your profile\n'
-                                 '`avoid [hero]` - Adds the hero to your avoid list\n'
-                                 '`unavoid [hero]` - Removes the hero from your avoid list\n'
-                                 '`unavoid all` - Removes all heroes from your avoid list'
-                           )
-        # Trivia commands
-        response.add_field(name='**Trivia commands**', inline=False,
-                           value='`trivia [number of questions]` - Play a trivia game\n'
-                                 '`guess [difficulty]` - Play \"Guess The Hero\" (easy/hard)\n'
-                                 '`scores` - Shows the top trivia players'
-                           )
-        # Other commands
-        response.add_field(name='**Other commands**', inline=False,
-                           value='`dm` - Interact with me in your DMs\n'
-                                 '`help` - Returns this message\n'
-                                 '`list [role]` - Returns a list of all the heroes in the role'
-                           )
+        response.add_field(name='/hero [\\*role] [\\*duo]', inline=False,
+                           value='Respond with a random hero/duo in the selected role')
+        response.add_field(name='/role', inline=False,
+                           value='Respond with a role')
+        response.add_field(name='/trivia [questions] [difficulty]', inline=False,
+                           value='Play an Overwatch 2 hero trivia game')
+        response.add_field(name='/guess [questions] [difficulty]', inline=False,
+                           value='Play a game of "Guess The Hero"')
+        response.add_field(name='/geoguess [questions] [difficulty]', inline=False,
+                           value='Play a game of "Guess The Map"')
+        response.add_field(name='/scoreboard', inline=False,
+                           value='Show the top trivia players')
+        response.add_field(name='/profile', inline=False,
+                           value='View your profile')
+        response.add_field(name='/avoid', inline=False,
+                           value='Add a hero to your avoid list')
+        response.add_field(name='/unavoid', inline=False,
+                           value='Remove a hero from your avoid list')
+        response.add_field(name='/help', inline=False,
+                           value='Respond with a list of commands')
+        response.add_field(name='/list [\\*role]', inline=False,
+                           value='Respond with a list of all the heroes in the selected role')
+        response.add_field(name='/dm', inline=False,
+                           value='Interact with me in your DMs')
         await ctx.response.send_message(embed=response)
 
     @bot.tree.command(name='list', description='Respond with a list of all the heroes in the selected role')
