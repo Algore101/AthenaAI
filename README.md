@@ -1,19 +1,19 @@
 # AthenaAI
 A Discord bot that does a bunch of Overwatch 2 related things.
 ## Contents
-- [Commands](https://github.com/Algore101/AthenaAI#commands)
-  - [Core commands](https://github.com/Algore101/AthenaAI#core-commands)
-  - [Game commands](https://github.com/Algore101/AthenaAI#game-commands)
-  - [User-specific commands](https://github.com/Algore101/AthenaAI#user-specific-commands)
-  - [Other commands](https://github.com/Algore101/AthenaAI#other-commands)
-- [Environment Variables](https://github.com/Algore101/AthenaAI#environment-variables)
+- [Commands](#commands)
+  - [Core commands](#core-commands)
+  - [Game commands](#game-commands)
+  - [User-specific commands](#user-specific-commands)
+  - [Other commands](#other-commands)
+- [Environment Variables](#environment-variables)
 
 ## Commands
 <sub>Commands marked with an \*asterisk are optional</sub>
 ### Core commands:
 - **/hero [\*role] [\*duo]** - Respond with a random hero/duo in the selected role
   - \*role (`all`,`tank`,`damage`,`support`) - The role of the hero/duo you want to get a hero from, `all` by default
-  - \*duo (`optimal`,`random`) - The type of duo 
+  - \*duo (`optimal`,`random`) - The type of duo, leave empty for a single hero
 - **/role** - Respond with a role
 ### Game commands:
 - **/trivia [questions] [difficulty]** - Play an Overwatch 2 hero trivia game
@@ -28,9 +28,9 @@ A Discord bot that does a bunch of Overwatch 2 related things.
 - **/scoreboard** - Show the top trivia players
 ### User-specific commands:
 - **/profile** - View your profile
-- **/avoid [hero]**
+- **/avoid [hero]** - Add a hero to your avoid list
   -  hero - The name of the hero to avoid
-- **/unavoid [hero]**
+- **/unavoid [hero]** - Remove a hero from your avoid list
   - hero - The name of the hero to remove from avoid list
 ### Other commands:
 - **/help** - Respond with a list of commands
