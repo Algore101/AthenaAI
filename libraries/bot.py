@@ -371,8 +371,7 @@ def run_discord_bot(token):
                                         'you are going to have to spell their name correctly.')
 
     # Trivia commands
-    # TODO: Add trivia functionality
-    # TODO: Add guess functionality
+
     # TODO Add geoguess functionality
     @bot.tree.command(name='trivia', description='Play an Overwatch 2 hero trivia game')
     @app_commands.describe(difficulty='The difficulty level of the questions',
@@ -381,7 +380,8 @@ def run_discord_bot(token):
         app_commands.Choice(name='easy', value=1),
         app_commands.Choice(name='hard', value=2)
     ])
-    async def play_trivia(interaction: discord.Interaction, questions: app_commands.Range[int, 1, 10], difficulty: app_commands.Choice[int]):
+    async def play_trivia(interaction: discord.Interaction, questions: app_commands.Range[int, 1, 10],
+                          difficulty: app_commands.Choice[int]):
 
         difficulty = difficulty.name
         rounds = questions
@@ -405,7 +405,8 @@ def run_discord_bot(token):
         # The score for the game
         score = 0
 
-        await interaction.response.send_message(f'You want to play {rounds} rounds of trivia on {difficulty} difficulty :black_heart:')
+        await interaction.response.send_message(
+            f'You want to play {rounds} rounds of trivia on {difficulty} difficulty :purple_heart:')
 
         # Start of the game
         for i in range(rounds):
@@ -470,22 +471,97 @@ def run_discord_bot(token):
     @app_commands.describe(difficulty='The difficulty level of the questions',
                            questions='The number of questions (limit of 10)')
     @app_commands.choices(difficulty=[
-        app_commands.Choice(name='easy', value='easy'),
-        app_commands.Choice(name='hard', value='hard')
+        app_commands.Choice(name='easy', value=1),
+        app_commands.Choice(name='hard', value=2)
     ])
-    async def play_guess(ctx, questions: app_commands.Range[int, 1, 10], difficulty: str = None):
-        """
-        Respond with a number of guessing questions for the user to play
+    async def play_guess(interaction: discord.Interaction, questions: app_commands.Range[int, 1, 10],
+                         difficulty: app_commands.Choice[int]):
 
-        :param ctx: The interaction that triggered this command
-        :param questions: The number of questions
-        :param difficulty: The difficulty level of the questions
-        :return:
         """
-        _log_line(f'guess ({ctx.user})')
-        if difficulty is None:
-            difficulty = 'easy'
-        await ctx.response.send_message('We are working on it')
+                Respond with a number of guessing questions for the user to play
+
+                :param interaction: The interaction that triggered this command
+                :param questions: The number of questions
+                :param difficulty: The difficulty level of the questions
+                :return:
+                """
+
+        difficulty = difficulty.name
+        rounds = questions
+
+        # Get the json file
+        QUESTIONS_FILE = os.path.join(os.path.dirname(__file__), '../data/questions.json')
+
+        # Getting the information from the json file
+        def _get_all_questions() -> dict:
+            with open(QUESTIONS_FILE, 'r', encoding='utf-8') as file:
+                question_data = dict(json.load(file))
+                file.close()
+            return question_data
+
+        # Store the information in a variable
+        question_dict = _get_all_questions()
+
+        # Make a copy to not remove anything from the original file
+        images = question_dict.get('images').copy()
+
+        # The score for the game
+        score = 0
+
+        await interaction.response.send_message(
+            f'You want to play {rounds} rounds of Guess the Hero on {difficulty} difficulty :black_heart:')
+
+        # Start of the game
+        for i in range(rounds):
+
+            # Getting a random question from the json file
+            random_question = random.choice(images)
+
+            # Getting the question itself
+            question = random_question[difficulty]
+
+            # Getting the correct answer
+            correct_answer = random_question['correct']
+
+            # Alternatives
+            answer_list = question_dict.get('hero_list').copy()
+            answer_list.remove(correct_answer)
+            random.shuffle(answer_list)
+            answers = [correct_answer, answer_list[1], answer_list[2], answer_list[3]]
+
+            # Shuffle the answers
+            random.shuffle(answers)
+
+            # Getting the index of the correct answer
+            correct_index = answers.index(correct_answer)
+
+            # Getting the correct letter for the game
+            correct_letter = ['A', 'B', 'C', 'D'][correct_index]
+
+            # Answer text for the embed
+            answer_text = '\n'.join([f"{letter}) {answer}" for letter, answer in zip(["A", "B", "C", "D"], answers)])
+
+            # Remove the question to not get duplicates in the same game
+            images.remove(random_question)
+
+            # Make the embed for the question
+            embed = discord.Embed(title=f'Round {i + 1}')
+            embed.add_field(name='Answers', value=answer_text)
+            embed.set_image(url=question)
+            view = classes.TriviaView(question, correct_letter)
+            await interaction.followup.send(embed=embed, view=view)
+            await view.wait()
+
+            # Check if the user answered correctly
+            if view.response == correct_letter:
+                await interaction.followup.send('That is correct!')
+                score += 1
+            else:
+                await interaction.followup.send('That isn\'t correct!')
+
+        await interaction.followup.send(f'Game over! Your final score is {score}/{rounds} :heart:')
+
+        _log_line(f'guess ({interaction.user})')
 
     @bot.tree.command(name='geoguess', description='Play a game of \"Guess The Map\"')
     @app_commands.describe(difficulty='The difficulty level of the questions',
