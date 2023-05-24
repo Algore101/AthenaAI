@@ -7,6 +7,8 @@ from libraries import profiles, heroChooser
 import json
 from datetime import datetime
 
+# TODO: Add profile remove function
+# TODO: Opt out of detail saving
 COMMANDS = {
     'avoid': 'Add a hero to your avoid list\n'
              '- hero: The name of the hero to avoid',
@@ -484,7 +486,7 @@ def run_discord_bot(token):
         await ctx.response.send_message('We are working on it')
 
     @bot.tree.command(name='scoreboard', description='Show the top trivia players')
-    async def get_scoreboard(ctx):
+    async def get_scoreboard(ctx: discord.Interaction):
         """
         Respond with a scoreboard of all the trivia players
 
@@ -492,7 +494,20 @@ def run_discord_bot(token):
         :return:
         """
         _log_line(f'scoreboard ({ctx.user})')
-        scoreboard = profiles.get_trivia_scoreboard()
+        scoreboard = [x for x in profiles.get_trivia_scoreboard()
+                      if ctx.guild.get_member_named(x['username']) is not None]
+        if len(scoreboard) == 0:
+            call_to_action = '\nGet started: </trivia:1110662816102367371> </guess:1110662816102367372> ' \
+                             '</geoguess:1110662816416936047>'
+            responses = [
+                'There are no players in this server that have played.',
+                'There\'s no one here...',
+                '*Cricket noises*',
+                '¯\\_(ツ)_/¯',
+                ':desert:'
+            ]
+            await ctx.response.send_message(random.choice(responses) + call_to_action)
+            return
         usernames = ''
         rate = ''
         total = ''
