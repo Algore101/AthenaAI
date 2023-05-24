@@ -1,12 +1,12 @@
 # AthenaAI
 A Discord bot that does a bunch of Overwatch 2 related things.
 ## Contents
-- [Commands](https://github.com/Algore101/AthenaAI/edit/master/README.md#contents)
-  - [Core commands](https://github.com/Algore101/AthenaAI/edit/master/README.md#core-commands)
-  - [Game commands](https://github.com/Algore101/AthenaAI/edit/master/README.md#game-commands)
-  - [User-specific commands](https://github.com/Algore101/AthenaAI/edit/master/README.md#user-specific-commands)
-  - [Other commands](https://github.com/Algore101/AthenaAI/edit/master/README.md#other-commands)
-- [Environment Variables](https://github.com/Algore101/AthenaAI/edit/master/README.md#environment-variables)
+- [Commands](https://github.com/Algore101/AthenaAI#commands)
+  - [Core commands](https://github.com/Algore101/AthenaAI#core-commands)
+  - [Game commands](https://github.com/Algore101/AthenaAI#game-commands)
+  - [User-specific commands](https://github.com/Algore101/AthenaAI#user-specific-commands)
+  - [Other commands](https://github.com/Algore101/AthenaAI#other-commands)
+- [Environment Variables](https://github.com/Algore101/AthenaAI#environment-variables)
 
 ## Commands
 <sub>Commands marked with an \*asterisk are optional</sub>
