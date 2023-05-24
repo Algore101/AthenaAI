@@ -78,7 +78,7 @@
     {
         "easy": "Which hero is a freedom fighter who stole Vishkar’s sonic technology?",
         "hard": "Which hero's first love was hockey?",
-        "correct": "Lucio"
+        "correct": "Lúcio"
     },
     {
         "easy": "Which hero was like a cousin to Genji and Hanzo?",
@@ -163,7 +163,7 @@
     {
         "easy": "Which hero is a vigilante and a former leader of Overwatch who was presumed dead after an explosion at the headquarters?",
         "hard": "Which hero worked on a farm before becoming a soldier?",
-        "correct": "Soldier 76"
+        "correct": "Soldier: 76"
     },
     {
         "easy": "Which hero is an architect and an agent of Vishkar Corporation?",
@@ -188,448 +188,189 @@
   ],
   "images": [
     {
-      "hero": "D.Va",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409295707189398/dva.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418153582313582/D.Va.png",
-      "answers": [
-        "D.Va",
-        "Mei",
-        "Genji",
-        "Sombra"
-      ],
-      "correct": 0
+      "correct": "D.Va"
     },
     {
-      "hero": "Doomfist",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409296004976720/doomfist.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418153330647171/Doomfist.png",
-      "answers": [
-        "Genji",
-        "Moira",
-        "Doomfist",
-        "Sombra"
-      ],
-      "correct": 2
+      "correct": "Doomfist"
     },
     {
-      "hero": "Junker Queen",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409296244047953/junker_queen.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418154291150868/Junker_Queen.png",
-      "answers": [
-        "Junker Queen",
-        "Junkrat",
-        "Roadhog",
-        "Reaper"
-      ],
-      "correct": 0
+      "correct": "Junker Queen"
     },
     {
-      "hero": "Orisa",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409296470544394/orisa.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418154043678740/Orisa.png",
-      "answers": [
-        "Reinhardt",
-        "Echo",
-        "Bastion",
-        "Orisa"
-      ],
-      "correct": 3
+      "correct": "Orisa"
     },
     {
-      "hero": "Ramattra",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409296776724620/ramattra.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418153804607579/Ramattra.png",
-      "answers": [
-        "Ramattra",
-        "Echo",
-        "Hanzo",
-        "Tracer"
-      ],
-      "correct": 0
+      "correct": "Ramattra"
     },
     {
-      "hero": "Reinhardt",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409297087115324/reinhardt.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418152886059078/Reinhardt.png",
-      "answers": [
-        "Zarya",
-        "Pharah",
-        "Reinhardt",
-        "Brigitte"
-      ],
-      "correct": 2
+      "correct": "Reinhardt"
     },
     {
-      "hero": "Roadhog",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409297321988166/roadhog.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418153137713192/Roadhog.png",
-      "answers": [
-        "Reinhardt",
-        "Roadhog",
-        "Wrecking Ball",
-        "D.Va"
-      ],
-      "correct": 1
+      "correct": "Roadhog"
     },
     {
-      "hero": "Sigma",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409297577836564/sigma.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104470651932246086/Sigma.png",
-      "answers": [
-        "Winston",
-        "Reaper",
-        "Sigma",
-        "Mercy"
-      ],
-      "correct": 2
+      "correct": "Sigma"
     },
     {
-      "hero": "Winston",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409359993274499/winston.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418152617615453/Winston.png",
-      "answers": [
-        "Winston",
-        "Wrecking Ball",
-        "Mercy",
-        "Moira"
-      ],
-      "correct": 0
+      "correct": "Winston"
     },
     {
-      "hero": "Wrecking Ball",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409360274305114/wrecking_ball.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418302329106543/Wrecking_Ball.png",
-      "answers": [
-        "Roadhog",
-        "Sigma",
-        "D.Va",
-        "Wrecking Ball"
-      ],
-      "correct": 3
+      "correct": "Wrecking Ball"
     },
     {
-      "hero": "Zarya",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409360517582948/zarya.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418302618505316/Zarya.png",
-      "answers": [
-        "Reinhardt",
-        "Zarya",
-        "Baptiste",
-        "Soldier: 24"
-      ],
-      "correct": 1
+      "correct": "Zarya"
     },
     {
-      "hero": "Ashe",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409454637756486/ashe.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418302937280552/Ashe.png",
-      "answers": [
-        "Cassidy",
-        "Ashe",
-        "Roadhog",
-        "Reaper"
-      ],
-      "correct": 1
+      "correct": "Ashe"
     },
     {
-      "hero": "Bastion",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409407690916030/bastion.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418303197323275/Bastion.png",
-      "answers": [
-        "Echo",
-        "Torbjörn",
-        "Bastion",
-        "Orisa"
-      ],
-      "correct": 2
+      "correct": "Bastion"
     },
     {
-      "hero": "Cassidy",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409407443447908/cassidy.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418303469949049/Cassidy.png",
-      "answers": [
-        "Hanzo",
-        "Cassidy",
-        "Ashe",
-        "Ramattra"
-      ],
-      "correct": 1
+      "correct": "Cassidy"
     },
     {
-      "hero": "Echo",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409407221141746/echo.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418303717417141/Echo.png",
-      "answers": [
-        "Torbjörn",
-        "Echo",
-        "Orisa",
-        "Lifeweaver"
-      ],
-      "correct": 1
+      "correct": "Echo"
     },
     {
-      "hero": "Genji",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409406965301388/genji.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418301754482760/Genji.png",
-      "answers": [
-        "Ramattra",
-        "Genji",
-        "Reaper",
-        "Widowmaker"
-      ],
-      "correct": 1
+      "correct": "Genji"
     },
     {
-      "hero": "Hanzo",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409406755582064/hanzo.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418302043885608/Hanzo.png",
-      "answers": [
-        "Reaper",
-        "Genji",
-        "Sombra",
-        "Hanzo"
-      ],
-      "correct": 3
+      "correct": "Hanzo"
     },
     {
-      "hero": "Junkrat",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409406503915540/junkrat.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418430720950292/Junkrat.png",
-      "answers": [
-        "Symmetra",
-        "Zenyatta",
-        "Junkrat",
-        "Bastion"
-      ],
-      "correct": 2
+      "correct": "Junkrat"
     },
     {
-      "hero": "Mei",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409406034165881/mei.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418430972612698/Mei.png",
-      "answers": [
-        "Kiriko",
-        "Ramattra",
-        "Mei",
-        "Lúcio"
-      ],
-      "correct": 2
+      "correct": "Mei"
     },
     {
-      "hero": "Pharah",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409405799280811/pharah.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418431228448869/Pharah.png",
-      "answers": [
-        "Pharah",
-        "Mercy",
-        "Reinhardt",
-        "Soldier: 76"
-      ],
-      "correct": 0
+      "correct": "Pharah"
     },
     {
-      "hero": "Reaper",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409405551808632/reaper.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418431530450954/Reaper.png",
-      "answers": [
-        "Moira",
-        "Genji",
-        "Reaper",
-        "Tracer"
-      ],
-      "correct": 2
+      "correct": "Reaper"
     },
     {
-      "hero": "Soldier: 76",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409362170138634/soldier_76.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418432105070703/Soldier_76.png",
-      "answers": [
-        "Soldier: 76",
-        "Ana",
-        "Winston",
-        "Sojourn"
-      ],
-      "correct": 0
+      "correct": "Soldier: 76"
     },
     {
-      "hero": "Sojourn",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409362463719424/sojourn.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418431840817273/Sojourn.png",
-      "answers": [
-        "Soldier 76",
-        "Reaper",
-        "Mercy",
-        "Sojourn"
-      ],
-      "correct": 3
+      "correct": "Sojourn"
     },
     {
-      "hero": "Sombra",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409361926860880/sombra.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418432499339294/Sombra.png",
-      "answers": [
-        "Sombra",
-        "Echo",
-        "Ashe",
-        "Hanzo"
-      ],
-      "correct": 0
+      "correct": "Sombra"
     },
     {
-      "hero": "Symmetra",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409361566138528/symmetra.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418432792924160/Symmetra.png",
-      "answers": [
-        "Ana",
-        "Dr. Mina Liao",
-        "Maximillian",
-        "Symmetra"
-      ],
-      "correct": 3
+      "correct": "Symmetra"
     },
     {
-      "hero": "Torbjörn",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409361280946297/torbjorn.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418433124286516/Torbjorn.png",
-      "answers": [
-        "Ana",
-        "Torbjörn",
-        "Winston",
-        "Echo"
-      ],
-      "correct": 1
+      "correct": "Torbjörn"
     },
     {
-      "hero": "Tracer",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409361041862717/tracer.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418430477668412/Tracer.png",
-      "answers": [
-        "Pharah",
-        "Mercy",
-        "Winston",
-        "Tracer"
-      ],
-      "correct": 3
+      "correct": "Tracer"
     },
     {
-      "hero": "Widowmaker",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409360748249199/widowmaker.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418710258733196/Widowmaker.png",
-      "answers": [
-        "Moira",
-        "Reaper",
-        "Widowmaker",
-        "Sigma"
-      ],
-      "correct": 2
+      "correct": "Widowmaker"
     },
     {
-      "hero": "Ana",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409454910390272/ana.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418707809243227/Ana.png",
-      "answers": [
-        "Ana",
-        "Reinhardt",
-        "Soldier: 76",
-        "Winston"
-      ],
-      "correct": 0
+      "correct": "Ana"
     },
     {
-      "hero": "Baptiste",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409455220756629/baptiste.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418708107055215/Baptiste.png",
-      "answers": [
-        "Widowmaker",
-        "Moira",
-        "Genji",
-        "Baptiste"
-      ],
-      "correct": 3
+      "correct": "Baptiste"
     },
     {
-      "hero": "Brigitte",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409455489200128/brigitte.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418708329336982/Brigitte.png",
-      "answers": [
-        "Bastion",
-        "Mei",
-        "Brigitte",
-        "Echo"
-      ],
-      "correct": 2
+      "correct": "Brigitte"
     },
     {
-      "hero": "Kiriko",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409455724085380/kiriko.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418708597780490/Kiriko.png",
-      "answers": [
-        "Kiriko",
-        "Genji",
-        "Tracer",
-        "Hanzo"
-      ],
-      "correct": 0
+      "correct": "Kiriko"
     },
     {
-      "hero": "Lifeweaver",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456013480046/lifeweaver.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418708941721660/Lifeweaver.png",
-      "answers": [
-        "Symmetra",
-        "Ana",
-        "Moira",
-        "Lifeweaver"
-      ],
-      "correct": 3
+      "correct": "Lifeweaver"
     },
     {
-      "hero": "Lúcio",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456239980634/lucio.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418709210140682/Lucio.png",
-      "answers": [
-        "Torbjörn",
-        "Symmetra",
-        "Lúcio",
-        "Mei"
-      ],
-      "correct": 2
+      "correct": "Lúcio"
     },
     {
-      "hero": "Mercy",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456525197353/mercy.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418709608616047/Mercy.png",
-      "answers": [
-        "Moira",
-        "Mercy",
-        "Lifeweaver",
-        "Kiriko"
-      ],
-      "correct": 1
+      "correct": "Mercy"
     },
     {
-      "hero": "Moira",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456772649010/moira.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418709860257874/Moira.png",
-      "answers": [
-        "Mercy",
-        "Moira",
-        "Lifeweaver",
-        "Doomfist"
-      ],
-      "correct": 1
+      "correct": "Moira"
     },
     {
-      "hero": "Zenyatta",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456986566726/zenyatta.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418707494686720/Zenyatta.png",
-      "answers": [
-        "Hanzo",
-        "Zenyatta",
-        "Reinhardt",
-        "Lifeweaver"
-      ],
-      "correct": 1
+      "correct": "Zenyatta"
     }
   ],
   "hero_list": ["D.Va", "Doomfist", "Junker Queen", "Orisa", "Ramattra", "Reinhardt", "Roadhog", "Sigma", "Winston", "Wrecking Ball", "Zarya", "Ashe", "Bastion", "Cassidy", "Echo", "Genji", "Hanzo", "Junkrat", "Mei", "Pharah", "Reaper", "Soldier: 76", "Sojourn", "Sombra", "Symmetra", "Torbjörn", "Tracer", "Widowmaker", "Ana", "Baptiste", "Brigitte", "Kiriko", "Lifeweaver", "Lúcio", "Mercy", "Moira", "Zenyatta"],
