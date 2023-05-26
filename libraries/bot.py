@@ -7,14 +7,32 @@ from libraries import profiles, heroChooser
 import json
 from datetime import datetime
 
-ALT_COMMANDS = {
-    'hero': 'all',
-    'dps': 'damage',
-    'healer': 'support',
-    'user': 'profile',
-    'score': 'scores',
-    'scoreboard': 'scores',
-    'leaderboard': 'scores',
+COMMANDS = {
+    'avoid': 'Add a hero to your avoid list\n'
+             '- hero: The name of the hero to avoid',
+    'dm': 'Interact with me in your DMs',
+    'geoguess': 'Play a game of "Guess The Map"\n'
+                '- questions (1-10): The number of questions to play\n'
+                '- difficulty (`easy`,`hard`): The difficulty level of the questions',
+    'guess': 'Play a game of "Guess The Hero"\n'
+             '- questions (1-10): The number of questions to play\n'
+             '- difficulty (`easy`,`hard`): The difficulty level of the questions',
+    'help': 'Respond with a list of commands\n'
+            '- command: The command you need help with',
+    'hero': 'Respond with a random hero/duo in the selected role\n'
+            '- \\*role (`all`,`tank`,`damage`,`support`): '
+            'The role of the hero/duo you want to get a hero from, all by default\n'
+            '- \\*duo (`optimal`,`random`): The type of duo, leave empty for a single hero',
+    'list': 'Respond with a list of all the heroes in the selected role\n'
+            '- \\*role (`all`,`tank`,`damage`,`support`): The role get the hero list from',
+    'profile': 'View your profile',
+    'role': 'Respond with a role',
+    'scoreboard': 'Show the top trivia players',
+    'trivia': 'Play an Overwatch 2 hero trivia game\n'
+              '- questions (1-10): The number of questions to play\n'
+              '- difficulty (`easy`,`hard`): The difficulty level of the questions',
+    'unavoid': 'Remove a hero from your avoid list\n'
+               '- hero: The name of the hero to remove from avoid list',
 }
 TRIVIA_EMOJIS = ["🇦", "🇧", "🇨", "🇩"]
 MISSPELLINGS_FILE = os.path.join(os.path.dirname(__file__), '../data/misspellings.json')
@@ -178,16 +196,46 @@ def run_discord_bot(token):
         await ctx.response.send_message(random.choice(responses).format(role=heroChooser.select_role()))
 
     # Other commands
-    # TODO: Rewrite help menu
     @bot.tree.command(name='help', description='Respond with a list of commands')
-    async def get_help(ctx):
+    @app_commands.choices(command=[app_commands.Choice(name=x, value=x) for x in list(COMMANDS.keys())])
+    async def get_help(ctx, command: str = None):
         """
         Respond with a list of commands
 
         :param ctx: The interaction that triggered this command
+        :param command: The command to describe to the user
         :return:
         """
         _log_line(f'help ({ctx.user})')
+
+        if command is not None:
+            if command == 'help':
+                responses = [
+                    'Did you seriously just type that?',
+                    'Do you really need help with that?',
+                    'You must be joking',
+                    '...',
+                    'You just used the command. I do not think you need help with it',
+                    'If you are trying to get a list of all the commands, '
+                    'try </help:1110474733213982722> with no arguments',
+                    COMMANDS['help']
+                ]
+                output = random.choice(responses)
+                if output != COMMANDS['help']:
+                    await ctx.response.send_message(output)
+                    return
+
+            response = Embed(title=command, description=COMMANDS[command].split('\n')[0], colour=DEFAULT_EMBED_COLOUR)
+            lines = COMMANDS[command].strip().split('\n')
+            if len(lines) > 1:
+                response_description = 'Arguments marked with an \\*asterisk are optional\n' \
+                    if '*' in COMMANDS[command] else ''
+                for line in lines[1:]:
+                    response_description += f'\n{line}'
+                response.add_field(name='ARGUMENTS:', inline=False, value=response_description)
+            await ctx.response.send_message(embed=response)
+            return
+
         response = Embed(
             title='Help',
             description='Hi there! My name is *AthenaAI*, the Overwatch 2 hero choosing bot.\n'
@@ -215,7 +263,7 @@ def run_discord_bot(token):
                            value='Add a hero to your avoid list')
         response.add_field(name='/unavoid', inline=False,
                            value='Remove a hero from your avoid list')
-        response.add_field(name='/help', inline=False,
+        response.add_field(name='/help [*command]', inline=False,
                            value='Respond with a list of commands')
         response.add_field(name='/list [\\*role]', inline=False,
                            value='Respond with a list of all the heroes in the selected role')
@@ -281,14 +329,71 @@ def run_discord_bot(token):
 
     # Profile based commands
     @bot.tree.command(name='profile', description='View your profile')
-    async def get_profile(ctx):
+    @app_commands.describe(function='The function to initiate with your profile')
+    @app_commands.choices(function=[
+        app_commands.Choice(name='reset', value='reset'),
+        app_commands.Choice(name='stat reset', value='stat_reset'),
+        app_commands.Choice(name='opt out', value='opt_out'),
+        app_commands.Choice(name='opt in', value='opt_in'),
+        app_commands.Choice(name='info', value='info')
+    ])
+    async def get_profile(ctx, function: str = None):
         """
         Respond with information about the user
 
         :param ctx: The interaction that triggered this command
+        :param function: The function to initiate with the profile, `info` by default
         :return:
         """
         _log_line(f'profile ({ctx.user})')
+        if function == 'reset':
+            if profiles.is_opted_out(str(ctx.user)):
+                responses = [
+                    'There is nothing to reset because you have opted out',
+                ]
+                await ctx.response.send_message(random.choice(responses))
+                return
+            else:
+                profiles.reset_trivia_score(str(ctx.user))
+                await ctx.response.send_message('Done! I have removed your profile from my records')
+                return
+        elif function == 'opt_out':
+            if profiles.is_opted_out(str(ctx.user)):
+                responses = [
+                    'You have already opted out',
+                    'It seems you have already opted out',
+                    'I cannot opt you out twice',
+                    'Try opting in first'
+                ]
+                await ctx.response.send_message(random.choice(responses))
+                return
+            else:
+                profiles.opt_out(str(ctx.user))
+                await ctx.response.send_message('Done! It is like you were never hear...')
+                return
+        elif function == 'opt_in':
+            if not profiles.is_opted_out(str(ctx.user)):
+                responses = [
+                    'You have already opted in',
+                    'Try opting out first',
+                ]
+                profiles.opt_in(str(ctx.user))
+                await ctx.response.send_message(random.choice(responses))
+                return
+            else:
+                profiles.opt_in(str(ctx.user))
+                await ctx.response.send_message('I have created a profile for you!')
+                return
+        elif function is None or function == 'info':
+            if profiles.is_opted_out(str(ctx.user)):
+                responses = [
+                    'You do not have a profile because you opted out',
+                    'You have told me not to collect data on you',
+                    'Error 404: Profile not found. Use `/profile opt in` to resolve',
+                    'Please opt in to continue: `/profile opt in`'
+                ]
+                await ctx.response.send_message(random.choice(responses))
+                return
         # Update users
         profiles.update_trivia_score(str(ctx.user), 0, 0)
         user_data = profiles.get_profile(str(ctx.user))
@@ -328,6 +433,14 @@ def run_discord_bot(token):
         :return:
         """
         _log_line(f'avoid ({ctx.user})')
+        if profiles.is_opted_out(str(ctx.user)):
+            responses = [
+                'I cannot do that. You have opted out of profiles',
+                'Try opting in first',
+                'You have chosen to opt out of profiles, so I cannot add a hero to your avoid list'
+            ]
+            await ctx.response.send_message(random.choice(responses))
+            return
         hero = _correct_spelling(hero)
         for x in heroChooser.get_heroes_in_category('all'):
             if hero.lower() == x.lower():
@@ -352,6 +465,15 @@ def run_discord_bot(token):
         :return:
         """
         _log_line(f'unavoid ({ctx.user})')
+        if profiles.is_opted_out(str(ctx.user)):
+            responses = [
+                'I cannot do that. You have opted out of profiles',
+                'Try opting in first',
+                'You have chosen to opt out of profiles',
+                'You do not have a profile, so there is nothing to remove'
+            ]
+            await ctx.response.send_message(random.choice(responses))
+            return
         if hero == 'all':
             for x in heroChooser.get_heroes_in_category('all'):
                 profiles.unavoid_hero(str(ctx.user), x)
@@ -436,7 +558,7 @@ def run_discord_bot(token):
         await ctx.response.send_message('We are working on it')
 
     @bot.tree.command(name='scoreboard', description='Show the top trivia players')
-    async def get_scoreboard(ctx):
+    async def get_scoreboard(ctx: discord.Interaction):
         """
         Respond with a scoreboard of all the trivia players
 
@@ -444,7 +566,20 @@ def run_discord_bot(token):
         :return:
         """
         _log_line(f'scoreboard ({ctx.user})')
-        scoreboard = profiles.get_trivia_scoreboard()
+        scoreboard = [x for x in profiles.get_trivia_scoreboard()
+                      if ctx.guild.get_member_named(x['username']) is not None]
+        if len(scoreboard) == 0:
+            call_to_action = '\nGet started: </trivia:1110662816102367371> </guess:1110662816102367372> ' \
+                             '</geoguess:1110662816416936047>'
+            responses = [
+                'There are no players in this server that have played.',
+                'There\'s no one here...',
+                '*Cricket noises*',
+                '¯\\_(ツ)_/¯',
+                ':desert:'
+            ]
+            await ctx.response.send_message(random.choice(responses) + call_to_action)
+            return
         usernames = ''
         rate = ''
         total = ''
