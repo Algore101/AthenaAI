@@ -39,11 +39,15 @@ def _make_account_if_none(username: str) -> None:
         _update_user_file(all_users)
 
 
-def get_profile(username: str) -> dict:
-    _make_account_if_none(username)
+def get_profile(username: str, make_new_if_none: bool = None):
+    if make_new_if_none is None:
+        make_new_if_none = False
+    if make_new_if_none:
+        _make_account_if_none(username)
     for user in _get_all_users():
         if user['username'] == username:
             return user
+    return None
 
 
 def is_hero_avoided(username: str, hero: str) -> bool:
@@ -127,4 +131,15 @@ def update_trivia_score(username: str, successful_questions: int, total_question
 def get_trivia_scoreboard() -> list:
     def get_success_rate(user: dict):
         return int(user['successful_questions'] / user['total_questions'] * 100)
+
     return sorted(_get_all_users(), key=lambda i: (get_success_rate(i), i['total_questions']), reverse=True)
+
+
+def delete(username: str):
+    all_users = _get_all_users()
+
+    for x in all_users:
+        if x['username'] == username:
+            all_users.remove(x)
+
+    _update_user_file(all_users)
