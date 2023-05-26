@@ -7,8 +7,6 @@ from libraries import profiles, heroChooser
 import json
 from datetime import datetime
 
-# TODO: Add profile remove function
-# TODO: Opt out of detail saving
 COMMANDS = {
     'avoid': 'Add a hero to your avoid list\n'
              '- hero: The name of the hero to avoid',
@@ -331,14 +329,71 @@ def run_discord_bot(token):
 
     # Profile based commands
     @bot.tree.command(name='profile', description='View your profile')
-    async def get_profile(ctx):
+    @app_commands.describe(function='The function to initiate with your profile')
+    @app_commands.choices(function=[
+        app_commands.Choice(name='reset', value='reset'),
+        app_commands.Choice(name='stat reset', value='stat_reset'),
+        app_commands.Choice(name='opt out', value='opt_out'),
+        app_commands.Choice(name='opt in', value='opt_in'),
+        app_commands.Choice(name='info', value='info')
+    ])
+    async def get_profile(ctx, function: str = None):
         """
         Respond with information about the user
 
         :param ctx: The interaction that triggered this command
+        :param function: The function to initiate with the profile, `info` by default
         :return:
         """
         _log_line(f'profile ({ctx.user})')
+        if function == 'reset':
+            if profiles.is_opted_out(str(ctx.user)):
+                responses = [
+                    'There is nothing to reset because you have opted out',
+                ]
+                await ctx.response.send_message(random.choice(responses))
+                return
+            else:
+                profiles.reset_trivia_score(str(ctx.user))
+                await ctx.response.send_message('Done! I have removed your profile from my records')
+                return
+        elif function == 'opt_out':
+            if profiles.is_opted_out(str(ctx.user)):
+                responses = [
+                    'You have already opted out',
+                    'It seems you have already opted out',
+                    'I cannot opt you out twice',
+                    'Try opting in first'
+                ]
+                await ctx.response.send_message(random.choice(responses))
+                return
+            else:
+                profiles.opt_out(str(ctx.user))
+                await ctx.response.send_message('Done! It is like you were never hear...')
+                return
+        elif function == 'opt_in':
+            if not profiles.is_opted_out(str(ctx.user)):
+                responses = [
+                    'You have already opted in',
+                    'Try opting out first',
+                ]
+                profiles.opt_in(str(ctx.user))
+                await ctx.response.send_message(random.choice(responses))
+                return
+            else:
+                profiles.opt_in(str(ctx.user))
+                await ctx.response.send_message('I have created a profile for you!')
+                return
+        elif function is None or function == 'info':
+            if profiles.is_opted_out(str(ctx.user)):
+                responses = [
+                    'You do not have a profile because you opted out',
+                    'You have told me not to collect data on you',
+                    'Error 404: Profile not found. Use `/profile opt in` to resolve',
+                    'Please opt in to continue: `/profile opt in`'
+                ]
+                await ctx.response.send_message(random.choice(responses))
+                return
         # Update users
         profiles.update_trivia_score(str(ctx.user), 0, 0)
         user_data = profiles.get_profile(str(ctx.user))
@@ -378,6 +433,14 @@ def run_discord_bot(token):
         :return:
         """
         _log_line(f'avoid ({ctx.user})')
+        if profiles.is_opted_out(str(ctx.user)):
+            responses = [
+                'I cannot do that. You have opted out of profiles',
+                'Try opting in first',
+                'You have chosen to opt out of profiles, so I cannot add a hero to your avoid list'
+            ]
+            await ctx.response.send_message(random.choice(responses))
+            return
         hero = _correct_spelling(hero)
         for x in heroChooser.get_heroes_in_category('all'):
             if hero.lower() == x.lower():
@@ -402,6 +465,15 @@ def run_discord_bot(token):
         :return:
         """
         _log_line(f'unavoid ({ctx.user})')
+        if profiles.is_opted_out(str(ctx.user)):
+            responses = [
+                'I cannot do that. You have opted out of profiles',
+                'Try opting in first',
+                'You have chosen to opt out of profiles',
+                'You do not have a profile, so there is nothing to remove'
+            ]
+            await ctx.response.send_message(random.choice(responses))
+            return
         if hero == 'all':
             for x in heroChooser.get_heroes_in_category('all'):
                 profiles.unavoid_hero(str(ctx.user), x)
