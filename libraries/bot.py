@@ -372,9 +372,53 @@ def run_discord_bot(token):
 
     # Trivia commands
 
-
     # TODO Make an extreme difficulty
     # TODO Make an ability trivia
+
+    # Lists of responses for the games
+    positive = [
+        "Well done!! :heart:",
+        "Who has less of a life. The one who made the game or the one that plays it?",
+        "You really know your stuff!",
+        "Congrats! You have no life :black_heart:",
+        "Touch some grass!",
+        "Let's hope you can keep the streak going!",
+        "Epic! You can remember useless stuff :heart:",
+        "That was just a random guess that happened to be right.",
+        "You are officially a nerd :nerd:",
+        "Well, even a broken clock is right twice a day. Congratulations on getting that one correct.",
+        "Oh, look at you, a veritable encyclopedia of Overwatch trivia. I suppose someone has to remember these things.",
+        "You're not as clueless as I thought. I'm almost impressed. Almost.",
+        "It seems you've stumbled upon the correct answer by accident. Beginner's luck, perhaps?",
+        "Ah, a correct answer. Your brain must be a rare oasis in the desert of ignorance.",
+        "Correct again. If only you could apply that knowledge to something more practical. Alas.",
+        "Aha! You've managed to scrape together another correct response. It's almost as if you're trying."
+    ]
+
+    negative = [
+        "Have you ever played a game of overwatch?",
+        "Are you playing with the sound off?!",
+        "This is actually embarrassing",
+        "Come on...It really isn't that hard!",
+        "Next one you'll get right!",
+        "Someone needs to rewatch the animated shorts!",
+        "Please go to: https://overwatch.fandom.com/wiki/Overwatch_Wiki",
+        "Someone doesn't pay attention to the game :sob:",
+        "Have you tried turning your monitor on?",
+        "A baby knows more than you..",
+        "Oh, bless your heart. That answer is so far off the mark, it's almost impressive.",
+        "Not even close. I suppose there's a talent in consistently choosing the wrong path.",
+        "Oh, dear. It seems your knowledge of Overwatch is as feeble as your attempt at this answer.",
+        "Incorrect. Did you even bother to study? Or are you just here to waste everyone's time?",
+        "Oh, the disappointment. Your answer is so wrong, it's as if you stumbled into the wrong game entirely.",
+        "Nope, that's not even in the same galaxy as the correct answer. You're truly in a league of your own."
+    ]
+    more_wrong = [
+        "Wrong again. Your lack of understanding is becoming a work of art in its own right.",
+        "Another incorrect response. It's almost admirable how consistently you manage to fail.",
+        "Incorrect, as expected. It must be a challenge to be so consistently clueless."
+    ]
+
     @bot.tree.command(name='trivia', description='Play an Overwatch 2 hero trivia game')
     @app_commands.describe(difficulty='The difficulty level of the questions',
                            questions='The number of questions (limit of 10)')
@@ -453,10 +497,13 @@ def run_discord_bot(token):
 
             # Check if the user answered correctly
             if view.response == correct_letter:
-                await interaction.followup.send('That is correct!')
+                await interaction.followup.send(random.choice(positive))
                 score += 1
             else:
-                await interaction.followup.send('That isn\'t correct!')
+                if i + 1 - score < 2:
+                    await interaction.followup.send(random.choice(negative))
+                else:
+                    await interaction.followup.send(random.choice(more_wrong))
 
         await interaction.followup.send(f'Game over! Your final score is {score}/{rounds} :heart:')
 
@@ -558,10 +605,13 @@ def run_discord_bot(token):
 
             # Check if the user answered correctly
             if view.response == correct_letter:
-                await interaction.followup.send('That is correct!')
+                await interaction.followup.send(random.choice(positive))
                 score += 1
             else:
-                await interaction.followup.send('That isn\'t correct!')
+                if i + 1 - score < 2:
+                    await interaction.followup.send(random.choice(negative))
+                else:
+                    await interaction.followup.send(random.choice(more_wrong))
 
         await interaction.followup.send(f'Game over! Your final score is {score}/{rounds} :heart:')
 
@@ -575,7 +625,7 @@ def run_discord_bot(token):
         app_commands.Choice(name='hard', value=2)
     ])
     async def play_geoguess(interaction: discord.Interaction, questions: app_commands.Range[int, 1, 10],
-                         difficulty: app_commands.Choice[int]):
+                            difficulty: app_commands.Choice[int]):
         """
         Respond with a number of map guessing questions for the user to play
 
@@ -654,10 +704,13 @@ def run_discord_bot(token):
 
             # Check if the user answered correctly
             if view.response == correct_letter:
-                await interaction.followup.send('That is correct!')
+                await interaction.followup.send(random.choice(positive))
                 score += 1
             else:
-                await interaction.followup.send('That isn\'t correct!')
+                if i + 1 - score < 2:
+                    await interaction.followup.send(random.choice(negative))
+                else:
+                    await interaction.followup.send(random.choice(more_wrong))
 
         await interaction.followup.send(f'Game over! Your final score is {score}/{rounds} :heart:')
 
