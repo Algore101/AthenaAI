@@ -372,7 +372,10 @@ def run_discord_bot(token):
 
     # Trivia commands
 
-    # TODO Add geoguess functionality
+    # TODO Make it so that only the person who asked the question can answer
+    # TODO Make it so that the buttons get disabled after the question has been answered
+    # TODO Make an extreme difficulty
+    # TODO Make an ability trivia
     @bot.tree.command(name='trivia', description='Play an Overwatch 2 hero trivia game')
     @app_commands.describe(difficulty='The difficulty level of the questions',
                            questions='The number of questions (limit of 10)')
@@ -385,6 +388,7 @@ def run_discord_bot(token):
 
         difficulty = difficulty.name
         rounds = questions
+        player = interaction.user
 
         # Get the json file
         QUESTIONS_FILE = os.path.join(os.path.dirname(__file__), '../data/questions.json')
@@ -444,7 +448,7 @@ def run_discord_bot(token):
             # Make the embed for the question
             embed = discord.Embed(title=f'Round {i + 1}', description=question)
             embed.add_field(name='Answers', value=answer_text)
-            view = classes.TriviaView(question, correct_letter)
+            view = classes.TriviaView(question, correct_letter, player)
             await interaction.followup.send(embed=embed, view=view)
             await view.wait()
 
@@ -488,6 +492,7 @@ def run_discord_bot(token):
 
         difficulty = difficulty.name
         rounds = questions
+        player = interaction.user
 
         # Get the json file
         QUESTIONS_FILE = os.path.join(os.path.dirname(__file__), '../data/questions.json')
@@ -548,7 +553,7 @@ def run_discord_bot(token):
             embed = discord.Embed(title=f'Round {i + 1}')
             embed.add_field(name='Answers', value=answer_text)
             embed.set_image(url=question)
-            view = classes.TriviaView(question, correct_letter)
+            view = classes.TriviaView(question, correct_letter, player)
             await interaction.followup.send(embed=embed, view=view)
             await view.wait()
 
@@ -583,6 +588,7 @@ def run_discord_bot(token):
 
         difficulty = difficulty.name
         rounds = questions
+        player = interaction.user
 
         # Get the json file
         QUESTIONS_FILE = os.path.join(os.path.dirname(__file__), '../data/questions.json')
@@ -643,7 +649,7 @@ def run_discord_bot(token):
             embed = discord.Embed(title=f'Round {i + 1}')
             embed.add_field(name='Answers', value=answer_text)
             embed.set_image(url=question)
-            view = classes.TriviaView(question, correct_letter)
+            view = classes.TriviaView(question, correct_letter, player)
             await interaction.followup.send(embed=embed, view=view)
             await view.wait()
 

@@ -3,32 +3,57 @@ from discord.ui import View, Button
 
 
 class TriviaView(View):
-    def __init__(self, question, correct_answer):
+    def __init__(self, question, correct_answer, player):
         super().__init__()
         self.question = question
         self.correct_answer = correct_answer
         self.response = None
+        self.player = player
 
     @discord.ui.button(label='A', style=discord.ButtonStyle.primary)
     async def answer_a(self, interaction: discord.Interaction, button: Button):
-        self.response = 'A'
-        await interaction.response.defer()
-        self.stop()
+        if interaction.user == self.player:
+            self.response = 'A'
+            await interaction.response.defer()
+            self.stop()
+            for item in self.children:
+                item.disabled = True
+            await interaction.edit_original_response(view=self)
+        else:
+            await interaction.response.send_message('This isn\'t your game...Make your own!')
 
     @discord.ui.button(label='B', style=discord.ButtonStyle.primary)
     async def answer_b(self, interaction: discord.Interaction, button: Button):
-        self.response = 'B'
-        await interaction.response.defer()
-        self.stop()
+        if interaction.user == self.player:
+            self.response = 'B'
+            await interaction.response.defer()
+            self.stop()
+            for item in self.children:
+                item.disabled = True
+            await interaction.edit_original_response(view=self)
+        else:
+            await interaction.response.send_message('This isn\'t your game...Make your own!')
 
     @discord.ui.button(label='C', style=discord.ButtonStyle.primary)
     async def answer_c(self, interaction: discord.Interaction, button: Button):
-        self.response = 'C'
-        await interaction.response.defer()
-        self.stop()
+        if interaction.user == self.player:
+            self.response = 'C'
+            await interaction.response.defer()
+            self.stop()
+            for item in self.children:
+                item.disabled = True
+            await interaction.edit_original_response(view=self)
+        else:
+            await interaction.response.send_message('This isn\'t your game...Make your own!')
 
     @discord.ui.button(label='D', style=discord.ButtonStyle.primary)
     async def answer_d(self, interaction: discord.Interaction, button: Button):
-        self.response = 'D'
-        await interaction.response.defer()
-        self.stop()
+        if interaction.user == self.player:
+            self.response = 'D'
+            await interaction.response.defer()
+            self.stop()
+            for item in self.children:
+                item.disabled = True
+            await interaction.edit_original_response(view=self)
+        else:
+            await interaction.response.send_message('This isn\'t your game...Make your own!')
