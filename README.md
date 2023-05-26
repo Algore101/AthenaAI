@@ -20,8 +20,9 @@ A variety of games including _Guess The Hero_, trivia, and _Overwatch GeoGuessr_
 Avoid getting heroes you don't like and keep track of your trivia scores from any server
 
 Keep on reading to discover everything AthenaAI can do
+
 ## Commands
-<sub>Commands marked with an \*asterisk are optional</sub>
+Commands marked with an \*asterisk are optional
 ### Core commands:
 - **/hero \[\*role] \[\*duo]** - Respond with a random hero/duo in the selected role
   - \*role (`all`,`tank`,`damage`,`support`) - The role of the hero/duo you want to get a hero from, `all` by default
@@ -39,7 +40,8 @@ Keep on reading to discover everything AthenaAI can do
   - difficulty (`easy`,`hard`) - The difficulty level of the questions
 - **/scoreboard** - Show the top trivia players
 ### User-specific commands:
-- **/profile** - View your profile
+- **/profile \[function]** - View your profile
+  - function (`info`,`opt out`,`opt in`,`reset`,`stat reset`) - The function to initiate with your profile
 - **/avoid \[hero]** - Add a hero to your avoid list
   -  hero - The name of the hero to avoid
 - **/unavoid \[hero]** - Remove a hero from your avoid list
@@ -49,3 +51,23 @@ Keep on reading to discover everything AthenaAI can do
 - **/list \[\*role]** - Respond with a list of all the heroes in the selected role
   - \*role (`all`,`tank`,`damage`,`support`) - The role get the hero list from
 - **/dm** - Respond in the user's dms
+
+## User profiles
+In order to allow users to avoid heroes and compete in games, AthenaAI creates a profile with the following data:
+- Your username
+- Heroes you have chosen to avoid
+- Your game scores
+
+Your username (excluding the \#0001 identifier at the end of your name) is only shared with users in the same servers as you and cannot be accessed by anyone outside
+### Creating a profile
+There are some commands that invoke the creation of your profile. These commands are:
+- `/profile`
+- `/avoid`
+- `/unavoid`
+### Deleting your profile
+Using `/profile function:delete` removes your profile from the AthenaAI records.
+
+Deleting your profile removes everything across all servers: your username, avoided heroes, and trivia score. It will be as if you never used AthenaAI.
+
+The use of any of the [creation commands](#creating-a-profile) will create a profile for you again.
+
