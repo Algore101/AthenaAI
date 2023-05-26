@@ -11,12 +11,12 @@ COMMANDS = {
     'avoid': 'Add a hero to your avoid list\n'
              '- hero: The name of the hero to avoid',
     'dm': 'Interact with me in your DMs',
-    'geoguess': 'Play a game of "Guess The Map"\n'
-                '- questions (1-10): The number of questions to play\n'
-                '- difficulty (`easy`,`hard`): The difficulty level of the questions',
-    'guess': 'Play a game of "Guess The Hero"\n'
-             '- questions (1-10): The number of questions to play\n'
-             '- difficulty (`easy`,`hard`): The difficulty level of the questions',
+    # 'geoguess': 'Play a game of "Guess The Map"\n'
+    #             '- questions (1-10): The number of questions to play\n'
+    #             '- difficulty (`easy`,`hard`): The difficulty level of the questions',
+    # 'guess': 'Play a game of "Guess The Hero"\n'
+    #          '- questions (1-10): The number of questions to play\n'
+    #          '- difficulty (`easy`,`hard`): The difficulty level of the questions',
     'help': 'Respond with a list of commands\n'
             '- command: The command you need help with',
     'hero': 'Respond with a random hero/duo in the selected role\n'
@@ -27,10 +27,10 @@ COMMANDS = {
             '- \\*role (`all`,`tank`,`damage`,`support`): The role get the hero list from',
     'profile': 'View your profile',
     'role': 'Respond with a role',
-    'scoreboard': 'Show the top trivia players',
-    'trivia': 'Play an Overwatch 2 hero trivia game\n'
-              '- questions (1-10): The number of questions to play\n'
-              '- difficulty (`easy`,`hard`): The difficulty level of the questions',
+    # 'scoreboard': 'Show the top trivia players',
+    # 'trivia': 'Play an Overwatch 2 hero trivia game\n'
+    #           '- questions (1-10): The number of questions to play\n'
+    #           '- difficulty (`easy`,`hard`): The difficulty level of the questions',
     'unavoid': 'Remove a hero from your avoid list\n'
                '- hero: The name of the hero to remove from avoid list',
 }
@@ -250,14 +250,14 @@ def run_discord_bot(token):
                            value='Respond with a random hero/duo in the selected role')
         response.add_field(name='/role', inline=False,
                            value='Respond with a role')
-        response.add_field(name='/trivia [questions] [difficulty]', inline=False,
-                           value='Play an Overwatch 2 hero trivia game')
-        response.add_field(name='/guess [questions] [difficulty]', inline=False,
-                           value='Play a game of "Guess The Hero"')
-        response.add_field(name='/geoguess [questions] [difficulty]', inline=False,
-                           value='Play a game of "Guess The Map"')
-        response.add_field(name='/scoreboard', inline=False,
-                           value='Show the top trivia players')
+        # response.add_field(name='/trivia [questions] [difficulty]', inline=False,
+        #                    value='Play an Overwatch 2 hero trivia game')
+        # response.add_field(name='/guess [questions] [difficulty]', inline=False,
+        #                    value='Play a game of "Guess The Hero"')
+        # response.add_field(name='/geoguess [questions] [difficulty]', inline=False,
+        #                    value='Play a game of "Guess The Map"')
+        # response.add_field(name='/scoreboard', inline=False,
+        #                    value='Show the top trivia players')
         response.add_field(name='/profile', inline=False,
                            value='View your profile')
         response.add_field(name='/avoid', inline=False,
@@ -439,107 +439,107 @@ def run_discord_bot(token):
     # TODO: Add trivia functionality
     # TODO: Add guess functionality
     # TODO Add geoguess functionality
-    @bot.tree.command(name='trivia', description='Play an Overwatch 2 hero trivia game')
-    @app_commands.describe(difficulty='The difficulty level of the questions',
-                           questions='The number of questions (limit of 10)')
-    @app_commands.choices(difficulty=[
-        app_commands.Choice(name='easy', value='easy'),
-        app_commands.Choice(name='hard', value='hard')
-    ])
-    async def play_trivia(ctx, questions: app_commands.Range[int, 1, 10], difficulty: str = None):
-        """
-        Respond with a number of trivia questions for the user to play
-
-        :param ctx: The interaction that triggered this command
-        :param questions: The number of questions
-        :param difficulty: The difficulty level of the questions
-        :return:
-        """
-        _log_line(f'trivia ({ctx.user})')
-        await ctx.response.send_message('We are working on it')
-
-    @bot.tree.command(name='guess', description='Play a game of \"Guess The Hero\"')
-    @app_commands.describe(difficulty='The difficulty level of the questions',
-                           questions='The number of questions (limit of 10)')
-    @app_commands.choices(difficulty=[
-        app_commands.Choice(name='easy', value='easy'),
-        app_commands.Choice(name='hard', value='hard')
-    ])
-    async def play_guess(ctx, questions: app_commands.Range[int, 1, 10], difficulty: str = None):
-        """
-        Respond with a number of guessing questions for the user to play
-
-        :param ctx: The interaction that triggered this command
-        :param questions: The number of questions
-        :param difficulty: The difficulty level of the questions
-        :return:
-        """
-        _log_line(f'guess ({ctx.user})')
-        if difficulty is None:
-            difficulty = 'easy'
-        await ctx.response.send_message('We are working on it')
-
-    @bot.tree.command(name='geoguess', description='Play a game of \"Guess The Map\"')
-    @app_commands.describe(difficulty='The difficulty level of the questions',
-                           questions='The number of questions (limit 10)')
-    @app_commands.choices(difficulty=[
-        app_commands.Choice(name='easy', value='easy'),
-        app_commands.Choice(name='hard', value='hard')
-    ])
-    async def play_geoguess(ctx, questions: app_commands.Range[int, 1, 10], difficulty: str = None):
-        """
-        Respond with a number of map guessing questions for the user to play
-
-        :param ctx: The interaction that triggered this command
-        :param questions: The number of questions
-        :param difficulty: The difficulty level of the questions
-        :return:
-        """
-        _log_line(f'geoguess ({ctx.user})')
-        if difficulty is None:
-            difficulty = 'easy'
-        await ctx.response.send_message('We are working on it')
-
-    @bot.tree.command(name='scoreboard', description='Show the top trivia players')
-    async def get_scoreboard(ctx):
-        """
-        Respond with a scoreboard of all the trivia players
-
-        :param ctx: The interaction that triggered this command
-        :return:
-        """
-        _log_line(f'scoreboard ({ctx.user})')
-        scoreboard = [x for x in profiles.get_trivia_scoreboard()
-                      if ctx.guild.get_member_named(x['username']) is not None]
-        if len(scoreboard) == 0:
-            call_to_action = '\nGet started: </trivia:1110662816102367371> </guess:1110662816102367372> ' \
-                             '</geoguess:1110662816416936047>'
-            responses = [
-                'There are no players in this server that have played.',
-                'There\'s no one here...',
-                '*Cricket noises*',
-                '¯\\_(ツ)_/¯',
-                ':desert:'
-            ]
-            await ctx.response.send_message(random.choice(responses) + call_to_action)
-            return
-        usernames = ''
-        rate = ''
-        total = ''
-        # Get data
-        for rank, user in enumerate(scoreboard):
-            if rank < 3:
-                usernames += RANK_EMOJIS[rank]
-            usernames += f'{user["username"][:-5]}\n'
-            success_rate = int(user['successful_questions'] / user['total_questions'] * 100)
-            rate += f'{success_rate}%\n'
-            total += f'{user["total_questions"]}\n'
-        # Build embed
-        response = Embed(title='Trivia scoreboard', description='Here are the top trivia players!',
-                         colour=DEFAULT_EMBED_COLOUR)
-        response.add_field(name='Username', value=usernames)
-        response.add_field(name='Success Rate', value=rate)
-        response.add_field(name='Questions attempted', value=total)
-        await ctx.response.send_message(embed=response)
+    # @bot.tree.command(name='trivia', description='Play an Overwatch 2 hero trivia game')
+    # @app_commands.describe(difficulty='The difficulty level of the questions',
+    #                        questions='The number of questions (limit of 10)')
+    # @app_commands.choices(difficulty=[
+    #     app_commands.Choice(name='easy', value='easy'),
+    #     app_commands.Choice(name='hard', value='hard')
+    # ])
+    # async def play_trivia(ctx, questions: app_commands.Range[int, 1, 10], difficulty: str = None):
+    #     """
+    #     Respond with a number of trivia questions for the user to play
+#
+    #     :param ctx: The interaction that triggered this command
+    #     :param questions: The number of questions
+    #     :param difficulty: The difficulty level of the questions
+    #     :return:
+    #     """
+    #     _log_line(f'trivia ({ctx.user})')
+    #     await ctx.response.send_message('We are working on it')
+#
+    # @bot.tree.command(name='guess', description='Play a game of \"Guess The Hero\"')
+    # @app_commands.describe(difficulty='The difficulty level of the questions',
+    #                        questions='The number of questions (limit of 10)')
+    # @app_commands.choices(difficulty=[
+    #     app_commands.Choice(name='easy', value='easy'),
+    #     app_commands.Choice(name='hard', value='hard')
+    # ])
+    # async def play_guess(ctx, questions: app_commands.Range[int, 1, 10], difficulty: str = None):
+    #     """
+    #     Respond with a number of guessing questions for the user to play
+#
+    #     :param ctx: The interaction that triggered this command
+    #     :param questions: The number of questions
+    #     :param difficulty: The difficulty level of the questions
+    #     :return:
+    #     """
+    #     _log_line(f'guess ({ctx.user})')
+    #     if difficulty is None:
+    #         difficulty = 'easy'
+    #     await ctx.response.send_message('We are working on it')
+#
+    # @bot.tree.command(name='geoguess', description='Play a game of \"Guess The Map\"')
+    # @app_commands.describe(difficulty='The difficulty level of the questions',
+    #                        questions='The number of questions (limit 10)')
+    # @app_commands.choices(difficulty=[
+    #     app_commands.Choice(name='easy', value='easy'),
+    #     app_commands.Choice(name='hard', value='hard')
+    # ])
+    # async def play_geoguess(ctx, questions: app_commands.Range[int, 1, 10], difficulty: str = None):
+    #     """
+    #     Respond with a number of map guessing questions for the user to play
+#
+    #     :param ctx: The interaction that triggered this command
+    #     :param questions: The number of questions
+    #     :param difficulty: The difficulty level of the questions
+    #     :return:
+    #     """
+    #     _log_line(f'geoguess ({ctx.user})')
+    #     if difficulty is None:
+    #         difficulty = 'easy'
+    #     await ctx.response.send_message('We are working on it')
+#
+    # @bot.tree.command(name='scoreboard', description='Show the top trivia players')
+    # async def get_scoreboard(ctx):
+    #     """
+    #     Respond with a scoreboard of all the trivia players
+#
+    #     :param ctx: The interaction that triggered this command
+    #     :return:
+    #     """
+    #     _log_line(f'scoreboard ({ctx.user})')
+    #     scoreboard = [x for x in profiles.get_trivia_scoreboard()
+    #                   if ctx.guild.get_member_named(x['username']) is not None]
+    #     if len(scoreboard) == 0:
+    #         call_to_action = '\nGet started: </trivia:1110662816102367371> </guess:1110662816102367372> ' \
+    #                          '</geoguess:1110662816416936047>'
+    #         responses = [
+    #             'There are no players in this server that have played.',
+    #             'There\'s no one here...',
+    #             '*Cricket noises*',
+    #             '¯\\_(ツ)_/¯',
+    #             ':desert:'
+    #         ]
+    #         await ctx.response.send_message(random.choice(responses) + call_to_action)
+    #         return
+    #     usernames = ''
+    #     rate = ''
+    #     total = ''
+    #     # Get data
+    #     for rank, user in enumerate(scoreboard):
+    #         if rank < 3:
+    #             usernames += RANK_EMOJIS[rank]
+    #         usernames += f'{user["username"][:-5]}\n'
+    #         success_rate = int(user['successful_questions'] / user['total_questions'] * 100)
+    #         rate += f'{success_rate}%\n'
+    #         total += f'{user["total_questions"]}\n'
+    #     # Build embed
+    #     response = Embed(title='Trivia scoreboard', description='Here are the top trivia players!',
+    #                      colour=DEFAULT_EMBED_COLOUR)
+    #     response.add_field(name='Username', value=usernames)
+    #     response.add_field(name='Success Rate', value=rate)
+    #     response.add_field(name='Questions attempted', value=total)
+    #     await ctx.response.send_message(embed=response)
 
     bot.run(token)

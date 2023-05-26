@@ -34,7 +34,6 @@ def _make_account_if_none(username: str) -> None:
             'avoided_heroes': [],
             'successful_questions': 0,
             'total_questions': 0,
-            'opted_out': False,
         }
         all_users.append(new_user)
         _update_user_file(all_users)
