@@ -372,8 +372,7 @@ def run_discord_bot(token):
 
     # Trivia commands
 
-    # TODO Make it so that only the person who asked the question can answer
-    # TODO Make it so that the buttons get disabled after the question has been answered
+
     # TODO Make an extreme difficulty
     # TODO Make an ability trivia
     @bot.tree.command(name='trivia', description='Play an Overwatch 2 hero trivia game')
