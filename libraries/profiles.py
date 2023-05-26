@@ -39,7 +39,7 @@ def _make_account_if_none(username: str) -> None:
         _update_user_file(all_users)
 
 
-def get_profile(username: str, make_new_if_none: bool = None) -> dict | None:
+def get_profile(username: str, make_new_if_none: bool = None):
     if make_new_if_none is None:
         make_new_if_none = False
     if make_new_if_none:
