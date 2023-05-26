@@ -40,11 +40,13 @@ def _make_account_if_none(username: str) -> None:
         _update_user_file(all_users)
 
 
-def get_profile(username: str) -> dict:
-    _make_account_if_none(username)
+def get_profile(username: str, make_new_if_none=False) -> dict | None:
+    if make_new_if_none:
+        _make_account_if_none(username)
     for user in _get_all_users():
         if user['username'] == username:
             return user
+    return None
 
 
 def is_hero_avoided(username: str, hero: str) -> bool:
@@ -132,43 +134,11 @@ def get_trivia_scoreboard() -> list:
     return sorted(_get_all_users(), key=lambda i: (get_success_rate(i), i['total_questions']), reverse=True)
 
 
-def reset_trivia_score(username: str):
+def delete(username: str):
     all_users = _get_all_users()
 
     for x in all_users:
         if x['username'] == username:
-            all_users[all_users.index(x)]['successful_questions'] = 0
-            all_users[all_users.index(x)]['total_questions'] = 0
+            all_users.remove(x)
 
     _update_user_file(all_users)
-
-
-def opt_out(username: str):
-    _make_account_if_none(username)
-    all_users = _get_all_users()
-
-    for x in all_users:
-        if x['username'] == username:
-            all_users[all_users.index(x)] = {'username': username, 'opted_out': True}
-
-    _update_user_file(all_users)
-
-
-def opt_in(username: str):
-    all_users = _get_all_users()
-
-    for x in all_users:
-        if x['username'] == username and x['opted_out'] is True:
-            all_users.pop(all_users.index(x))
-
-    _update_user_file(all_users)
-    _make_account_if_none(username)
-
-
-def is_opted_out(username: str) -> bool:
-    all_users = _get_all_users()
-
-    for x in all_users:
-        if x['username'] == username and x['opted_out'] is True:
-            return True
-    return False

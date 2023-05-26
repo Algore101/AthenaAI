@@ -97,7 +97,8 @@ def run_discord_bot(token):
             role = 'all'
 
         available_heroes = [x for x in heroChooser.get_heroes_in_category(role)
-                            if not profiles.is_hero_avoided(str(ctx.user), x)]
+                            if not profiles.is_hero_avoided(str(ctx.user), x)] if profiles.get_profile(
+            str(ctx.user)) is not None else heroChooser.get_heroes_in_category(role)
 
         if len(available_heroes) == 0:
             await ctx.response.send_message(
@@ -331,72 +332,31 @@ def run_discord_bot(token):
     @bot.tree.command(name='profile', description='View your profile')
     @app_commands.describe(function='The function to initiate with your profile')
     @app_commands.choices(function=[
-        app_commands.Choice(name='reset', value='reset'),
-        app_commands.Choice(name='stat reset', value='stat_reset'),
-        app_commands.Choice(name='opt out', value='opt_out'),
-        app_commands.Choice(name='opt in', value='opt_in'),
-        app_commands.Choice(name='info', value='info')
+        app_commands.Choice(name='delete', value='delete'),
     ])
     async def get_profile(ctx, function: str = None):
         """
         Respond with information about the user
 
         :param ctx: The interaction that triggered this command
-        :param function: The function to initiate with the profile, `info` by default
+        :param function: The function to initiate with the profile
         :return:
         """
         _log_line(f'profile ({ctx.user})')
-        if function == 'reset':
-            if profiles.is_opted_out(str(ctx.user)):
-                responses = [
-                    'There is nothing to reset because you have opted out',
-                ]
-                await ctx.response.send_message(random.choice(responses))
-                return
-            else:
-                profiles.reset_trivia_score(str(ctx.user))
-                await ctx.response.send_message('Done! I have removed your profile from my records')
-                return
-        elif function == 'opt_out':
-            if profiles.is_opted_out(str(ctx.user)):
-                responses = [
-                    'You have already opted out',
-                    'It seems you have already opted out',
-                    'I cannot opt you out twice',
-                    'Try opting in first'
-                ]
-                await ctx.response.send_message(random.choice(responses))
-                return
-            else:
-                profiles.opt_out(str(ctx.user))
-                await ctx.response.send_message('Done! It is like you were never hear...')
-                return
-        elif function == 'opt_in':
-            if not profiles.is_opted_out(str(ctx.user)):
-                responses = [
-                    'You have already opted in',
-                    'Try opting out first',
-                ]
-                profiles.opt_in(str(ctx.user))
-                await ctx.response.send_message(random.choice(responses))
-                return
-            else:
-                profiles.opt_in(str(ctx.user))
-                await ctx.response.send_message('I have created a profile for you!')
-                return
-        elif function is None or function == 'info':
-            if profiles.is_opted_out(str(ctx.user)):
-                responses = [
-                    'You do not have a profile because you opted out',
-                    'You have told me not to collect data on you',
-                    'Error 404: Profile not found. Use `/profile opt in` to resolve',
-                    'Please opt in to continue: `/profile opt in`'
-                ]
-                await ctx.response.send_message(random.choice(responses))
-                return
+        if function == 'delete':
+            profiles.delete(str(ctx.user))
+            responses = [
+                'It is as if we never met',
+                'Done!',
+                'Your profile has been removed from my records',
+                'All done!',
+                f'Sorry to see you go, {ctx.user}',
+            ]
+            await ctx.response.send_message(random.choice(responses))
+            return
         # Update users
         profiles.update_trivia_score(str(ctx.user), 0, 0)
-        user_data = profiles.get_profile(str(ctx.user))
+        user_data = profiles.get_profile(str(ctx.user), True)
         response = Embed(title=f'Profile: {str(ctx.user)}', colour=DEFAULT_EMBED_COLOUR)
         # Get avoided heroes
         avoided_heroes = ''
@@ -433,14 +393,6 @@ def run_discord_bot(token):
         :return:
         """
         _log_line(f'avoid ({ctx.user})')
-        if profiles.is_opted_out(str(ctx.user)):
-            responses = [
-                'I cannot do that. You have opted out of profiles',
-                'Try opting in first',
-                'You have chosen to opt out of profiles, so I cannot add a hero to your avoid list'
-            ]
-            await ctx.response.send_message(random.choice(responses))
-            return
         hero = _correct_spelling(hero)
         for x in heroChooser.get_heroes_in_category('all'):
             if hero.lower() == x.lower():
@@ -465,15 +417,6 @@ def run_discord_bot(token):
         :return:
         """
         _log_line(f'unavoid ({ctx.user})')
-        if profiles.is_opted_out(str(ctx.user)):
-            responses = [
-                'I cannot do that. You have opted out of profiles',
-                'Try opting in first',
-                'You have chosen to opt out of profiles',
-                'You do not have a profile, so there is nothing to remove'
-            ]
-            await ctx.response.send_message(random.choice(responses))
-            return
         if hero == 'all':
             for x in heroChooser.get_heroes_in_category('all'):
                 profiles.unavoid_hero(str(ctx.user), x)
@@ -543,7 +486,7 @@ def run_discord_bot(token):
         app_commands.Choice(name='easy', value='easy'),
         app_commands.Choice(name='hard', value='hard')
     ])
-    async def play_geoguess(ctx, questions: app_commands.Range[int, 1,  10], difficulty: str = None):
+    async def play_geoguess(ctx, questions: app_commands.Range[int, 1, 10], difficulty: str = None):
         """
         Respond with a number of map guessing questions for the user to play
 
@@ -558,7 +501,7 @@ def run_discord_bot(token):
         await ctx.response.send_message('We are working on it')
 
     @bot.tree.command(name='scoreboard', description='Show the top trivia players')
-    async def get_scoreboard(ctx: discord.Interaction):
+    async def get_scoreboard(ctx):
         """
         Respond with a scoreboard of all the trivia players
 
