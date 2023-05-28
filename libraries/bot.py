@@ -429,6 +429,7 @@ def run_discord_bot(token):
     async def play_trivia(interaction: discord.Interaction, questions: app_commands.Range[int, 1, 10],
                           difficulty: app_commands.Choice[int]):
 
+        # Variables for the game
         difficulty = difficulty.name
         rounds = questions
         player = interaction.user
@@ -452,6 +453,7 @@ def run_discord_bot(token):
         # The score for the game
         score = 0
 
+        # Message to the player
         await interaction.response.send_message(
             f'You want to play {rounds} rounds of trivia on {difficulty} difficulty :purple_heart:')
 
@@ -464,7 +466,7 @@ def run_discord_bot(token):
             # Getting the question itself
             question = random_question[difficulty]
 
-            # Getting the correct answer
+            # The correct answer
             correct_answer = random_question['correct']
 
             # Alternatives
@@ -479,7 +481,7 @@ def run_discord_bot(token):
             # Getting the index of the correct answer
             correct_index = answers.index(correct_answer)
 
-            # Getting the correct letter for the game
+            # Getting the correct letter of the correct answer
             correct_letter = ['A', 'B', 'C', 'D'][correct_index]
 
             # Answer text for the embed
@@ -488,7 +490,7 @@ def run_discord_bot(token):
             # Remove the question to not get duplicates in the same game
             facts.remove(random_question)
 
-            # Make the embed for the question
+            # Make the embed with the question and alternatives
             embed = discord.Embed(title=f'Round {i + 1}', description=question)
             embed.add_field(name='Answers', value=answer_text)
             view = classes.TriviaView(question, correct_letter, player)
@@ -505,6 +507,7 @@ def run_discord_bot(token):
                 else:
                     await interaction.followup.send(random.choice(more_wrong))
 
+        # Send the final score
         await interaction.followup.send(f'Game over! Your final score is {score}/{rounds} :heart:')
 
         """
@@ -536,6 +539,7 @@ def run_discord_bot(token):
                 :return:
                 """
 
+        # Variables for the game
         difficulty = difficulty.name
         rounds = questions
         player = interaction.user
