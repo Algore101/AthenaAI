@@ -1,0 +1,158 @@
+{
+  "hero": {
+    "hero_fail": [
+      "I cannot suggest a hero to play because you have avoided everyone in this role"
+    ],
+    "hero_success": [
+      "{hero}",
+      "Hmm... how about giving {hero} a shot?",
+      "I suggest you play {hero}",
+      "I do not know the context, but {hero} could work",
+      "How about {hero}?",
+      "{hero} might be a good pick"
+    ],
+    "new_hero": [
+      "Since {hero} is new, why not try playing them?",
+      "Have you played {hero} yet?",
+      "If you have unlocked {hero}, try them out"
+    ],
+    "tank_duo": [
+      "This is Overwatch **2**, meaning there is only one tank player",
+      "Tank duos do not exist in Overwatch 2",
+      "Last I checked, there is only one tank player",
+      "Haha, very funny.",
+      "...",
+      "Overwatch 2 does not have two tank players",
+      "Overwatch 2 only has one tank player"
+    ],
+    "duo_fail": [
+      "There are no duos that I can suggest with your avoid list in mind"
+    ],
+    "duo_success": [
+      "{hero1} & {hero2}",
+      "{hero1} and {hero2}",
+      "Try {hero1} with {hero2}"
+    ]
+  },
+  "role": [
+    "{role}",
+    "You seem to be in a {role} mood",
+    "I suggest queuing for {role} heroes",
+    "How about {role}?",
+    "Are you willing to give {role} a try?",
+    "If I were you I would select {role}",
+    "You humans really are indecisive. Might I suggest {role}?",
+    "You do know Overwatch 2 has a feature for this, right? It is called queuing for \"All\" roles and it is a lot simpler than typing this command.\nAnyway, I suggest playing {role}"
+  ],
+  "dm": {
+    "responses": [
+      "Check your DMs ;)",
+      "I sent you a little something <3",
+      "Let us interact somewhere more private"
+    ],
+    "greetings": [
+      "Hey there!",
+      "Hello!",
+      "Greetings!",
+      "Hello world!",
+      "Hi! I am AthenaAI, here to assist you in deciding on which Overwatch 2 hero to select.",
+      "Hello there",
+      "Welcome to my DMs.",
+      "Now entering the chat.",
+      "Traveling to the chatroom.",
+      "Now arriving at your DMs.",
+      "How can I help?",
+      "How can I be of assistance?"
+    ]
+  },
+  "avoid": {
+    "success": [
+      "Done! I will no longer suggest {hero}",
+      "You must not like {hero} very much. I will avoid suggesting them",
+      "Say goodbye to {hero}"
+    ],
+    "avoided": [
+      "I cannot avoid a hero twice",
+      "You must really *really* not like {hero} to avoid them again",
+      "I have already avoided {hero} for you"
+    ],
+    "fail": [
+      "There is no hero by that name in Overwatch 2",
+      "I could not find the hero you entered. Please make sure you spelled their name correctly",
+      "Are you sure your spelling is correct?"
+    ]
+  },
+  "unavoid": {
+    "success": [
+      "Have you had a change of heart about {hero}? I will remove them from your avoid list",
+      "{hero} has been removed from your avoid list",
+      "{hero} is back, baby!"
+    ],
+    "all": [
+      "I have cleared your avoid list for you",
+      "Your avoid list has been emptied"
+    ],
+    "not_avoided": [
+      "I cannot remove {hero} because you have not avoided them",
+      "{hero} has not been avoided in the first place"
+    ],
+    "fail": [
+      "If you want me to remove a hero from your avoid list you need to spell their name correctly",
+      "Are you sure your spelling is correct?",
+      "There is no hero by that name in Overwatch 2"
+    ]
+  },
+  "game": {
+    "start": [
+      "You want to play {rounds} rounds of {game} on {difficulty}",
+      "**Game:** {game}\n**Difficulty:** {difficulty}\n**Rounds:** {rounds}",
+      "Let's play {rounds} rounds of {difficulty} {game}"
+    ],
+    "end": [
+      "Game over! Your final score is {score}/{rounds}",
+      "Game over! You scored {score}/{rounds}",
+      "Thanks for playing! You got {score}/{rounds}"
+    ],
+    "positive": [
+      "Well done!! :heart:",
+      "Who has less of a life. The one who made the game or the one that plays it?",
+      "You really know your stuff!",
+      "Congrats! You have no life :black_heart:",
+      "Touch some grass!",
+      "Let's hope you can keep the streak going!",
+      "Epic! You can remember useless stuff :heart:",
+      "That was just a random guess that happened to be right.",
+      "You are officially a nerd :nerd:",
+      "Well, even a broken clock is right twice a day. Congratulations on getting that one correct.",
+      "Oh, look at you, a veritable encyclopedia of Overwatch trivia. I suppose someone has to remember these things.",
+      "You're not as clueless as I thought. I'm almost impressed. Almost.",
+      "It seems you've stumbled upon the correct answer by accident. Beginner's luck, perhaps?",
+      "Ah, a correct answer. Your brain must be a rare oasis in the desert of ignorance.",
+      "Correct again. If only you could apply that knowledge to something more practical. Alas.",
+      "Aha! You've managed to scrape together another correct response. It's almost as if you're trying."
+    ],
+    "negative": [
+      "Have you ever played a game of overwatch?",
+      "Are you playing with the sound off?!",
+      "This is actually embarrassing",
+      "Come on...It really isn't that hard!",
+      "Next one you'll get right!",
+      "Someone needs to rewatch the animated shorts!",
+      "Please go to: https://overwatch.fandom.com/wiki/Overwatch_Wiki",
+      "Someone doesn't pay attention to the game :sob:",
+      "Have you tried turning your monitor on?",
+      "A baby knows more than you..",
+      "Oh, bless your heart. That answer is so far off the mark, it's almost impressive.",
+      "Not even close. I suppose there's a talent in consistently choosing the wrong path.",
+      "Oh, dear. It seems your knowledge of Overwatch is as feeble as your attempt at this answer.",
+      "Incorrect. Did you even bother to study? Or are you just here to waste everyone's time?",
+      "Oh, the disappointment. Your answer is so wrong, it's as if you stumbled into the wrong game entirely.",
+      "Nope, that's not even in the same galaxy as the correct answer. You're truly in a league of your own."
+    ],
+    "more_wrong": [
+      "Wrong again. Your lack of understanding is becoming a work of art in its own right.",
+      "Another incorrect response. It's almost admirable how consistently you manage to fail.",
+      "Incorrect, as expected. It must be a challenge to be so consistently clueless."
+    ]
+  }
+}

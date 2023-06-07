@@ -18,6 +18,7 @@ ALT_COMMANDS = {
 }
 TRIVIA_EMOJIS = ["🇦", "🇧", "🇨", "🇩"]
 MISSPELLINGS_FILE = os.path.join(os.path.dirname(__file__), '../data/misspellings.json')
+RESPONSES_FILE = os.path.join(os.path.dirname(__file__), '../data/responses.json')
 RANK_EMOJIS = ['🥇', '🥈', '🥉']
 DEFAULT_EMBED_COLOUR = Color.from_rgb(38, 99, 199)
 
@@ -38,6 +39,13 @@ def _correct_spelling(hero_name: str) -> str:
 
 def _log_line(message: str):
     print(f'[{datetime.now()}]\t> {message}')
+
+
+def _get_responses() -> dict:
+    with open(RESPONSES_FILE, 'r', encoding='utf-8') as file:
+        responses = dict(json.load(file))
+        file.close()
+        return responses
 
 
 def run_discord_bot(token):
@@ -80,10 +88,10 @@ def run_discord_bot(token):
 
         available_heroes = [x for x in heroChooser.get_heroes_in_category(role)
                             if not profiles.is_hero_avoided(str(ctx.user), x)]
+        responses = _get_responses()['hero']
 
         if len(available_heroes) == 0:
-            await ctx.response.send_message(
-                'I cannot suggest a hero to play because you have avoided everyone in this category.')
+            await ctx.response.send_message(random.choice(responses['hero_fail']))
             return
 
         if duo is None:
@@ -94,54 +102,26 @@ def run_discord_bot(token):
             if hero == 'Winston' and random.randint(1, 10) == 1:
                 hero = 'Winton.'
 
-            responses = [
-                '{hero}',
-                'Hmm... how about giving {hero} a shot?',
-                'I suggest you play {hero}',
-                'I do not know the context, but {hero} could work',
-                'How about {hero}?',
-                '{hero} might be a good pick'
-            ]
-            # Hero specific responses
-            additional_responses = []
+            reply = responses['hero_success']
+
+            # New hero responses
             if hero == 'Lifeweaver':
-                additional_responses = [
-                    'Since {hero} is new, why not try playing him?',
-                    'Have you played {hero} yet?',
-                    'If you have unlocked {hero}, try him out',
-                ]
-            responses += additional_responses
-            await ctx.response.send_message(random.choice(responses).format(hero=hero))
+                reply += responses['new_hero']
+
+            await ctx.response.send_message(random.choice(reply).format(hero=hero))
         elif duo == 'random':
             if role == 'tank':
-                responses = [
-                    'This is Overwatch ***2***, meaning there is only one tank.',
-                    'Tank duos do not exist in Overwatch 2.',
-                    'Last I checked, there is only one tank.',
-                    '*[Sarcastically:]* Haha, very funny.',
-                    '...',
-                    'Overwatch 2 does not have two tanks.',
-                    'Overwatch 2 only has one tank.'
-                ]
-                await ctx.response.send_message(random.choice(responses))
+                await ctx.response.send_message(random.choice(responses['tank_duo']))
                 return
             response_duo = heroChooser.select_random_duo_in_category(role)
             while True:
                 if response_duo[0] in available_heroes or response_duo[1] in available_heroes:
                     break
-            await ctx.response.send_message(f'{response_duo[0]} & {response_duo[1]}')
+            await ctx.response.send_message(
+                random.choice(responses['duo_success']).format(hero1=response_duo[0], hero2=response_duo[1]))
         elif duo == 'optimal':
             if role == 'tank':
-                responses = [
-                    'This is Overwatch ***2***, meaning there is only one tank.',
-                    'Tank duos do not exist in Overwatch 2.',
-                    'Last I checked, there is only one tank.',
-                    '*[Sarcastically:]* Haha, very funny.',
-                    '...',
-                    'Overwatch 2 does not have two tanks.',
-                    'Overwatch 2 only has one tank.'
-                ]
-                await ctx.response.send_message(random.choice(responses))
+                await ctx.response.send_message(random.choice(responses['tank_duo']))
                 return
             all_duos = heroChooser.get_duos_in_category(role)
             matched_duos = []
@@ -150,11 +130,12 @@ def run_discord_bot(token):
                     matched_duos.append(hero_duo)
 
             if len(matched_duos) == 0:
-                await ctx.response.send_message('There are no duos that I can suggest with your avoid list in mind.')
+                await ctx.response.send_message(random.choice(responses['duo_fail']))
                 return
 
             response_duo = random.choice(matched_duos)
-            await ctx.response.send_message(f'{response_duo[0]} & {response_duo[1]}')
+            await ctx.response.send_message(
+                random.choice(responses['duo_success']).format(hero1=response_duo[0], hero2=response_duo[1]))
 
     @bot.tree.command(name='role', description='Respond with a role')
     async def get_role(ctx):
@@ -165,16 +146,7 @@ def run_discord_bot(token):
         :return:
         """
         _log_line(f'role ({ctx.user})')
-        responses = [
-            'You seem to be in a {role} mood.',
-            'I suggest queuing for {role} heroes.',
-            'How about {role}?',
-            'Are you willing to give {role} a try?',
-            'If I were you I would select {role}.',
-            'You humans really are indecisive. Might I suggest {role}?',
-            'You do know Overwatch 2 has a feature for this, right? It is called queueing as "All" and it is a lot '
-            'simpler than typing that command.\nAnyway, I suggest playing {role}.',
-        ]
+        responses = _get_responses()['role']
         await ctx.response.send_message(random.choice(responses).format(role=heroChooser.select_role()))
 
     # Other commands
@@ -258,26 +230,9 @@ def run_discord_bot(token):
         :return:
         """
         _log_line(f'dm ({ctx.user})')
-        responses = [
-            'Check your DMs ;)',
-            'I sent you a little something <3',
-        ]
-        greetings = [
-            'Hey there!',
-            'Hello!',
-            'Greetings!',
-            'Hello world!',
-            'Hi! I am AthenaAI, here to assist you in deciding on which Overwatch 2 hero to select.',
-            'Hello there',
-            'Welcome to my DMs.',
-            'Now entering the chat.',
-            'Traveling to the chatroom.',
-            'Now arriving at your DMs.',
-            'How can I help?',
-            'How can I be of assistance?',
-        ]
-        await ctx.response.send_message(random.choice(responses))
-        await ctx.user.send(random.choice(greetings))
+        responses = _get_responses()['dm']
+        await ctx.response.send_message(random.choice(responses['responses']))
+        await ctx.user.send(random.choice(responses['greetings']))
 
     # Profile based commands
     @bot.tree.command(name='profile', description='View your profile')
@@ -328,18 +283,18 @@ def run_discord_bot(token):
         :return:
         """
         _log_line(f'avoid ({ctx.user})')
+        responses = _get_responses()['avoid']
         hero = _correct_spelling(hero)
         for x in heroChooser.get_heroes_in_category('all'):
             if hero.lower() == x.lower():
                 if not profiles.is_hero_avoided(str(ctx.user), x):
                     profiles.avoid_hero(str(ctx.user), x)
-                    await ctx.response.send_message(f'Done! I will no longer suggest {x}.')
+                    await ctx.response.send_message(random.choice(responses['success']).format(hero=x))
                 else:
-                    await ctx.response.send_message(f'I have already avoided {x} for you.')
+                    await ctx.response.send_message(random.choice(responses['avoided']).format(hero=x))
                 return
 
-        await ctx.response.send_message('I could not seem to find the hero you entered. '
-                                        'Please make sure you spelled their name correctly.')
+        await ctx.response.send_message(random.choice(responses['fail']))
 
     @bot.tree.command(name='unavoid', description='Remove a hero from your avoid list')
     @app_commands.describe(hero='The name of the hero to remove from your avoid list, all to clear avoid list')
@@ -352,10 +307,11 @@ def run_discord_bot(token):
         :return:
         """
         _log_line(f'unavoid ({ctx.user})')
+        responses = _get_responses()['unavoid']
         if hero == 'all':
             for x in heroChooser.get_heroes_in_category('all'):
                 profiles.unavoid_hero(str(ctx.user), x)
-            await ctx.response.send_message('I have cleared your avoid list for you.')
+            await ctx.response.send_message(random.choice(responses['all']))
             return
         else:
             hero = _correct_spelling(hero)
@@ -363,12 +319,11 @@ def run_discord_bot(token):
                 if hero.lower() == x.lower():
                     if profiles.is_hero_avoided(str(ctx.user), x):
                         profiles.unavoid_hero(str(ctx.user), x)
-                        await ctx.response.send_message(f'{x} has been removed from your avoid list.')
+                        await ctx.response.send_message(random.choice(responses['success']).format(hero=x))
                     else:
-                        await ctx.response.send_message(f'I cannot remove {x} because you have not avoided them.')
+                        await ctx.response.send_message(random.choice(responses['not_avoided']).format(hero=x))
                     return
-        await ctx.response.send_message('If you want me to remove a hero from your avoid list, '
-                                        'you are going to have to spell their name correctly.')
+        await ctx.response.send_message(random.choice(responses['fail']))
 
     # Trivia commands
 
@@ -428,6 +383,7 @@ def run_discord_bot(token):
     ])
     async def play_trivia(interaction: discord.Interaction, questions: app_commands.Range[int, 1, 10],
                           difficulty: app_commands.Choice[int]):
+        responses = _get_responses()['game']
 
         # Variables for the game
         difficulty = difficulty.name
@@ -454,8 +410,9 @@ def run_discord_bot(token):
         score = 0
 
         # Message to the player
-        await interaction.response.send_message(
-            f'You want to play {rounds} rounds of trivia on {difficulty} difficulty :purple_heart:')
+        await interaction.response.send_message(random.choice(responses['start']).format(
+            game='Trivia', difficulty=difficulty, rounds=questions
+        ))
 
         # Start of the game
         for i in range(rounds):
@@ -499,21 +456,20 @@ def run_discord_bot(token):
 
             # Check if the user answered correctly
             if view.response == correct_letter:
-                await interaction.followup.send(random.choice(positive))
+                await interaction.followup.send(random.choice(responses['positive']))
                 score += 1
             else:
                 if i + 1 - score < 2:
-                    await interaction.followup.send(random.choice(negative))
+                    await interaction.followup.send(random.choice(responses['negative']))
                 else:
-                    await interaction.followup.send(random.choice(more_wrong))
+                    await interaction.followup.send(random.choice(responses['more_wrong']))
 
         # Send the final score
-        await interaction.followup.send(f'Game over! Your final score is {score}/{rounds} :heart:')
-
+        await interaction.followup.send(random.choice(responses['end']).format(score=score, rounds=questions))
         """
         Respond with a number of trivia questions for the user to play
 
-        :param ctx: The interaction that triggered this command
+        :param interaction: The interaction that triggered this command
         :param questions: The number of questions
         :param difficulty: The difficulty level of the questions
         :return:
@@ -539,6 +495,7 @@ def run_discord_bot(token):
                 :return:
                 """
 
+        responses = _get_responses()['game']
         # Variables for the game
         difficulty = difficulty.name
         rounds = questions
@@ -563,8 +520,9 @@ def run_discord_bot(token):
         # The score for the game
         score = 0
 
-        await interaction.response.send_message(
-            f'You want to play {rounds} rounds of Guess the Hero on {difficulty} difficulty :black_heart:')
+        await interaction.response.send_message(random.choice(responses['start']).format(
+            game='Guess The Hero', difficulty=difficulty, rounds=questions
+        ))
 
         # Start of the game
         for i in range(rounds):
@@ -609,15 +567,16 @@ def run_discord_bot(token):
 
             # Check if the user answered correctly
             if view.response == correct_letter:
-                await interaction.followup.send(random.choice(positive))
+                await interaction.followup.send(random.choice(responses['positive']))
                 score += 1
             else:
                 if i + 1 - score < 2:
-                    await interaction.followup.send(random.choice(negative))
+                    await interaction.followup.send(random.choice(responses['negative']))
                 else:
-                    await interaction.followup.send(random.choice(more_wrong))
+                    await interaction.followup.send(random.choice(responses['more_wrong']))
 
-        await interaction.followup.send(f'Game over! Your final score is {score}/{rounds} :heart:')
+        # Send the final score
+        await interaction.followup.send(random.choice(responses['end']).format(score=score, rounds=questions))
 
         _log_line(f'guess ({interaction.user})')
 
@@ -639,6 +598,7 @@ def run_discord_bot(token):
         :return:
         """
 
+        responses = _get_responses()['game']
         difficulty = difficulty.name
         rounds = questions
         player = interaction.user
@@ -662,8 +622,9 @@ def run_discord_bot(token):
         # The score for the game
         score = 0
 
-        await interaction.response.send_message(
-            f'You want to play {rounds} rounds of Guess the Hero on {difficulty} difficulty :black_heart:')
+        await interaction.response.send_message(random.choice(responses['start']).format(
+            game='Guess The Map', difficulty=difficulty, rounds=questions
+        ))
 
         # Start of the game
         for i in range(rounds):
@@ -708,15 +669,16 @@ def run_discord_bot(token):
 
             # Check if the user answered correctly
             if view.response == correct_letter:
-                await interaction.followup.send(random.choice(positive))
+                await interaction.followup.send(random.choice(responses['positive']))
                 score += 1
             else:
                 if i + 1 - score < 2:
-                    await interaction.followup.send(random.choice(negative))
+                    await interaction.followup.send(random.choice(responses['negative']))
                 else:
-                    await interaction.followup.send(random.choice(more_wrong))
+                    await interaction.followup.send(random.choice(responses['more_wrong']))
 
-        await interaction.followup.send(f'Game over! Your final score is {score}/{rounds} :heart:')
+        # Send the final score
+        await interaction.followup.send(random.choice(responses['end']).format(score=score, rounds=questions))
 
         _log_line(f'geoguess ({interaction.user})')
 
@@ -741,6 +703,9 @@ def run_discord_bot(token):
             success_rate = int(user['successful_questions'] / user['total_questions'] * 100)
             rate += f'{success_rate}%\n'
             total += f'{user["total_questions"]}\n'
+        if usernames == '':
+            await ctx.response.send_message('There is no scoreboard. Be the first to play!')
+            return
         # Build embed
         response = Embed(title='Trivia scoreboard', description='Here are the top trivia players!',
                          colour=DEFAULT_EMBED_COLOUR)
