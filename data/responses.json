@@ -104,9 +104,9 @@
   },
   "game": {
     "start": [
-      "You want to play {rounds} rounds of {game} on {difficulty}",
+      "You want to play {rounds} round/s of {game} on {difficulty}",
       "**Game:** {game}\n**Difficulty:** {difficulty}\n**Rounds:** {rounds}",
-      "Let's play {rounds} rounds of {difficulty} {game}"
+      "Let's play {rounds} round/s of {difficulty} {game}"
     ],
     "end": [
       "Game over! Your final score is {score}/{rounds}",

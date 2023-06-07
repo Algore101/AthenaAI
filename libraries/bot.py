@@ -19,6 +19,7 @@ ALT_COMMANDS = {
 TRIVIA_EMOJIS = ["🇦", "🇧", "🇨", "🇩"]
 MISSPELLINGS_FILE = os.path.join(os.path.dirname(__file__), '../data/misspellings.json')
 RESPONSES_FILE = os.path.join(os.path.dirname(__file__), '../data/responses.json')
+QUESTIONS_FILE = os.path.join(os.path.dirname(__file__), '../data/questions.json')
 RANK_EMOJIS = ['🥇', '🥈', '🥉']
 DEFAULT_EMBED_COLOUR = Color.from_rgb(38, 99, 199)
 
@@ -46,6 +47,13 @@ def _get_responses() -> dict:
         responses = dict(json.load(file))
         file.close()
         return responses
+
+
+def _get_all_questions() -> dict:
+    with open(QUESTIONS_FILE, 'r', encoding='utf-8') as file:
+        question_data = dict(json.load(file))
+        file.close()
+    return question_data
 
 
 def run_discord_bot(token):
@@ -150,7 +158,6 @@ def run_discord_bot(token):
         await ctx.response.send_message(random.choice(responses).format(role=heroChooser.select_role()))
 
     # Other commands
-    # TODO: Rewrite help menu
     @bot.tree.command(name='help', description='Respond with a list of commands')
     async def get_help(ctx):
         """
@@ -326,79 +333,27 @@ def run_discord_bot(token):
         await ctx.response.send_message(random.choice(responses['fail']))
 
     # Trivia commands
-
     # TODO Make an extreme difficulty
     # TODO Make an ability trivia
-
-    # Lists of responses for the games
-    positive = [
-        "Well done!! :heart:",
-        "Who has less of a life. The one who made the game or the one that plays it?",
-        "You really know your stuff!",
-        "Congrats! You have no life :black_heart:",
-        "Touch some grass!",
-        "Let's hope you can keep the streak going!",
-        "Epic! You can remember useless stuff :heart:",
-        "That was just a random guess that happened to be right.",
-        "You are officially a nerd :nerd:",
-        "Well, even a broken clock is right twice a day. Congratulations on getting that one correct.",
-        "Oh, look at you, a veritable encyclopedia of Overwatch trivia. I suppose someone has to remember these things.",
-        "You're not as clueless as I thought. I'm almost impressed. Almost.",
-        "It seems you've stumbled upon the correct answer by accident. Beginner's luck, perhaps?",
-        "Ah, a correct answer. Your brain must be a rare oasis in the desert of ignorance.",
-        "Correct again. If only you could apply that knowledge to something more practical. Alas.",
-        "Aha! You've managed to scrape together another correct response. It's almost as if you're trying."
-    ]
-
-    negative = [
-        "Have you ever played a game of overwatch?",
-        "Are you playing with the sound off?!",
-        "This is actually embarrassing",
-        "Come on...It really isn't that hard!",
-        "Next one you'll get right!",
-        "Someone needs to rewatch the animated shorts!",
-        "Please go to: https://overwatch.fandom.com/wiki/Overwatch_Wiki",
-        "Someone doesn't pay attention to the game :sob:",
-        "Have you tried turning your monitor on?",
-        "A baby knows more than you..",
-        "Oh, bless your heart. That answer is so far off the mark, it's almost impressive.",
-        "Not even close. I suppose there's a talent in consistently choosing the wrong path.",
-        "Oh, dear. It seems your knowledge of Overwatch is as feeble as your attempt at this answer.",
-        "Incorrect. Did you even bother to study? Or are you just here to waste everyone's time?",
-        "Oh, the disappointment. Your answer is so wrong, it's as if you stumbled into the wrong game entirely.",
-        "Nope, that's not even in the same galaxy as the correct answer. You're truly in a league of your own."
-    ]
-    more_wrong = [
-        "Wrong again. Your lack of understanding is becoming a work of art in its own right.",
-        "Another incorrect response. It's almost admirable how consistently you manage to fail.",
-        "Incorrect, as expected. It must be a challenge to be so consistently clueless."
-    ]
-
     @bot.tree.command(name='trivia', description='Play an Overwatch 2 hero trivia game')
     @app_commands.describe(difficulty='The difficulty level of the questions',
-                           questions='The number of questions (limit of 10)')
+                           rounds='The number of questions (limit of 10)')
     @app_commands.choices(difficulty=[
-        app_commands.Choice(name='easy', value=1),
-        app_commands.Choice(name='hard', value=2)
+        app_commands.Choice(name='easy', value='easy'),
+        app_commands.Choice(name='hard', value='hard')
     ])
-    async def play_trivia(interaction: discord.Interaction, questions: app_commands.Range[int, 1, 10],
-                          difficulty: app_commands.Choice[int]):
+    async def play_trivia(ctx, rounds: app_commands.Range[int, 1, 10],
+                          difficulty: str):
+        """
+        Respond with a number of trivia questions for the user to play
+
+        :param ctx: The interaction that triggered this command
+        :param rounds: The number of questions
+        :param difficulty: The difficulty level of the questions
+        :return:
+        """
+        _log_line(f'trivia ({ctx.user})')
         responses = _get_responses()['game']
-
-        # Variables for the game
-        difficulty = difficulty.name
-        rounds = questions
-        player = interaction.user
-
-        # Get the json file
-        QUESTIONS_FILE = os.path.join(os.path.dirname(__file__), '../data/questions.json')
-
-        # Getting the information from the json file
-        def _get_all_questions() -> dict:
-            with open(QUESTIONS_FILE, 'r', encoding='utf-8') as file:
-                question_data = dict(json.load(file))
-                file.close()
-            return question_data
 
         # Store the information in a variable
         question_dict = _get_all_questions()
@@ -410,8 +365,8 @@ def run_discord_bot(token):
         score = 0
 
         # Message to the player
-        await interaction.response.send_message(random.choice(responses['start']).format(
-            game='Trivia', difficulty=difficulty, rounds=questions
+        await ctx.response.send_message(':pencil2: ' + random.choice(responses['start']).format(
+            game='Trivia', difficulty=difficulty, rounds=rounds
         ))
 
         # Start of the game
@@ -450,66 +405,43 @@ def run_discord_bot(token):
             # Make the embed with the question and alternatives
             embed = discord.Embed(title=f'Round {i + 1}', description=question)
             embed.add_field(name='Answers', value=answer_text)
-            view = classes.TriviaView(question, correct_letter, player)
-            await interaction.followup.send(embed=embed, view=view)
+            view = classes.TriviaView(question, correct_letter, ctx.user)
+            await ctx.followup.send(embed=embed, view=view)
             await view.wait()
 
             # Check if the user answered correctly
             if view.response == correct_letter:
-                await interaction.followup.send(random.choice(responses['positive']))
+                await ctx.followup.send(random.choice(responses['positive']))
                 score += 1
             else:
                 if i + 1 - score < 2:
-                    await interaction.followup.send(random.choice(responses['negative']))
+                    await ctx.followup.send(random.choice(responses['negative']))
                 else:
-                    await interaction.followup.send(random.choice(responses['more_wrong']))
+                    await ctx.followup.send(random.choice(responses['more_wrong']))
 
         # Send the final score
-        await interaction.followup.send(random.choice(responses['end']).format(score=score, rounds=questions))
-        """
-        Respond with a number of trivia questions for the user to play
-
-        :param interaction: The interaction that triggered this command
-        :param questions: The number of questions
-        :param difficulty: The difficulty level of the questions
-        :return:
-        """
-        _log_line(f'trivia ({interaction.user})')
+        await ctx.followup.send(random.choice(responses['end']).format(score=score, rounds=rounds))
 
     @bot.tree.command(name='guess', description='Play a game of \"Guess The Hero\"')
     @app_commands.describe(difficulty='The difficulty level of the questions',
-                           questions='The number of questions (limit of 10)')
+                           rounds='The number of questions (limit of 10)')
     @app_commands.choices(difficulty=[
-        app_commands.Choice(name='easy', value=1),
-        app_commands.Choice(name='hard', value=2)
+        app_commands.Choice(name='easy', value='easy'),
+        app_commands.Choice(name='hard', value='hard')
     ])
-    async def play_guess(interaction: discord.Interaction, questions: app_commands.Range[int, 1, 10],
-                         difficulty: app_commands.Choice[int]):
+    async def play_guess(ctx, rounds: app_commands.Range[int, 1, 10],
+                         difficulty: str):
 
         """
-                Respond with a number of guessing questions for the user to play
+        Respond with a number of guessing questions for the user to play
 
-                :param interaction: The interaction that triggered this command
-                :param questions: The number of questions
-                :param difficulty: The difficulty level of the questions
-                :return:
-                """
-
+        :param ctx: The interaction that triggered this command
+        :param rounds: The number of questions
+        :param difficulty: The difficulty level of the questions
+        :return:
+        """
+        _log_line(f'guess ({ctx.user})')
         responses = _get_responses()['game']
-        # Variables for the game
-        difficulty = difficulty.name
-        rounds = questions
-        player = interaction.user
-
-        # Get the json file
-        QUESTIONS_FILE = os.path.join(os.path.dirname(__file__), '../data/questions.json')
-
-        # Getting the information from the json file
-        def _get_all_questions() -> dict:
-            with open(QUESTIONS_FILE, 'r', encoding='utf-8') as file:
-                question_data = dict(json.load(file))
-                file.close()
-            return question_data
 
         # Store the information in a variable
         question_dict = _get_all_questions()
@@ -520,8 +452,8 @@ def run_discord_bot(token):
         # The score for the game
         score = 0
 
-        await interaction.response.send_message(random.choice(responses['start']).format(
-            game='Guess The Hero', difficulty=difficulty, rounds=questions
+        await ctx.response.send_message(':grey_question: ' + random.choice(responses['start']).format(
+            game='Guess The Hero', difficulty=difficulty, rounds=rounds
         ))
 
         # Start of the game
@@ -561,57 +493,42 @@ def run_discord_bot(token):
             embed = discord.Embed(title=f'Round {i + 1}')
             embed.add_field(name='Answers', value=answer_text)
             embed.set_image(url=question)
-            view = classes.TriviaView(question, correct_letter, player)
-            await interaction.followup.send(embed=embed, view=view)
+            view = classes.TriviaView(question, correct_letter, ctx.user)
+            await ctx.followup.send(embed=embed, view=view)
             await view.wait()
 
             # Check if the user answered correctly
             if view.response == correct_letter:
-                await interaction.followup.send(random.choice(responses['positive']))
+                await ctx.followup.send(random.choice(responses['positive']))
                 score += 1
             else:
                 if i + 1 - score < 2:
-                    await interaction.followup.send(random.choice(responses['negative']))
+                    await ctx.followup.send(random.choice(responses['negative']))
                 else:
-                    await interaction.followup.send(random.choice(responses['more_wrong']))
+                    await ctx.followup.send(random.choice(responses['more_wrong']))
 
         # Send the final score
-        await interaction.followup.send(random.choice(responses['end']).format(score=score, rounds=questions))
-
-        _log_line(f'guess ({interaction.user})')
+        await ctx.followup.send(random.choice(responses['end']).format(score=score, rounds=rounds))
 
     @bot.tree.command(name='geoguess', description='Play a game of \"Guess The Map\"')
     @app_commands.describe(difficulty='The difficulty level of the questions',
-                           questions='The number of questions (limit 10)')
+                           rounds='The number of questions (limit 10)')
     @app_commands.choices(difficulty=[
-        app_commands.Choice(name='easy', value=1),
-        app_commands.Choice(name='hard', value=2)
+        app_commands.Choice(name='easy', value='easy'),
+        app_commands.Choice(name='hard', value='hard')
     ])
-    async def play_geoguess(interaction: discord.Interaction, questions: app_commands.Range[int, 1, 10],
-                            difficulty: app_commands.Choice[int]):
+    async def play_geoguess(ctx, rounds: app_commands.Range[int, 1, 10],
+                            difficulty: str):
         """
         Respond with a number of map guessing questions for the user to play
 
         :param ctx: The interaction that triggered this command
-        :param questions: The number of questions
+        :param rounds: The number of questions
         :param difficulty: The difficulty level of the questions
         :return:
         """
-
+        _log_line(f'geoguess ({ctx.user})')
         responses = _get_responses()['game']
-        difficulty = difficulty.name
-        rounds = questions
-        player = interaction.user
-
-        # Get the json file
-        QUESTIONS_FILE = os.path.join(os.path.dirname(__file__), '../data/questions.json')
-
-        # Getting the information from the json file
-        def _get_all_questions() -> dict:
-            with open(QUESTIONS_FILE, 'r', encoding='utf-8') as file:
-                question_data = dict(json.load(file))
-                file.close()
-            return question_data
 
         # Store the information in a variable
         question_dict = _get_all_questions()
@@ -622,8 +539,8 @@ def run_discord_bot(token):
         # The score for the game
         score = 0
 
-        await interaction.response.send_message(random.choice(responses['start']).format(
-            game='Guess The Map', difficulty=difficulty, rounds=questions
+        await ctx.response.send_message(':round_pushpin: ' + random.choice(responses['start']).format(
+            game='Guess The Map', difficulty=difficulty, rounds=rounds
         ))
 
         # Start of the game
@@ -633,7 +550,7 @@ def run_discord_bot(token):
             random_question = random.choice(maps)
 
             # Getting the question itself
-            question = random.choice(random_question[difficulty])
+            questions = random.choice(random_question[difficulty])
 
             # Getting the correct answer
             correct_answer = random_question['correct']
@@ -662,25 +579,23 @@ def run_discord_bot(token):
             # Make the embed for the question
             embed = discord.Embed(title=f'Round {i + 1}')
             embed.add_field(name='Answers', value=answer_text)
-            embed.set_image(url=question)
-            view = classes.TriviaView(question, correct_letter, player)
-            await interaction.followup.send(embed=embed, view=view)
+            embed.set_image(url=questions)
+            view = classes.TriviaView(questions, correct_letter, ctx.user)
+            await ctx.followup.send(embed=embed, view=view)
             await view.wait()
 
             # Check if the user answered correctly
             if view.response == correct_letter:
-                await interaction.followup.send(random.choice(responses['positive']))
+                await ctx.followup.send(random.choice(responses['positive']))
                 score += 1
             else:
                 if i + 1 - score < 2:
-                    await interaction.followup.send(random.choice(responses['negative']))
+                    await ctx.followup.send(random.choice(responses['negative']))
                 else:
-                    await interaction.followup.send(random.choice(responses['more_wrong']))
+                    await ctx.followup.send(random.choice(responses['more_wrong']))
 
         # Send the final score
-        await interaction.followup.send(random.choice(responses['end']).format(score=score, rounds=questions))
-
-        _log_line(f'geoguess ({interaction.user})')
+        await ctx.followup.send(random.choice(responses['end']).format(score=score, rounds=rounds))
 
     @bot.tree.command(name='scoreboard', description='Show the top trivia players')
     async def get_scoreboard(ctx):
