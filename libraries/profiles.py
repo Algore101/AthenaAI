@@ -142,9 +142,10 @@ def get_game_scoreboard(game: str = None) -> list or None:
             for g in ['trivia', 'guess the hero', 'mapguessr']:
                 user_score += user[f'{g}_success']
                 user_total += user[f'{g}_total']
-            scoreboard.append({'username': user['username'],
-                               'success': user_score,
-                               'total': user_total})
+            if user_total > 0:
+                scoreboard.append({'username': user['username'],
+                                   'success': user_score,
+                                   'total': user_total})
         return sorted(scoreboard, key=lambda i: int(i['success'] / i['total'] * 100), reverse=True)
 
     scoreboard = []
