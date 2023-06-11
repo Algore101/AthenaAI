@@ -32,18 +32,19 @@ def _make_account_if_none(username: str) -> None:
         new_user = {
             'username': username,
             'avoided_heroes': [],
-            'successful_questions': 0,
-            'total_questions': 0,
+            'trivia_success': 0,
+            'trivia_total': 0,
+            'guess the hero_success': 0,
+            'guess the hero_total': 0,
+            'mapguessr_success': 0,
+            'mapguessr_total': 0
         }
         all_users.append(new_user)
         _update_user_file(all_users)
 
 
-def get_profile(username: str, make_new_if_none: bool = None):
-    if make_new_if_none is None:
-        make_new_if_none = False
-    if make_new_if_none:
-        _make_account_if_none(username)
+def get_profile(username: str):
+    _make_account_if_none(username)
     for user in _get_all_users():
         if user['username'] == username:
             return user
@@ -103,24 +104,26 @@ def unavoid_hero(username: str, hero: str) -> None:
     _update_user_file(all_users)
 
 
-def update_trivia_score(username: str, successful_questions: int, total_questions: int):
+def update_game_score(username: str, game: str, successful_questions: int, total_questions: int):
     _make_account_if_none(username)
     all_users = _get_all_users()
 
     user = {}
+    if game not in ['trivia', 'guess the hero', 'mapguessr']:
+        return
     for x in all_users:
         if x['username'] == username:
             user = x
             break
     try:
-        s_questions = user['successful_questions']
+        s_questions = user[f'{game}_success']
         s_questions += successful_questions
-        t_questions = user['total_questions']
+        t_questions = user[f'{game}_total']
         t_questions += total_questions
     except KeyError:
         s_questions = 0
         t_questions = 0
-    user.update({'successful_questions': s_questions, 'total_questions': t_questions})
+    user.update({f'{game}_success': s_questions, f'{game}_total': t_questions})
     for x in all_users:
         if x['username'] == username:
             all_users[all_users.index(x)] = user
@@ -128,11 +131,31 @@ def update_trivia_score(username: str, successful_questions: int, total_question
     _update_user_file(all_users)
 
 
-def get_trivia_scoreboard() -> list:
-    def get_success_rate(user: dict):
-        return int(user['successful_questions'] / user['total_questions'] * 100)
+def get_game_scoreboard(game: str = None) -> list or None:
+    if game not in ['trivia', 'guess the hero', 'mapguessr'] and game is not None:
+        return []
+    elif game is None:
+        scoreboard = []
+        for user in _get_all_users():
+            user_score = 0
+            user_total = 0
+            for g in ['trivia', 'guess the hero', 'mapguessr']:
+                user_score += user[f'{g}_success']
+                user_total += user[f'{g}_total']
+            scoreboard.append({'username': user['username'],
+                               'success': user_score,
+                               'total': user_total})
+        return sorted(scoreboard, key=lambda i: int(i['success'] / i['total'] * 100), reverse=True)
 
-    return sorted(_get_all_users(), key=lambda i: (get_success_rate(i), i['total_questions']), reverse=True)
+    scoreboard = []
+    for user in _get_all_users():
+        if user[f'{game}_total'] > 0:
+            scoreboard.append(user)
+
+    def get_success_rate(user: dict):
+        return int(user[f'{game}_success'] / user[f'{game}_total'] * 100)
+
+    return sorted(scoreboard, key=lambda i: (get_success_rate(i), i[f'{game}_total']), reverse=True)
 
 
 def delete(username: str):

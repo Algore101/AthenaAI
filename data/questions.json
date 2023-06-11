@@ -1,830 +1,929 @@
 {
-  "questions": [
+  "facts": [
     {
-      "question": "Which hero says “Justice rains from above!” when using their ultimate ability?",
-      "answers": [
-        "Pharah",
-        "Mercy",
-        "Reinhardt",
-        "Soldier: 76"
-      ],
-      "correct": 0
+        "easy": "Which hero is a former professional gamer from South Korea?",
+        "hard": "Which hero learned to shoot by playing \"16-bit hero\"?",
+        "correct": "D.Va"
     },
     {
-      "question": "Which hero is a former professional gamer from South Korea?",
-      "answers": [
-        "D.Va",
-        "Mei",
-        "Genji",
-        "Sombra"
-      ],
-      "correct": 0
+        "easy": "Which hero is the leader of the Deadlock Gang?",
+        "hard": "Which hero grew up at Lead Rose Manor in Texas?",
+        "correct": "Ashe"
     },
     {
-      "question": "Which hero is the leader of the Deadlock Gang?",
-      "answers": [
-        "Cassidy",
-        "Ashe",
-        "Roadhog",
-        "Reaper"
-      ],
-      "correct": 1
+        "easy": "Which hero loves explosives?",
+        "hard": "Which hero found an extremely valuable secret in the bones of the omnium?",
+        "correct": "Junkrat"
     },
     {
-      "question": "Which hero is a former member of the Australian Liberation Front?",
-      "answers": [
-        "Symmetra",
-        "Zenyatta",
-        "Junkrat",
-        "Bastion"
-      ],
-      "correct": 2
+        "easy": "Which hero befriended Mauga?",
+        "hard": "Which hero grew up in an orphanage outside Port-de-Paix?",
+        "correct": "Baptiste"
     },
     {
-      "question": "Which hero is a former Talon operative who defected to Overwatch?",
-      "answers": [
-        "Widowmaker",
-        "Moira",
-        "Genji",
-        "Baptiste"
-      ],
-      "correct": 3
+        "easy": "Which hero is a former Overwatch agent who was presumed dead after a mission in Venice?",
+        "hard": "Which hero asked Dr. Lee to be kept out of the system after being wounded in battle?",
+        "correct": "Ana"
     },
     {
-      "question": "Which hero is a former Overwatch agent who was presumed dead after a mission in Venice?",
-      "answers": [
-        "Ana",
-        "Reinhardt",
-        "Soldier: 76",
-        "Winston"
-      ],
-      "correct": 0
+        "easy": "Which hero is a hacker who was part of the Los Muertos gang in Mexico?",
+        "hard": "Which hero blackmailed Katya Volskaya?",
+        "correct": "Sombra"
     },
     {
-      "question": "Which hero is a hacker who was part of the Los Muertos gang in Mexico?",
-      "answers": [
-        "Sombra",
-        "Echo",
-        "Ashe",
-        "Hanzo"
-      ],
-      "correct": 0
+        "easy": "Which hero is a former Overwatch agent who was the leader of Blackwatch?",
+        "hard": "Which hero was also known as Soldier 24?",
+        "correct": "Reaper"
     },
     {
-      "question": "Which hero is a former Overwatch agent who was the leader of Blackwatch?",
-      "answers": [
-        "Moira",
-        "Genji",
-        "Reaper",
-        "Tracer"
-      ],
-      "correct": 2
+        "easy": "Which hero was the test pilot of the Slipstream project?",
+        "hard": "Which hero has a gf named Emily?",
+        "correct": "Tracer"
     },
     {
-      "question": "Which hero was the test pilot of the Slipstream project?",
-      "answers": [
-        "Pharah",
-        "Mercy",
-        "Winston",
-        "Tracer"
-      ],
-      "correct": 3
+        "easy": "Which hero was the mentor of Genji?",
+        "hard": "Which hero allegedly served coffe and was a lifeguard?",
+        "correct": "Zenyatta"
     },
     {
-      "question": "Which hero was the mentor of Genji?",
-      "answers": [
-        "Hanzo",
-        "Zenyatta",
-        "Reinhardt",
-        "Lifeweaver"
-      ],
-      "correct": 1
+        "easy": "Which hero is the daughter of Torbjörn?",
+        "hard": "Which hero has a cat named Mitzi?",
+        "correct": "Brigitte"
     },
     {
-      "question": "Which hero is the daughter of Torbjörn?",
-      "answers": [
-        "Bastion",
-        "Mei",
-        "Brigitte",
-        "Echo"
-      ],
-      "correct": 2
+        "easy": "Which hero has the highest base health pool?",
+        "hard": "Which hero loves to sniff Hogdrogen?",
+        "correct": "Roadhog"
     },
     {
-      "question": "Which hero has the highest base health pool?",
-      "answers": [
-        "Reinhardt",
-        "Roadhog",
-        "Wrecking Ball",
-        "D.Va"
-      ],
-      "correct": 1
+        "easy": "Which hero is the leader of Junkertown and a former mech fighter?",
+        "hard": "Which hero defeated King Mason Howl?",
+        "correct": "Junker Queen"
     },
     {
-      "question": "Which hero has the shortest ultimate charge time?",
-      "answers": [
-        "Tracer",
-        "Zarya",
-        "Genji",
-        "Junkrat"
-      ],
-      "correct": 0
+        "easy": "Which hero is a ruthless leader of Talon who believes that conflict is the only way to strengthen humanity?",
+        "hard": "Which heroes real name is Akande Ogundimu and is born in Nigeria?",
+        "correct": "Doomfist"
     },
     {
-      "question": "Which hero is the leader of Junkertown and a former mech fighter?",
-      "answers": [
-        "Junker Queen",
-        "Junkrat",
-        "Roadhog",
-        "Reaper"
-      ],
-      "correct": 0
+        "easy": "Which hero got named by a young girl called Efi?",
+        "hard": "Which hero is a new model of OR15 defense robot?",
+        "correct": "Orisa"
     },
     {
-      "question": "Which hero is a ruthless leader of Talon who believes that conflict is the only way to strengthen humanity?",
-      "answers": [
-        "Genji",
-        "Moira",
-        "Doomfist",
-        "Sombra"
-      ],
-      "correct": 2
+        "easy": "Which hero is an advanced robot created by Dr. Mina Liao?",
+        "hard": "Which hero said \"Hey there, cowboy\" in the Reunion animated short?",
+        "correct": "Echo"
     },
     {
-      "question": "Which hero is a new model of OR15 defense robot?",
-      "answers": [
-        "Reinhardt",
-        "Echo",
-        "Bastion",
-        "Orisa"
-      ],
-      "correct": 3
+        "easy": "Which hero is a freedom fighter who stole Vishkar’s sonic technology?",
+        "hard": "Which hero's first love was hockey?",
+        "correct": "Lúcio"
     },
     {
-      "question": "Which hero is an advanced robot created by Dr. Mina Liao?",
-      "answers": [
-        "Torbjörn",
-        "Echo",
-        "Orisa",
-        "Lifeweaver"
-      ],
-      "correct": 1
+        "easy": "Which hero was like a cousin to Genji and Hanzo?",
+        "hard": "Which hero is a shrine maiden and a protector of Kanezaka?",
+        "correct": "Kiriko"
     },
     {
-      "question": "Which hero is a freedom fighter who stole Vishkar’s sonic technology?",
-      "answers": [
-        "Torbjörn",
-        "Symmetra",
-        "Lúcio",
-        "Mei"
-      ],
-      "correct": 2
+        "easy": "Which hero was fascinated by the potential of hard-light to manipulate life forms and create new ones?",
+        "hard": "Which hero's real name is Niran Pruksamanee",
+        "correct": "Lifeweaver"
     },
     {
-      "question": "Which hero is a shrine maiden and a protector of Kanezaka?",
-      "answers": [
-        "Kiriko",
-        "Genji",
-        "Tracer",
-        "Hanzo"
-      ],
-      "correct": 0
+        "easy": "Which hero is a bounty hunter who was caught by Overwatch during a sting operation and given a choice to join them or rot in prison?",
+        "hard": "Which hero originally got their name from a blizzard employee?",
+        "correct": "Cassidy"
     },
     {
-      "question": "Which hero was fascinated by the potential of hard-light to manipulate life forms and create new ones?",
-      "answers": [
-        "Symmetra",
-        "Ana",
-        "Moira",
-        "Lifeweaver"
-      ],
-      "correct": 3
+        "easy": "Which hero is a brilliant astrophysicist who was exposed to a black hole experiment?",
+        "hard": "Which hero say \"Why seek answers when we do not know the question\"?",
+        "correct": "Sigma"
     },
     {
-      "question": "Which hero is a bounty hunter who was caught by Overwatch during a sting operation and given a choice to join them or rot in prison?",
-      "answers": [
-        "Hanzo",
-        "Cassidy",
-        "Ashe",
-        "Ramattra"
-      ],
-      "correct": 1
+        "easy": "Which hero is a scientist who was raised on the moon and joined Overwatch?",
+        "hard": "Which hero loves peanut butter?",
+        "correct": "Winston"
     },
     {
-      "question": "Which hero is a brilliant astrophysicist who was exposed to a black hole experiment that gave him the ability to manipulate gravity?",
-      "answers": [
-        "Winston",
-        "Reaper",
-        "Sigma",
-        "Mercy"
-      ],
-      "correct": 2
+        "easy": "Which hero is a climatologist?",
+        "hard": "Which hero has a drone called Snowball?",
+        "correct": "Mei"
     },
     {
-      "question": "Which hero is a scientist who was raised on the moon and joined Overwatch?",
-      "answers": [
-        "Winston",
-        "Wrecking Ball",
-        "Mercy",
-        "Moira"
-      ],
-      "correct": 0
+        "easy": "Which hero is a Canadian soldier and an Overwatch agent who leads the team into battle in Storm Rising?",
+        "hard": "Which hero has a twin sister named Valentine?",
+        "correct": "Sojourn"
     },
     {
-      "question": "Which hero is a climatologist and an adventurer who uses her endothermic blaster and weather drones to study and preserve the environment?",
-      "answers": [
-        "Kiriko",
-        "Ramattra",
-        "Mei",
-        "Lúcio"
-      ],
-      "correct": 2
+        "easy": "Which hero is an engineer and an inventor who helped design many weapons for Overwatch?",
+        "hard": "Which hero is married to Ingrid Lindholm?",
+        "correct": "Torbjörn"
     },
     {
-      "question": "Which hero is a Canadian soldier and an Overwatch agent who leads the team in Overwatch 2",
-      "answers": [
-        "Soldier: 76",
-        "Reaper",
-        "Mercy",
-        "Sojourn"
-      ],
-      "correct": 3
+        "easy": "Which hero was the head of medical research for Overwatch?",
+        "hard": "Which hero does sometimes drink tea with a nip of brandy after a life-threatening ordeal?",
+        "correct": "Mercy"
     },
     {
-      "question": "Which hero is an engineer and an inventor who helped design many weapons for Overwatch?",
-      "answers": [
-        "Ana",
-        "Torbjörn",
-        "Winston",
-        "Echo"
-      ],
-      "correct": 1
+        "easy": "Which hero is the heir of the Shimada clan but who left his family after killing his brother?",
+        "hard": "Which hero swore to never again wield as sword?",
+        "correct": "Hanzo"
     },
     {
-      "question": "Which hero was the head of medical research for Overwatch?",
-      "answers": [
-        "Moira",
-        "Mercy",
-        "Lifeweaver",
-        "Kiriko"
-      ],
-      "correct": 1
+        "easy": "Which hero is a crusader who fights with honor and courage?",
+        "hard": "Which hero is a fan of David Hasselhoffs music?",
+        "correct": "Reinhardt"
     },
     {
-      "question": "Which hero is the heir of the Shimada clan but who left his family after killing his brother?",
-      "answers": [
-        "Reaper",
-        "Genji",
-        "Sombra",
-        "Hanzo"
-      ],
-      "correct": 3
+        "easy": "Which hero was like a brother to Zenyatta?",
+        "hard": "Which heroes name is derived from the Sanskrit meaning \"dark defender\"?",
+        "correct": "Ramattra"
     },
     {
-      "question": "Which hero is a crusader who fights with honor and courage?",
-      "answers": [
-        "Zarya",
-        "Pharah",
-        "Reinhardt",
-        "Brigitte"
-      ],
-      "correct": 2
+        "easy": "Which hero is a Russian soldier and a weightlifting champion?",
+        "hard": "Which hero spent christmas fighting omnics in the \"Christmas War\"?",
+        "correct": "Zarya"
     },
     {
-      "question": "Which hero was student and brother to Zenyatta?",
-      "answers": [
-        "Ramattra",
-        "Echo",
-        "Hanzo",
-        "Tracer"
-      ],
-      "correct": 0
+        "easy": "Which hero escaped from the lunar colony with Winston and built a combat mech from junk parts?",
+        "hard": "Which hero became good friends with specimen 28 on horizon lunar colony?",
+        "correct": "Wrecking Ball"
     },
     {
-      "question": "Which hero is a Russian soldier and a weightlifting champion?",
-      "answers": [
-        "Reinhardt",
-        "Zarya",
-        "Baptiste",
-        "Soldier 24"
-      ],
-      "correct": 1
+        "easy": "Which hero is a combat omnic who developed a curious personality and a fondness for nature?",
+        "hard": "Which hero watched an ad for blizzard world alongside Tracer, Winston and Torbjörn?",
+        "correct": "Bastion"
     },
     {
-      "question": "Which hero escaped from the lunar colony with Winston and built a combat mech from junk parts?",
-      "answers": [
-        "Roadhog",
-        "Sigma",
-        "D.Va",
-        "Wrecking Ball"
-      ],
-      "correct": 3
+        "easy": "Which hero was saved by Overwatch and trained by Zenyatta to find peace with himself?",
+        "hard": "Which hero is the youngest son of Sojiro Shimada?",
+        "correct": "Genji"
     },
     {
-      "question": "Which hero is a combat omnic who developed a curious personality and a fondness for nature?",
-      "answers": [
-        "Echo",
-        "Torbjörn",
-        "Bastion",
-        "Orisa"
-      ],
-      "correct": 2
+        "easy": "Which hero is a vigilante and a former leader of Overwatch who was presumed dead after an explosion at the headquarters?",
+        "hard": "Which hero worked on a farm before becoming a soldier?",
+        "correct": "Soldier: 76"
     },
     {
-      "question": "Which hero was saved by Overwatch and trained by Zenyatta to find peace with himself?",
-      "answers": [
-        "Ramattra",
-        "Genji",
-        "Reaper",
-        "Widowmaker"
-      ],
-      "correct": 1
+        "easy": "Which hero is an architect and an agent of Vishkar Corporation?",
+        "hard": "Which hero is known to be on the autism spectrum?",
+        "correct": "Symmetra"
     },
     {
-      "question": "Which hero is a vigilante and a former leader of Overwatch who was presumed dead after an explosion at the headquarters?",
-      "answers": [
-        "Soldier: 76",
-        "Ana",
-        "Winston",
-        "Sojourn"
-      ],
-      "correct": 0
+        "easy": "Which hero was brainwashed and turned into a cold-blooded killer by Talon?",
+        "hard": "Which heroes name is Amélie Lacroix?",
+        "correct": "Widowmaker"
     },
     {
-      "question": "Which hero is an architect and an agent of Vishkar Corporation?",
-      "answers": [
-        "Ana",
-        "Dr. Mina Liao",
-        "Maximillian",
-        "Symmetra"
-      ],
-      "correct": 3
+        "easy": "Which hero is a geneticist and a member of Talon who seeks to unlock the secrets of life?",
+        "hard": "Which hero's last name is O'Deorain?",
+        "correct": "Moira"
     },
     {
-      "question": "Which hero was brainwashed and turned into a cold-blooded killer by Talon?",
-      "answers": [
-        "Moira",
-        "Reaper",
-        "Widowmaker",
-        "Sigma"
-      ],
-      "correct": 2
-    },
-    {
-      "question": "Which hero is a geneticist and a member of Talon who seeks to unlock the secrets of life?",
-      "answers": [
-        "Mercy",
-        "Moira",
-        "Lifeweaver",
-        "Doomfist"
-      ],
-      "correct": 1
+        "easy": "Which hero is the daughter of Sam and Ana?",
+        "hard": "Which hero joined Helix Security?",
+        "correct": "Pharah"
     }
   ],
   "images": [
     {
-      "hero": "D.Va",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409295707189398/dva.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418153582313582/D.Va.png",
-      "answers": [
-        "D.Va",
-        "Mei",
-        "Genji",
-        "Sombra"
-      ],
-      "correct": 0
+      "correct": "D.Va"
     },
     {
-      "hero": "Doomfist",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409296004976720/doomfist.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418153330647171/Doomfist.png",
-      "answers": [
-        "Genji",
-        "Moira",
-        "Doomfist",
-        "Sombra"
-      ],
-      "correct": 2
+      "correct": "Doomfist"
     },
     {
-      "hero": "Junker Queen",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409296244047953/junker_queen.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418154291150868/Junker_Queen.png",
-      "answers": [
-        "Junker Queen",
-        "Junkrat",
-        "Roadhog",
-        "Reaper"
-      ],
-      "correct": 0
+      "correct": "Junker Queen"
     },
     {
-      "hero": "Orisa",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409296470544394/orisa.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418154043678740/Orisa.png",
-      "answers": [
-        "Reinhardt",
-        "Echo",
-        "Bastion",
-        "Orisa"
-      ],
-      "correct": 3
+      "correct": "Orisa"
     },
     {
-      "hero": "Ramattra",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409296776724620/ramattra.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418153804607579/Ramattra.png",
-      "answers": [
-        "Ramattra",
-        "Echo",
-        "Hanzo",
-        "Tracer"
-      ],
-      "correct": 0
+      "correct": "Ramattra"
     },
     {
-      "hero": "Reinhardt",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409297087115324/reinhardt.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418152886059078/Reinhardt.png",
-      "answers": [
-        "Zarya",
-        "Pharah",
-        "Reinhardt",
-        "Brigitte"
-      ],
-      "correct": 2
+      "correct": "Reinhardt"
     },
     {
-      "hero": "Roadhog",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409297321988166/roadhog.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418153137713192/Roadhog.png",
-      "answers": [
-        "Reinhardt",
-        "Roadhog",
-        "Wrecking Ball",
-        "D.Va"
-      ],
-      "correct": 1
+      "correct": "Roadhog"
     },
     {
-      "hero": "Sigma",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409297577836564/sigma.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104470651932246086/Sigma.png",
-      "answers": [
-        "Winston",
-        "Reaper",
-        "Sigma",
-        "Mercy"
-      ],
-      "correct": 2
+      "correct": "Sigma"
     },
     {
-      "hero": "Winston",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409359993274499/winston.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418152617615453/Winston.png",
-      "answers": [
-        "Winston",
-        "Wrecking Ball",
-        "Mercy",
-        "Moira"
-      ],
-      "correct": 0
+      "correct": "Winston"
     },
     {
-      "hero": "Wrecking Ball",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409360274305114/wrecking_ball.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418302329106543/Wrecking_Ball.png",
-      "answers": [
-        "Roadhog",
-        "Sigma",
-        "D.Va",
-        "Wrecking Ball"
-      ],
-      "correct": 3
+      "correct": "Wrecking Ball"
     },
     {
-      "hero": "Zarya",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409360517582948/zarya.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418302618505316/Zarya.png",
-      "answers": [
-        "Reinhardt",
-        "Zarya",
-        "Baptiste",
-        "Soldier: 24"
-      ],
-      "correct": 1
+      "correct": "Zarya"
     },
     {
-      "hero": "Ashe",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409454637756486/ashe.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418302937280552/Ashe.png",
-      "answers": [
-        "Cassidy",
-        "Ashe",
-        "Roadhog",
-        "Reaper"
-      ],
-      "correct": 1
+      "correct": "Ashe"
     },
     {
-      "hero": "Bastion",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409407690916030/bastion.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418303197323275/Bastion.png",
-      "answers": [
-        "Echo",
-        "Torbjörn",
-        "Bastion",
-        "Orisa"
-      ],
-      "correct": 2
+      "correct": "Bastion"
     },
     {
-      "hero": "Cassidy",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409407443447908/cassidy.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418303469949049/Cassidy.png",
-      "answers": [
-        "Hanzo",
-        "Cassidy",
-        "Ashe",
-        "Ramattra"
-      ],
-      "correct": 1
+      "correct": "Cassidy"
     },
     {
-      "hero": "Echo",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409407221141746/echo.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418303717417141/Echo.png",
-      "answers": [
-        "Torbjörn",
-        "Echo",
-        "Orisa",
-        "Lifeweaver"
-      ],
-      "correct": 1
+      "correct": "Echo"
     },
     {
-      "hero": "Genji",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409406965301388/genji.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418301754482760/Genji.png",
-      "answers": [
-        "Ramattra",
-        "Genji",
-        "Reaper",
-        "Widowmaker"
-      ],
-      "correct": 1
+      "correct": "Genji"
     },
     {
-      "hero": "Hanzo",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409406755582064/hanzo.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418302043885608/Hanzo.png",
-      "answers": [
-        "Reaper",
-        "Genji",
-        "Sombra",
-        "Hanzo"
-      ],
-      "correct": 3
+      "correct": "Hanzo"
     },
     {
-      "hero": "Junkrat",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409406503915540/junkrat.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418430720950292/Junkrat.png",
-      "answers": [
-        "Symmetra",
-        "Zenyatta",
-        "Junkrat",
-        "Bastion"
-      ],
-      "correct": 2
+      "correct": "Junkrat"
     },
     {
-      "hero": "Mei",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409406034165881/mei.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418430972612698/Mei.png",
-      "answers": [
-        "Kiriko",
-        "Ramattra",
-        "Mei",
-        "Lúcio"
-      ],
-      "correct": 2
+      "correct": "Mei"
     },
     {
-      "hero": "Pharah",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409405799280811/pharah.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418431228448869/Pharah.png",
-      "answers": [
-        "Pharah",
-        "Mercy",
-        "Reinhardt",
-        "Soldier: 76"
-      ],
-      "correct": 0
+      "correct": "Pharah"
     },
     {
-      "hero": "Reaper",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409405551808632/reaper.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418431530450954/Reaper.png",
-      "answers": [
-        "Moira",
-        "Genji",
-        "Reaper",
-        "Tracer"
-      ],
-      "correct": 2
+      "correct": "Reaper"
     },
     {
-      "hero": "Soldier: 76",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409362170138634/soldier_76.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418432105070703/Soldier_76.png",
-      "answers": [
-        "Soldier: 76",
-        "Ana",
-        "Winston",
-        "Sojourn"
-      ],
-      "correct": 0
+      "correct": "Soldier: 76"
     },
     {
-      "hero": "Sojourn",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409362463719424/sojourn.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418431840817273/Sojourn.png",
-      "answers": [
-        "Soldier 76",
-        "Reaper",
-        "Mercy",
-        "Sojourn"
-      ],
-      "correct": 3
+      "correct": "Sojourn"
     },
     {
-      "hero": "Sombra",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409361926860880/sombra.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418432499339294/Sombra.png",
-      "answers": [
-        "Sombra",
-        "Echo",
-        "Ashe",
-        "Hanzo"
-      ],
-      "correct": 0
+      "correct": "Sombra"
     },
     {
-      "hero": "Symmetra",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409361566138528/symmetra.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418432792924160/Symmetra.png",
-      "answers": [
-        "Ana",
-        "Dr. Mina Liao",
-        "Maximillian",
-        "Symmetra"
-      ],
-      "correct": 3
+      "correct": "Symmetra"
     },
     {
-      "hero": "Torbjörn",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409361280946297/torbjorn.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418433124286516/Torbjorn.png",
-      "answers": [
-        "Ana",
-        "Torbjörn",
-        "Winston",
-        "Echo"
-      ],
-      "correct": 1
+      "correct": "Torbjörn"
     },
     {
-      "hero": "Tracer",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409361041862717/tracer.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418430477668412/Tracer.png",
-      "answers": [
-        "Pharah",
-        "Mercy",
-        "Winston",
-        "Tracer"
-      ],
-      "correct": 3
+      "correct": "Tracer"
     },
     {
-      "hero": "Widowmaker",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409360748249199/widowmaker.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418710258733196/Widowmaker.png",
-      "answers": [
-        "Moira",
-        "Reaper",
-        "Widowmaker",
-        "Sigma"
-      ],
-      "correct": 2
+      "correct": "Widowmaker"
     },
     {
-      "hero": "Ana",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409454910390272/ana.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418707809243227/Ana.png",
-      "answers": [
-        "Ana",
-        "Reinhardt",
-        "Soldier: 76",
-        "Winston"
-      ],
-      "correct": 0
+      "correct": "Ana"
     },
     {
-      "hero": "Baptiste",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409455220756629/baptiste.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418708107055215/Baptiste.png",
-      "answers": [
-        "Widowmaker",
-        "Moira",
-        "Genji",
-        "Baptiste"
-      ],
-      "correct": 3
+      "correct": "Baptiste"
     },
     {
-      "hero": "Brigitte",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409455489200128/brigitte.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418708329336982/Brigitte.png",
-      "answers": [
-        "Bastion",
-        "Mei",
-        "Brigitte",
-        "Echo"
-      ],
-      "correct": 2
+      "correct": "Brigitte"
     },
     {
-      "hero": "Kiriko",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409455724085380/kiriko.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418708597780490/Kiriko.png",
-      "answers": [
-        "Kiriko",
-        "Genji",
-        "Tracer",
-        "Hanzo"
-      ],
-      "correct": 0
+      "correct": "Kiriko"
     },
     {
-      "hero": "Lifeweaver",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456013480046/lifeweaver.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418708941721660/Lifeweaver.png",
-      "answers": [
-        "Symmetra",
-        "Ana",
-        "Moira",
-        "Lifeweaver"
-      ],
-      "correct": 3
+      "correct": "Lifeweaver"
     },
     {
-      "hero": "Lúcio",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456239980634/lucio.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418709210140682/Lucio.png",
-      "answers": [
-        "Torbjörn",
-        "Symmetra",
-        "Lúcio",
-        "Mei"
-      ],
-      "correct": 2
+      "correct": "Lúcio"
     },
     {
-      "hero": "Mercy",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456525197353/mercy.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418709608616047/Mercy.png",
-      "answers": [
-        "Moira",
-        "Mercy",
-        "Lifeweaver",
-        "Kiriko"
-      ],
-      "correct": 1
+      "correct": "Mercy"
     },
     {
-      "hero": "Moira",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456772649010/moira.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418709860257874/Moira.png",
-      "answers": [
-        "Mercy",
-        "Moira",
-        "Lifeweaver",
-        "Doomfist"
-      ],
-      "correct": 1
+      "correct": "Moira"
     },
     {
-      "hero": "Zenyatta",
       "easy": "https://cdn.discordapp.com/attachments/1045328165112926268/1104409456986566726/zenyatta.png",
       "hard": "https://cdn.discordapp.com/attachments/1045328165112926268/1104418707494686720/Zenyatta.png",
-      "answers": [
-        "Hanzo",
-        "Zenyatta",
-        "Reinhardt",
-        "Lifeweaver"
-      ],
-      "correct": 1
+      "correct": "Zenyatta"
     }
-  ]
+  ],
+  "maps": [
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109592317616210041/ScreenShot_23-05-20_00-00-17-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109592317909807216/ScreenShot_23-05-20_00-01-14-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109592318178230353/ScreenShot_23-05-19_23-51-44-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109592318450876436/ScreenShot_23-05-19_23-53-18-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109592318698323999/ScreenShot_23-05-19_23-54-14-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109592318987747438/ScreenShot_23-05-19_23-58-04-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109592319289733200/ScreenShot_23-05-19_23-58-44-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109592321579823194/ScreenShot_23-05-19_23-59-01-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109592321860829284/ScreenShot_23-05-19_23-59-18-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109594405725278328/ScreenShot_23-05-19_23-52-03-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109594405947584532/ScreenShot_23-05-19_23-52-21-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109594406174072853/ScreenShot_23-05-19_23-55-14-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109594406408949811/ScreenShot_23-05-19_23-57-53-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109594406660616252/ScreenShot_23-05-20_00-00-00-000.jpg"],
+
+        "correct": "Antarctic Peninsula"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109622003410939904/ScreenShot_23-05-20_18-03-28-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109622003624841317/ScreenShot_23-05-20_17-56-27-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109622003893288980/ScreenShot_23-05-20_17-56-46-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109622004144943176/ScreenShot_23-05-20_17-56-59-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109622004409176205/ScreenShot_23-05-20_17-57-50-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109622004677623818/ScreenShot_23-05-20_17-58-08-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109622004899917884/ScreenShot_23-05-20_17-59-03-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109622005134790716/ScreenShot_23-05-20_18-00-12-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109622005394849842/ScreenShot_23-05-20_18-00-52-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109622005663281253/ScreenShot_23-05-20_18-02-43-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109622021689716847/ScreenShot_23-05-20_18-03-45-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109623066104954960/ScreenShot_23-05-20_18-02-20-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623066490835004/ScreenShot_23-05-20_18-03-19-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623067266777108/ScreenShot_23-05-20_17-57-19-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623067812040704/ScreenShot_23-05-20_17-57-27-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623068164366446/ScreenShot_23-05-20_17-58-25-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623068533456966/ScreenShot_23-05-20_18-00-19-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623068877394011/ScreenShot_23-05-20_18-01-04-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623069246496878/ScreenShot_23-05-20_18-01-31-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623069510729819/ScreenShot_23-05-20_18-01-50-000.jpg"],
+
+        "correct": "Blizzard World"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109623778201305222/ScreenShot_23-05-20_00-12-00-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623778553630831/ScreenShot_23-05-20_00-12-12-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623778905964585/ScreenShot_23-05-20_00-02-53-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623779304407080/ScreenShot_23-05-20_00-03-11-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623779698688082/ScreenShot_23-05-20_00-03-29-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623780122300516/ScreenShot_23-05-20_00-04-33-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623780420108459/ScreenShot_23-05-20_00-10-01-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623780684333217/ScreenShot_23-05-20_00-10-36-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109623780990521374/ScreenShot_23-05-20_00-11-35-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109624541233291274/ScreenShot_23-05-20_00-11-44-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109624539169706104/ScreenShot_23-05-20_00-12-21-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109624539513626634/ScreenShot_23-05-20_00-04-00-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109624539912077453/ScreenShot_23-05-20_00-04-17-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109624540222476438/ScreenShot_23-05-20_00-05-07-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109624540511871016/ScreenShot_23-05-20_00-09-17-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109624540918730855/ScreenShot_23-05-20_00-10-16-000.jpg"],
+
+        "correct": "Busan"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109626400647946261/ScreenShot_23-05-20_00-49-00-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109626400928968704/ScreenShot_23-05-20_00-49-21-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109626401239351357/ScreenShot_23-05-20_00-46-11-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109626401470029945/ScreenShot_23-05-20_00-46-17-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109626401738469436/ScreenShot_23-05-20_00-46-30-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109626402040463413/ScreenShot_23-05-20_00-47-00-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109626402396971028/ScreenShot_23-05-20_00-47-31-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109626402698965043/ScreenShot_23-05-20_00-47-51-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109626403005153430/ScreenShot_23-05-20_00-48-00-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109627758751006821/ScreenShot_23-05-20_00-49-11-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109627759061381140/ScreenShot_23-05-20_00-45-57-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109627759392722994/ScreenShot_23-05-20_00-46-40-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109627759623421952/ScreenShot_23-05-20_00-47-11-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109627759891853462/ScreenShot_23-05-20_00-48-31-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109627760160280616/ScreenShot_23-05-20_00-48-42-000.jpg"],
+
+        "correct": "Circuit Royal"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109631691141685330/ScreenShot_23-05-20_18-51-15-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109631691502391307/ScreenShot_23-05-20_18-47-54-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109631691791806574/ScreenShot_23-05-20_18-48-43-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109631692148314242/ScreenShot_23-05-20_18-49-08-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109631692542586980/ScreenShot_23-05-20_18-49-26-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109631692907483216/ScreenShot_23-05-20_18-50-59-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109646138455371826/ScreenShot_23-05-20_18-50-42-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109646138707021934/ScreenShot_23-05-20_18-47-41-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109646138958692442/ScreenShot_23-05-20_18-48-12-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109646139214540800/ScreenShot_23-05-20_18-48-55-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109646139449413782/ScreenShot_23-05-20_18-49-17-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109646139701084290/ScreenShot_23-05-20_18-49-43-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109646139940155432/ScreenShot_23-05-20_18-49-55-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109646140204388473/ScreenShot_23-05-20_18-50-27-000.jpg"],
+
+        "correct": "Colosseo"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109649516405215302/ScreenShot_23-05-20_00-53-21-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109649516694605824/ScreenShot_23-05-20_00-54-22-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109649517365710949/ScreenShot_23-05-20_00-50-39-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109649517718020106/ScreenShot_23-05-20_00-51-04-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109649517978079364/ScreenShot_23-05-20_00-51-35-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109649518317801582/ScreenShot_23-05-20_00-51-46-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109649518644973568/ScreenShot_23-05-20_00-52-31-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109649519014055986/ScreenShot_23-05-20_00-52-55-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109649517051125790/ScreenShot_23-05-20_00-50-30-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109650496244953170/ScreenShot_23-05-20_00-54-12-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109650496530153492/ScreenShot_23-05-20_00-50-48-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109650496790212638/ScreenShot_23-05-20_00-51-20-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109650497205436436/ScreenShot_23-05-20_00-52-04-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109650497461309450/ScreenShot_23-05-20_00-52-47-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109650497796845618/ScreenShot_23-05-20_00-53-09-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109650498094649364/ScreenShot_23-05-20_00-53-39-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109650498325327922/ScreenShot_23-05-20_00-53-55-000.jpg"],
+
+        "correct": "Dorado"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109651086400290916/ScreenShot_23-05-20_18-09-09-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651086689714176/ScreenShot_23-05-20_18-09-33-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651086945570866/ScreenShot_23-05-20_18-04-45-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651087348203590/ScreenShot_23-05-20_18-04-59-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651087591489546/ScreenShot_23-05-20_18-05-28-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651087876706324/ScreenShot_23-05-20_18-06-04-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651088178675802/ScreenShot_23-05-20_18-06-34-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651088442933318/ScreenShot_23-05-20_18-07-19-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651088732344380/ScreenShot_23-05-20_18-07-59-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109651661338714192/ScreenShot_23-05-20_18-09-40-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651661623918632/ScreenShot_23-05-20_18-05-44-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651661930119279/ScreenShot_23-05-20_18-05-54-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651662227906640/ScreenShot_23-05-20_18-06-19-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651662513111141/ScreenShot_23-05-20_18-07-39-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651662781562901/ScreenShot_23-05-20_18-08-26-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651663096127648/ScreenShot_23-05-20_18-08-55-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109651663356166184/ScreenShot_23-05-20_18-09-21-000.jpg"],
+
+        "correct": "Eichenwalde"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109652164474843136/ScreenShot_23-05-20_18-55-36-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652164760043580/ScreenShot_23-05-20_18-55-58-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652165108183101/ScreenShot_23-05-20_18-56-36-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652165791842314/ScreenShot_23-05-20_18-52-10-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652166311940106/ScreenShot_23-05-20_18-52-38-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652166668451870/ScreenShot_23-05-20_18-52-57-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652167083692145/ScreenShot_23-05-20_18-53-27-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652167456980992/ScreenShot_23-05-20_18-54-21-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652168056778783/ScreenShot_23-05-20_18-54-58-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652168513949806/ScreenShot_23-05-20_18-55-06-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109652817330831492/ScreenShot_23-05-20_18-55-26-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652817657995325/ScreenShot_23-05-20_18-55-45-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652817888673812/ScreenShot_23-05-20_18-52-29-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652818538803320/ScreenShot_23-05-20_18-52-46-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652818786263170/ScreenShot_23-05-20_18-53-13-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652819058884698/ScreenShot_23-05-20_18-53-44-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652819331526766/ScreenShot_23-05-20_18-53-54-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652819650289745/ScreenShot_23-05-20_18-54-32-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109652819910328420/ScreenShot_23-05-20_18-54-41-000.jpg"],
+
+        "correct": "Esperança"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109794317758898176/ScreenShot_23-05-20_00-56-14-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109794318018940988/ScreenShot_23-05-20_00-57-21-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109794318358691910/ScreenShot_23-05-20_00-57-49-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109794318597758996/ScreenShot_23-05-20_00-57-58-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109794318941687899/ScreenShot_23-05-20_00-58-12-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109794319218524180/ScreenShot_23-05-20_00-59-09-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109794319495340122/ScreenShot_23-05-20_00-59-24-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109794319742799882/ScreenShot_23-05-20_00-59-42-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109794320095133798/ScreenShot_23-05-20_00-55-26-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109794347177746432/ScreenShot_23-05-20_01-00-42-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109794347429412904/ScreenShot_23-05-20_00-59-49-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109795224307372164/ScreenShot_23-05-20_00-58-46-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109795222071808140/ScreenShot_23-05-20_01-00-02-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109795222474477588/ScreenShot_23-05-20_00-55-55-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109795222952620163/ScreenShot_23-05-20_00-56-27-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109795223237824522/ScreenShot_23-05-20_00-56-46-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109795223506276363/ScreenShot_23-05-20_00-56-56-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109795223858589756/ScreenShot_23-05-20_00-57-35-000.jpg"],
+
+        "correct": "Havana"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109796061834399834/ScreenShot_23-05-20_18-12-07-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796062148956230/ScreenShot_23-05-20_18-12-27-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796062484504696/ScreenShot_23-05-20_18-12-36-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796062778118234/ScreenShot_23-05-20_18-13-24-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796063067508756/ScreenShot_23-05-20_18-13-54-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796063470166057/ScreenShot_23-05-20_18-14-18-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796063952523354/ScreenShot_23-05-20_18-14-35-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796064204165130/ScreenShot_23-05-20_18-11-25-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796064585863188/ScreenShot_23-05-20_18-11-35-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796088476618852/ScreenShot_23-05-20_18-16-32-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796088740839506/ScreenShot_23-05-20_18-15-15-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796089009283152/ScreenShot_23-05-20_18-15-38-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796089311285248/ScreenShot_23-05-20_18-16-11-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796089554542623/ScreenShot_23-05-20_18-16-18-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109796913039020063/ScreenShot_23-05-20_18-15-00-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796913416511689/ScreenShot_23-05-20_18-16-00-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796913739468800/ScreenShot_23-05-20_18-16-41-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796914033078353/ScreenShot_23-05-20_18-11-14-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796914393780304/ScreenShot_23-05-20_18-11-50-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796914834190438/ScreenShot_23-05-20_18-12-15-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796915131977768/ScreenShot_23-05-20_18-12-51-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796915421393026/ScreenShot_23-05-20_18-13-15-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796915727573072/ScreenShot_23-05-20_18-14-02-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109796916037955635/ScreenShot_23-05-20_18-14-51-000.jpg"],
+
+        "correct": "Hollywood"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109797548077617162/ScreenShot_23-05-20_00-19-27-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109797548333465600/ScreenShot_23-05-20_00-13-55-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109797548593520640/ScreenShot_23-05-20_00-14-20-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109797548878729326/ScreenShot_23-05-20_00-15-37-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109797549189103656/ScreenShot_23-05-20_00-16-16-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109797549461737502/ScreenShot_23-05-20_00-17-22-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109797924696760360/ScreenShot_23-05-20_00-19-48-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109797925028102194/ScreenShot_23-05-20_00-14-47-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109797925535625366/ScreenShot_23-05-20_00-15-06-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109797926034743327/ScreenShot_23-05-20_00-15-49-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109797926378680320/ScreenShot_23-05-20_00-18-28-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109797926710026240/ScreenShot_23-05-20_00-18-40-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109797927012007976/ScreenShot_23-05-20_00-18-53-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109797927364341780/ScreenShot_23-05-20_00-19-06-000.jpg"],
+
+        "correct": "Ilios"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109798480660136007/ScreenShot_23-05-20_01-06-54-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798480974729306/ScreenShot_23-05-20_01-07-25-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798481389953054/ScreenShot_23-05-20_01-01-43-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798481712906300/ScreenShot_23-05-20_01-02-20-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798482002333696/ScreenShot_23-05-20_01-02-45-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798482333671454/ScreenShot_23-05-20_01-04-07-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798482585341952/ScreenShot_23-05-20_01-04-29-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798482946039919/ScreenShot_23-05-20_01-05-25-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798483222855710/ScreenShot_23-05-20_01-06-19-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109798930457309194/ScreenShot_23-05-20_01-06-34-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798930755100742/ScreenShot_23-05-20_01-02-00-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798931036123186/ScreenShot_23-05-20_01-02-09-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798931296165938/ScreenShot_23-05-20_01-02-29-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798931585585234/ScreenShot_23-05-20_01-03-45-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798931862401064/ScreenShot_23-05-20_01-04-16-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109798932164386876/ScreenShot_23-05-20_01-05-46-000.jpg"],
+
+        "correct": "Junkertown"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109799434964959242/ScreenShot_23-05-20_18-20-48-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109799435275358228/ScreenShot_23-05-20_18-21-28-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109799435547967488/ScreenShot_23-05-20_18-17-31-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109799435917086720/ScreenShot_23-05-20_18-17-42-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109799436298747974/ScreenShot_23-05-20_18-17-53-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109799436592369695/ScreenShot_23-05-20_18-18-18-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109799436894351420/ScreenShot_23-05-20_18-18-53-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109799437263437824/ScreenShot_23-05-20_18-19-11-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109799437783552050/ScreenShot_23-05-20_18-20-15-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109800032988840037/ScreenShot_23-05-20_18-21-09-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800033261453322/ScreenShot_23-05-20_18-21-47-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800033567649812/ScreenShot_23-05-20_18-18-01-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800033869643776/ScreenShot_23-05-20_18-18-34-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800034217754644/ScreenShot_23-05-20_18-19-26-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800034465235035/ScreenShot_23-05-20_18-19-31-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800034721071185/ScreenShot_23-05-20_18-19-44-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800035027267584/ScreenShot_23-05-20_18-19-58-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800035870310460/ScreenShot_23-05-20_18-20-31-000.jpg"],
+
+        "correct": "King's Row"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109800524850663467/ScreenShot_23-05-20_00-29-07-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800525127491614/ScreenShot_23-05-20_00-23-29-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800525391740988/ScreenShot_23-05-20_00-24-16-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800525827936297/ScreenShot_23-05-20_00-25-37-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800526104764527/ScreenShot_23-05-20_00-25-44-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800526352236634/ScreenShot_23-05-20_00-26-01-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800526683574292/ScreenShot_23-05-20_00-28-07-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800527014928404/ScreenShot_23-05-20_00-28-36-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109800943941341244/ScreenShot_23-05-20_00-28-16-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800944197185546/ScreenShot_23-05-20_00-28-46-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800944499183626/ScreenShot_23-05-20_00-28-55-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800944809545808/ScreenShot_23-05-20_00-23-41-000.jpg ",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800945044443186/ScreenShot_23-05-20_00-23-52-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800945367396462/ScreenShot_23-05-20_00-24-34-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800945648406578/ScreenShot_23-05-20_00-24-59-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800945971384360/ScreenShot_23-05-20_00-25-12-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800946281754624/ScreenShot_23-05-20_00-27-45-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109800946525016155/ScreenShot_23-05-20_00-27-52-000.jpg"],
+
+        "correct": "Lijiang Tower"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109801643450572880/ScreenShot_23-05-20_18-27-07-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109801643798695996/ScreenShot_23-05-20_18-27-34-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109801644218138724/ScreenShot_23-05-20_18-27-44-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109801644490760253/ScreenShot_23-05-20_18-22-49-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109801644822106222/ScreenShot_23-05-20_18-23-44-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109801645170237520/ScreenShot_23-05-20_18-24-22-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109801645438681098/ScreenShot_23-05-20_18-24-33-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109801645707108422/ScreenShot_23-05-20_18-25-28-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109801646042648646/ScreenShot_23-05-20_18-26-02-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109801646374010900/ScreenShot_23-05-20_18-26-38-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109802224093241354/ScreenShot_23-05-20_18-27-22-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109802224336506940/ScreenShot_23-05-20_18-22-42-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109802224655269968/ScreenShot_23-05-20_18-23-13-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109802224944685076/ScreenShot_23-05-20_18-24-12-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109802225162784808/ScreenShot_23-05-20_18-25-04-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109802225439604746/ScreenShot_23-05-20_18-25-15-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109802225703854201/ScreenShot_23-05-20_18-25-42-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109802225947119686/ScreenShot_23-05-20_18-26-19-000.jpg"],
+
+        "correct": "Midtown"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109802708849930391/ScreenShot_23-05-20_00-37-52-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109802709160304710/ScreenShot_23-05-20_00-32-14-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109802709382598806/ScreenShot_23-05-20_00-33-18-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109802709613293620/ScreenShot_23-05-20_00-33-51-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109802709902696518/ScreenShot_23-05-20_00-34-03-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109802710242431027/ScreenShot_23-05-20_00-36-25-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109802710510874694/ScreenShot_23-05-20_00-37-05-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109806372155048016/ScreenShot_23-05-20_00-31-12-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109806372486381638/ScreenShot_23-05-20_00-31-20-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109806373136515142/ScreenShot_23-05-20_00-31-42-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109806373459460127/ScreenShot_23-05-20_00-31-56-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109806373702733854/ScreenShot_23-05-20_00-32-37-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109806374013124739/ScreenShot_23-05-20_00-33-25-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109806374294130788/ScreenShot_23-05-20_00-33-35-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109806374587744256/ScreenShot_23-05-20_00-34-33-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109806374914883665/ScreenShot_23-05-20_00-34-45-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109806388210831371/ScreenShot_23-05-20_00-35-45-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109806387980140635/ScreenShot_23-05-20_00-35-30-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109806387749462116/ScreenShot_23-05-20_00-36-09-000.jpg"],
+
+        "correct": "Nepal"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109807199464722473/ScreenShot_23-05-20_18-57-57-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807199779291268/ScreenShot_23-05-20_18-58-16-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807200249057280/ScreenShot_23-05-20_18-58-59-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807200513294356/ScreenShot_23-05-20_18-59-07-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807200777543690/ScreenShot_23-05-20_18-59-21-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807201171804240/ScreenShot_23-05-20_18-59-46-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807201498955856/ScreenShot_23-05-20_19-00-22-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807202178441317/ScreenShot_23-05-20_18-57-16-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807202627227698/ScreenShot_23-05-20_18-57-32-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807210856468480/ScreenShot_23-05-20_19-01-56-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807211087151154/ScreenShot_23-05-20_19-01-03-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109807918720761907/ScreenShot_23-05-20_19-02-18-000.jpg ",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807919001776138/ScreenShot_23-05-20_18-58-49-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807919240843284/ScreenShot_23-05-20_18-59-31-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807919517679638/ScreenShot_23-05-20_18-59-59-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807919794499674/ScreenShot_23-05-20_19-00-14-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807920041955418/ScreenShot_23-05-20_19-00-29-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807920318791690/ScreenShot_23-05-20_19-00-37-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109807920587223100/ScreenShot_23-05-20_19-01-42-000.jpg"],
+
+        "correct": "New Queen Street"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109835528058196081/ScreenShot_23-05-20_18-39-33-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109835528448258108/ScreenShot_23-05-20_18-40-00-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109835528808955914/ScreenShot_23-05-20_18-28-40-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109835529119354991/ScreenShot_23-05-20_18-36-27-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109835529471668224/ScreenShot_23-05-20_18-37-04-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109835529790423191/ScreenShot_23-05-20_18-37-11-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109835530163736657/ScreenShot_23-05-20_18-37-35-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109835530520231946/ScreenShot_23-05-20_18-37-52-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109835530784493619/ScreenShot_23-05-20_18-39-10-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109835549667233852/ScreenShot_23-05-20_18-40-52-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109835549927292959/ScreenShot_23-05-20_18-40-15-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109835550371872768/ScreenShot_23-05-20_18-40-37-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109836521344864336/ScreenShot_23-05-20_18-38-18-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836521567174808/ScreenShot_23-05-20_18-36-37-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836521864958072/ScreenShot_23-05-20_18-36-51-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836522208903288/ScreenShot_23-05-20_18-37-25-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836522468937798/ScreenShot_23-05-20_18-37-43-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836522779328522/ScreenShot_23-05-20_18-38-09-000.jpg"],
+
+        "correct": "Numbani"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109836926166499409/ScreenShot_23-05-20_00-39-35-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836926468509716/ScreenShot_23-05-20_00-40-04-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836926778867832/ScreenShot_23-05-20_00-40-39-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836927043129434/ScreenShot_23-05-20_00-41-14-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836927659671612/ScreenShot_23-05-20_00-41-46-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836928003624980/ScreenShot_23-05-20_00-42-42-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836928267849758/ScreenShot_23-05-20_00-42-51-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836928561446972/ScreenShot_23-05-20_00-39-10-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836928813125703/ScreenShot_23-05-20_00-39-23-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836939877683240/ScreenShot_23-05-20_00-44-54-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836940196462753/ScreenShot_23-05-20_00-43-43-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109836940452319314/ScreenShot_23-05-20_00-44-27-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109837561758744586/ScreenShot_23-05-20_00-43-26-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109837562035589160/ScreenShot_23-05-20_00-44-01-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109837562278838272/ScreenShot_23-05-20_00-38-53-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109837562526322728/ScreenShot_23-05-20_00-39-46-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109837562840875008/ScreenShot_23-05-20_00-40-19-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109837563067375698/ScreenShot_23-05-20_00-41-02-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109837563331629097/ScreenShot_23-05-20_00-41-36-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109837563558101012/ScreenShot_23-05-20_00-41-56-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109837563788795975/ScreenShot_23-05-20_00-43-03-000.jpg"],
+
+        "correct": "Oasis"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109838023392243723/ScreenShot_23-05-20_18-44-23-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838023635505194/ScreenShot_23-05-20_18-45-25-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838023912341595/ScreenShot_23-05-20_18-42-06-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838024172384306/ScreenShot_23-05-20_18-42-18-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838024440811530/ScreenShot_23-05-20_18-42-39-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838024742813786/ScreenShot_23-05-20_18-42-51-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838025170620557/ScreenShot_23-05-20_18-43-06-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838026051436574/ScreenShot_23-05-20_18-43-57-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838026412134571/ScreenShot_23-05-20_18-44-06-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838038332346469/ScreenShot_23-05-20_18-45-54-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838038844063795/ScreenShot_23-05-20_18-45-49-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109838609261023383/ScreenShot_23-05-20_18-45-31-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838609529438218/ScreenShot_23-05-20_18-46-23-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838609806270524/ScreenShot_23-05-20_18-46-36-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838610049552414/ScreenShot_23-05-20_18-42-29-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838610397659136/ScreenShot_23-05-20_18-43-22-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838610712240288/ScreenShot_23-05-20_18-43-36-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838611064553542/ScreenShot_23-05-20_18-44-39-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838611362357330/ScreenShot_23-05-20_18-44-51-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838611706302485/ScreenShot_23-05-20_18-44-58-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109838611987300373/ScreenShot_23-05-20_18-45-07-000.jpg"],
+
+        "correct": "Paraíso"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109839143053295666/ScreenShot_23-05-20_01-13-05-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109839143384662116/ScreenShot_23-05-20_01-13-24-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109839143711809546/ScreenShot_23-05-20_01-09-28-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109839144001208390/ScreenShot_23-05-20_01-10-04-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109839144374517862/ScreenShot_23-05-20_01-10-28-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109839148673671258/ScreenShot_23-05-20_01-10-39-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109839148958875750/ScreenShot_23-05-20_01-11-31-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109839149357350982/ScreenShot_23-05-20_01-11-58-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109839149705470043/ScreenShot_23-05-20_01-12-29-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109839161160110110/ScreenShot_23-05-20_01-15-04-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109839161399197786/ScreenShot_23-05-20_01-13-43-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109839161743114290/ScreenShot_23-05-20_01-14-02-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109839162036731914/ScreenShot_23-05-20_01-14-13-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109839162326122556/ScreenShot_23-05-20_01-14-35-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109840089560924210/ScreenShot_23-05-20_01-15-19-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840089825157130/ScreenShot_23-05-20_01-09-36-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840090051641484/ScreenShot_23-05-20_01-10-50-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840090299113552/ScreenShot_23-05-20_01-10-57-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840090534002718/ScreenShot_23-05-20_01-12-38-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840090756284466/ScreenShot_23-05-20_01-12-50-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840091091837008/ScreenShot_23-05-20_01-14-47-000.jpg"],
+
+        "correct": "Rialto"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109840588087504966/ScreenShot_23-05-20_17-36-26-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840588343345204/ScreenShot_23-05-20_17-37-02-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840588574036028/ScreenShot_23-05-20_17-32-43-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840588808925194/ScreenShot_23-05-20_17-33-15-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840589056376862/ScreenShot_23-05-20_17-34-32-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840589320630412/ScreenShot_23-05-20_17-34-39-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840589576470598/ScreenShot_23-05-20_17-34-59-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840589849104566/ScreenShot_23-05-20_17-35-36-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840590117548092/ScreenShot_23-05-20_17-35-53-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840598615207967/ScreenShot_23-05-20_17-38-20-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109840598850084905/ScreenShot_23-05-20_17-37-49-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109841145321750669/ScreenShot_23-05-20_17-38-03-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109841145598578768/ScreenShot_23-05-20_17-33-48-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109841145867010119/ScreenShot_23-05-20_17-34-01-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109841146156421261/ScreenShot_23-05-20_17-35-25-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109841146416463953/ScreenShot_23-05-20_17-36-17-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109841146814931104/ScreenShot_23-05-20_17-36-45-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109841147041419314/ScreenShot_23-05-20_17-37-33-000.jpg"],
+
+        "correct": "Route 66"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109841685250330704/ScreenShot_23-05-20_17-43-03-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109841685585866752/ScreenShot_23-05-20_17-39-13-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109841685871087696/ScreenShot_23-05-20_17-39-47-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109841686126923927/ScreenShot_23-05-20_17-39-58-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109841686462484500/ScreenShot_23-05-20_17-40-20-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109841686844149800/ScreenShot_23-05-20_17-40-48-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109841687183896657/ScreenShot_23-05-20_17-42-20-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109842394062528632/ScreenShot_23-05-20_17-42-42-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842394335150131/ScreenShot_23-05-20_17-44-21-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842394641342504/ScreenShot_23-05-20_17-39-30-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842394972684388/ScreenShot_23-05-20_17-40-08-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842395215962242/ScreenShot_23-05-20_17-41-12-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842395488583754/ScreenShot_23-05-20_17-41-18-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842395811553450/ScreenShot_23-05-20_17-41-42-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842396096757760/ScreenShot_23-05-20_17-41-57-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842396432310342/ScreenShot_23-05-20_17-42-30-000.jpg"],
+
+        "correct": "Shambali Monastery"
+    },
+    {
+        "easy": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109842858904670298/ScreenShot_23-05-20_17-52-38-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842859160502444/ScreenShot_23-05-20_17-53-25-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842859403784192/ScreenShot_23-05-20_17-55-29-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842859647062026/ScreenShot_23-05-20_17-49-07-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842859915477032/ScreenShot_23-05-20_17-49-18-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842860167147650/ScreenShot_23-05-20_17-49-28-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842860410425354/ScreenShot_23-05-20_17-51-03-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842860628508762/ScreenShot_23-05-20_17-51-16-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842860863402034/ScreenShot_23-05-20_17-51-38-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109842861127651338/ScreenShot_23-05-20_17-52-23-000.jpg"],
+
+        "hard": ["https://cdn.discordapp.com/attachments/1045328165112926268/1109843451496894525/ScreenShot_23-05-20_17-55-14-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109843451857612881/ScreenShot_23-05-20_17-49-56-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109843452369309796/ScreenShot_23-05-20_17-50-16-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109843452683894794/ScreenShot_23-05-20_17-50-44-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109843453120098344/ScreenShot_23-05-20_17-51-27-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109843453728276601/ScreenShot_23-05-20_17-52-05-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109843454093176852/ScreenShot_23-05-20_17-53-10-000.jpg",
+                 "https://cdn.discordapp.com/attachments/1045328165112926268/1109843454504210462/ScreenShot_23-05-20_17-53-33-000.jpg"],
+
+        "correct": "Watchpoint: Gibraltar"
+    }
+  ],
+  "hero_list": ["D.Va", "Doomfist", "Junker Queen", "Orisa", "Ramattra", "Reinhardt", "Roadhog", "Sigma", "Winston", "Wrecking Ball", "Zarya", "Ashe", "Bastion", "Cassidy", "Echo", "Genji", "Hanzo", "Junkrat", "Mei", "Pharah", "Reaper", "Soldier: 76", "Sojourn", "Sombra", "Symmetra", "Torbjörn", "Tracer", "Widowmaker", "Ana", "Baptiste", "Brigitte", "Kiriko", "Lifeweaver", "Lúcio", "Mercy", "Moira", "Zenyatta"],
+  "maps_list": ["Watchpoint: Gibraltar", "Shambali Monastery", "Route 66", "Rialto", "Paraíso", "Oasis", "Numbani", "New Queen Street", "Nepal", "Midtown", "Lijiang Tower", "King's Row", "Junkertown", "Ilios", "Hollywood", "Havana", "Esperança", "Eichenwalde", "Dorado", "Colosseo", "Circuit Royal", "Busan", "Blizzard World", "Antarctic Peninsula"]
 }

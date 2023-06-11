@@ -41,7 +41,7 @@ Commands marked with an \*asterisk are optional
 - **/scoreboard** - Show the top trivia players
 ### User-specific commands:
 - **/profile \[function]** - View your profile
-  - function (`info`,`opt out`,`opt in`,`reset`,`stat reset`) - The function to initiate with your profile
+  - function (`delete`) - The function to initiate with your profile
 - **/avoid \[hero]** - Add a hero to your avoid list
   -  hero - The name of the hero to avoid
 - **/unavoid \[hero]** - Remove a hero from your avoid list
