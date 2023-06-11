@@ -7,14 +7,33 @@ from libraries import profiles, heroChooser, classes
 import json
 from datetime import datetime
 
-ALT_COMMANDS = {
-    'hero': 'all',
-    'dps': 'damage',
-    'healer': 'support',
-    'user': 'profile',
-    'score': 'scores',
-    'scoreboard': 'scores',
-    'leaderboard': 'scores',
+COMMANDS = {
+    'avoid': 'Add a hero to your avoid list\n'
+             '- hero: The name of the hero to avoid',
+    'dm': 'Interact with me in your DMs',
+    'guess': 'Play a game of "Guess The Hero"\n'
+             '- questions (1-10): The number of questions to play\n'
+             '- difficulty (`easy`,`hard`): The difficulty level of the questions',
+    'help': 'Respond with a list of commands\n'
+            '- command: The command you need help with',
+    'hero': 'Respond with a random hero/duo in the selected role\n'
+            '- \\*role (`all`,`tank`,`damage`,`support`): '
+            'The role of the hero/duo you want to get a hero from, all by default\n'
+            '- \\*duo (`optimal`,`random`): The type of duo, leave empty for a single hero',
+    'list': 'Respond with a list of all the heroes in the selected role\n'
+            '- \\*role (`all`,`tank`,`damage`,`support`): The role get the hero list from',
+    'mapguessr': 'Play a game of "MapGuessr"\n'
+                 '- questions (1-10): The number of questions to play\n'
+                 '- difficulty (`easy`,`hard`): The difficulty level of the questions',
+    'profile': 'View your profile',
+    'role': 'Respond with a role',
+    'scoreboard': 'Show the top trivia players\n'
+                  '- \\*game: The game to show the scoreboard of',
+    'trivia': 'Play an Overwatch 2 hero trivia game\n'
+              '- questions (1-10): The number of questions to play\n'
+              '- difficulty (`easy`,`hard`): The difficulty level of the questions',
+    'unavoid': 'Remove a hero from your avoid list\n'
+               '- hero: The name of the hero to remove from avoid list',
 }
 TRIVIA_EMOJIS = ["🇦", "🇧", "🇨", "🇩"]
 MISSPELLINGS_FILE = os.path.join(os.path.dirname(__file__), '../data/misspellings.json')
@@ -22,6 +41,7 @@ RESPONSES_FILE = os.path.join(os.path.dirname(__file__), '../data/responses.json
 QUESTIONS_FILE = os.path.join(os.path.dirname(__file__), '../data/questions.json')
 RANK_EMOJIS = ['🥇', '🥈', '🥉']
 DEFAULT_EMBED_COLOUR = Color.from_rgb(38, 99, 199)
+GAME_NAMES = ['Trivia', 'Guess The Hero', 'MapGuessr']
 
 
 def _correct_spelling(hero_name: str) -> str:
@@ -159,14 +179,37 @@ def run_discord_bot(token):
 
     # Other commands
     @bot.tree.command(name='help', description='Respond with a list of commands')
-    async def get_help(ctx):
+    @app_commands.choices(command=[app_commands.Choice(name=x, value=x) for x in list(COMMANDS.keys())])
+    async def get_help(ctx, command: str = None):
         """
         Respond with a list of commands
 
         :param ctx: The interaction that triggered this command
+        :param command: The command to describe to the user
         :return:
         """
         _log_line(f'help ({ctx.user})')
+        responses = _get_responses()['help']
+
+        if command is not None:
+            if command == 'help':
+                responses.append(COMMANDS['help'])
+                output = random.choice(responses)
+                if output != COMMANDS['help']:
+                    await ctx.response.send_message(output)
+                    return
+
+            response = Embed(title=command, description=COMMANDS[command].split('\n')[0], colour=DEFAULT_EMBED_COLOUR)
+            lines = COMMANDS[command].strip().split('\n')
+            if len(lines) > 1:
+                response_description = 'Arguments marked with an \\*asterisk are optional\n' \
+                    if '*' in COMMANDS[command] else ''
+                for line in lines[1:]:
+                    response_description += f'\n{line}'
+                response.add_field(name='ARGUMENTS:', inline=False, value=response_description)
+            await ctx.response.send_message(embed=response)
+            return
+
         response = Embed(
             title='Help',
             description='Hi there! My name is *AthenaAI*, the Overwatch 2 hero choosing bot.\n'
@@ -184,17 +227,17 @@ def run_discord_bot(token):
                            value='Play an Overwatch 2 hero trivia game')
         response.add_field(name='/guess [questions] [difficulty]', inline=False,
                            value='Play a game of "Guess The Hero"')
-        response.add_field(name='/geoguess [questions] [difficulty]', inline=False,
-                           value='Play a game of "Guess The Map"')
-        response.add_field(name='/scoreboard', inline=False,
-                           value='Show the top trivia players')
+        response.add_field(name='/mapguessr [questions] [difficulty]', inline=False,
+                           value='Play a game of "MapGuessr"')
+        response.add_field(name='/scoreboard [*game]', inline=False,
+                           value='Show the top game players')
         response.add_field(name='/profile', inline=False,
                            value='View your profile')
         response.add_field(name='/avoid', inline=False,
                            value='Add a hero to your avoid list')
         response.add_field(name='/unavoid', inline=False,
                            value='Remove a hero from your avoid list')
-        response.add_field(name='/help', inline=False,
+        response.add_field(name='/help [*command]', inline=False,
                            value='Respond with a list of commands')
         response.add_field(name='/list [\\*role]', inline=False,
                            value='Respond with a list of all the heroes in the selected role')
@@ -243,16 +286,31 @@ def run_discord_bot(token):
 
     # Profile based commands
     @bot.tree.command(name='profile', description='View your profile')
-    async def get_profile(ctx):
+    @app_commands.describe(function='The function to initiate with your profile')
+    @app_commands.choices(function=[
+        app_commands.Choice(name='delete', value='delete'),
+    ])
+    async def get_profile(ctx, function: str = None):
         """
         Respond with information about the user
 
         :param ctx: The interaction that triggered this command
+        :param function: The function to initiate with the profile
         :return:
         """
-        _log_line(f'profile ({ctx.user})')
+        _log_line(f'profile ({ctx.user.name})')
+        if function == 'delete':
+            profiles.delete(str(ctx.user))
+            responses = [
+                'It is as if we never met',
+                'Done!',
+                'Your profile has been removed from my records',
+                'All done!',
+                f'Sorry to see you go, {str(ctx.user)[:-5]}',
+            ]
+            await ctx.response.send_message(random.choice(responses))
+            return
         # Update users
-        profiles.update_trivia_score(str(ctx.user), 0, 0)
         user_data = profiles.get_profile(str(ctx.user))
         response = Embed(title=f'Profile: {str(ctx.user)}', colour=DEFAULT_EMBED_COLOUR)
         # Get avoided heroes
@@ -266,17 +324,20 @@ def run_discord_bot(token):
             name='🚫 Avoided Heroes',
             value=avoided_heroes
         )
-        # Get trivia score
-        if user_data['total_questions'] == 0:
-            success_rate = 0
-        else:
-            success_rate = int(user_data['successful_questions'] / user_data['total_questions'] * 100)
-        response.add_field(
-            name='✏️ Trivia statistics',
-            value=f'Success rate: {success_rate}%\n'
-                  f'Questions attempted: {user_data["total_questions"]}',
-            inline=False
-        )
+        # Get game scores
+        games = ['Trivia', 'Guess The Hero', 'MapGuessr']
+        icons = [':pencil2:', ':grey_question:', ':round_pushpin:']
+        for game in games:
+            if user_data[f'{game.lower()}_total'] == 0:
+                success_rate = 0
+            else:
+                success_rate = int(user_data[f'{game.lower()}_success'] / user_data[f'{game.lower()}_total'] * 100)
+            response.add_field(
+                name=f'{icons[games.index(game)]} {game} statistics',
+                value=f'Success rate: {success_rate}%\n'
+                      f'Questions attempted: {user_data[f"{game.lower()}_total"]}',
+                inline=False
+            )
         await ctx.response.send_message(embed=response)
 
     @bot.tree.command(name='avoid', description='Add a hero to your avoid list')
@@ -420,6 +481,7 @@ def run_discord_bot(token):
                     await ctx.followup.send(random.choice(responses['more_wrong']))
 
         # Send the final score
+        profiles.update_game_score(str(ctx.user), 'trivia', score, rounds)
         await ctx.followup.send(random.choice(responses['end']).format(score=score, rounds=rounds))
 
     @bot.tree.command(name='guess', description='Play a game of \"Guess The Hero\"')
@@ -508,17 +570,18 @@ def run_discord_bot(token):
                     await ctx.followup.send(random.choice(responses['more_wrong']))
 
         # Send the final score
+        profiles.update_game_score(str(ctx.user), 'guess the hero', score, rounds)
         await ctx.followup.send(random.choice(responses['end']).format(score=score, rounds=rounds))
 
-    @bot.tree.command(name='geoguess', description='Play a game of \"Guess The Map\"')
+    @bot.tree.command(name='mapguessr', description='Play a game of \"MapGuessr\"')
     @app_commands.describe(difficulty='The difficulty level of the questions',
                            rounds='The number of questions (limit 10)')
     @app_commands.choices(difficulty=[
         app_commands.Choice(name='easy', value='easy'),
         app_commands.Choice(name='hard', value='hard')
     ])
-    async def play_geoguess(ctx, rounds: app_commands.Range[int, 1, 10],
-                            difficulty: str):
+    async def play_mapguessr(ctx, rounds: app_commands.Range[int, 1, 10],
+                             difficulty: str):
         """
         Respond with a number of map guessing questions for the user to play
 
@@ -527,7 +590,7 @@ def run_discord_bot(token):
         :param difficulty: The difficulty level of the questions
         :return:
         """
-        _log_line(f'geoguess ({ctx.user})')
+        _log_line(f'mapguessr ({ctx.user})')
         responses = _get_responses()['game']
 
         # Store the information in a variable
@@ -540,7 +603,7 @@ def run_discord_bot(token):
         score = 0
 
         await ctx.response.send_message(':round_pushpin: ' + random.choice(responses['start']).format(
-            game='Guess The Map', difficulty=difficulty, rounds=rounds
+            game='MapGuessr', difficulty=difficulty, rounds=rounds
         ))
 
         # Start of the game
@@ -595,18 +658,26 @@ def run_discord_bot(token):
                     await ctx.followup.send(random.choice(responses['more_wrong']))
 
         # Send the final score
+        profiles.update_game_score(str(ctx.user), 'mapguessr', score, rounds)
         await ctx.followup.send(random.choice(responses['end']).format(score=score, rounds=rounds))
 
     @bot.tree.command(name='scoreboard', description='Show the top trivia players')
-    async def get_scoreboard(ctx):
+    @app_commands.choices(game=[
+        app_commands.Choice(name='Trivia', value='trivia'),
+        app_commands.Choice(name='Guess The Hero', value='guess the hero'),
+        app_commands.Choice(name='MapGuessr', value='mapguessr'),
+    ])
+    async def get_scoreboard(ctx, game: app_commands.Choice[str] = None):
         """
         Respond with a scoreboard of all the trivia players
 
+        :param game: The game to show the scoreboard of
         :param ctx: The interaction that triggered this command
         :return:
         """
         _log_line(f'scoreboard ({ctx.user})')
-        scoreboard = profiles.get_trivia_scoreboard()
+        responses = _get_responses()['scoreboard']
+        scoreboard = profiles.get_game_scoreboard(game.value if game is not None else None)
         usernames = ''
         rate = ''
         total = ''
@@ -615,18 +686,26 @@ def run_discord_bot(token):
             if rank < 3:
                 usernames += RANK_EMOJIS[rank]
             usernames += f'{user["username"][:-5]}\n'
-            success_rate = int(user['successful_questions'] / user['total_questions'] * 100)
+            if game is None:
+                success_rate = int(user['success'] / user['total'] * 100)
+                total += f'{user["total"]}\n'
+            else:
+                success_rate = int(user[f'{game.value}_success'] / user[f'{game.value}_total'] * 100)
+                total += f'{user[f"{game.value}_total"]}\n'
             rate += f'{success_rate}%\n'
-            total += f'{user["total_questions"]}\n'
         if usernames == '':
-            await ctx.response.send_message('There is no scoreboard. Be the first to play!')
+            # TODO: Insert command IDs
+            commands = '</trivia:0> </guess:0> </mapguessr:0>'
+            output = random.choice(responses['fail']) + '\n' + random.choice(responses['fail_action']) + commands
+            await ctx.response.send_message(output)
             return
         # Build embed
-        response = Embed(title='Trivia scoreboard', description='Here are the top trivia players!',
+        response = Embed(title=f'{game.name if game is not None else "Overall"} scoreboard',
+                         description='Here are the top players!',
                          colour=DEFAULT_EMBED_COLOUR)
         response.add_field(name='Username', value=usernames)
         response.add_field(name='Success Rate', value=rate)
-        response.add_field(name='Questions attempted', value=total)
+        response.add_field(name='Questions Attempted', value=total)
         await ctx.response.send_message(embed=response)
 
     bot.run(token)

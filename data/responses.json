@@ -154,5 +154,28 @@
       "Another incorrect response. It's almost admirable how consistently you manage to fail.",
       "Incorrect, as expected. It must be a challenge to be so consistently clueless."
     ]
+  },
+  "help": [
+    "Did you seriously just type that?",
+    "Do you really need help with that?",
+    "You must be joking",
+    "...",
+    "You just used the command. I do not think you need help with it",
+    "If you are trying to get a list of all commands, try /help with no arguments"
+  ],
+  "scoreboard": {
+    "fail": [
+      "There is no scoreboard",
+      "There is no one here...",
+      "*Cricket noises*",
+      "There are no players in this server that have played",
+      "¯\\_(ツ)_/¯"
+    ],
+    "fail_action": [
+      "Be the first to play: ",
+      "Get started: ",
+      "Break the ice: ",
+      "Show everyone else how it is done: "
+    ]
   }
 }
