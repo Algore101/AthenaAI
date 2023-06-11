@@ -177,5 +177,14 @@
       "Break the ice: ",
       "Show everyone else how it is done: "
     ]
+  },
+  "profile": {
+    "delete": [
+      "It is as if we never met",
+      "Done!",
+      "Your profile has been removed from my records",
+      "All done!",
+      "Sorry to see you go"
+    ]
   }
 }

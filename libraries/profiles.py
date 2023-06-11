@@ -146,7 +146,7 @@ def get_game_scoreboard(game: str = None) -> list or None:
                 scoreboard.append({'username': user['username'],
                                    'success': user_score,
                                    'total': user_total})
-        return sorted(scoreboard, key=lambda i: int(i['success'] / i['total'] * 100), reverse=True)
+        return sorted(scoreboard, key=lambda i: (int(i['success'] / i['total'] * 100), i['total']), reverse=True)
 
     scoreboard = []
     for user in _get_all_users():

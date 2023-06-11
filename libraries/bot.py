@@ -58,6 +58,13 @@ def _correct_spelling(hero_name: str) -> str:
     return hero_name
 
 
+def _fix_new_username(username: str):
+    if username.endswith('#0'):
+        return username.replace('#0', '')
+    else:
+        return username
+
+
 def _log_line(message: str):
     print(f'[{datetime.now()}]\t> {message}')
 
@@ -101,7 +108,7 @@ def run_discord_bot(token):
         app_commands.Choice(name='optimal', value='optimal'),
         app_commands.Choice(name='random', value='random')
     ])
-    async def get_hero(ctx, role: str = None, duo: str = None):
+    async def get_hero(ctx: discord.Interaction, role: str = None, duo: str = None):
         """
         Respond with a random hero in the selected category
 
@@ -166,7 +173,7 @@ def run_discord_bot(token):
                 random.choice(responses['duo_success']).format(hero1=response_duo[0], hero2=response_duo[1]))
 
     @bot.tree.command(name='role', description='Respond with a role')
-    async def get_role(ctx):
+    async def get_role(ctx: discord.Interaction):
         """
         Respond with a role
 
@@ -180,7 +187,7 @@ def run_discord_bot(token):
     # Other commands
     @bot.tree.command(name='help', description='Respond with a list of commands')
     @app_commands.choices(command=[app_commands.Choice(name=x, value=x) for x in list(COMMANDS.keys())])
-    async def get_help(ctx, command: str = None):
+    async def get_help(ctx: discord.Interaction, command: str = None):
         """
         Respond with a list of commands
 
@@ -253,7 +260,7 @@ def run_discord_bot(token):
         app_commands.Choice(name='damage', value='damage'),
         app_commands.Choice(name='support', value='support')
     ])
-    async def get_list(ctx, role: str = None):
+    async def get_list(ctx: discord.Interaction, role: str = None):
         """
         Respond with a list of all the heroes in the selected role
 
@@ -272,7 +279,7 @@ def run_discord_bot(token):
         await ctx.response.send_message(response)
 
     @bot.tree.command(name='dm', description='Interact with me in your DMs')
-    async def dm(ctx):
+    async def dm(ctx: discord.Interaction):
         """
         Send the user a message in their DMs
 
@@ -290,7 +297,7 @@ def run_discord_bot(token):
     @app_commands.choices(function=[
         app_commands.Choice(name='delete', value='delete'),
     ])
-    async def get_profile(ctx, function: str = None):
+    async def get_profile(ctx: discord.Interaction, function: str = None):
         """
         Respond with information about the user
 
@@ -299,20 +306,14 @@ def run_discord_bot(token):
         :return:
         """
         _log_line(f'profile ({ctx.user.name})')
+        responses = _get_responses()['profile']
         if function == 'delete':
             profiles.delete(str(ctx.user))
-            responses = [
-                'It is as if we never met',
-                'Done!',
-                'Your profile has been removed from my records',
-                'All done!',
-                f'Sorry to see you go, {str(ctx.user)[:-5]}',
-            ]
-            await ctx.response.send_message(random.choice(responses))
+            await ctx.response.send_message(random.choice(responses['delete']))
             return
         # Update users
         user_data = profiles.get_profile(str(ctx.user))
-        response = Embed(title=f'Profile: {str(ctx.user)}', colour=DEFAULT_EMBED_COLOUR)
+        response = Embed(title=f'Profile: {str(ctx.user.name)}', colour=DEFAULT_EMBED_COLOUR)
         # Get avoided heroes
         avoided_heroes = ''
         if len(user_data['avoided_heroes']) == 0:
@@ -342,7 +343,7 @@ def run_discord_bot(token):
 
     @bot.tree.command(name='avoid', description='Add a hero to your avoid list')
     @app_commands.describe(hero='The name of the hero to avoid')
-    async def avoid_hero(ctx, hero: str):
+    async def avoid_hero(ctx: discord.Interaction, hero: str):
         """
         Add a hero to the user's avoid list
 
@@ -366,7 +367,7 @@ def run_discord_bot(token):
 
     @bot.tree.command(name='unavoid', description='Remove a hero from your avoid list')
     @app_commands.describe(hero='The name of the hero to remove from your avoid list, all to clear avoid list')
-    async def unavoid_hero(ctx, hero: str):
+    async def unavoid_hero(ctx: discord.Interaction, hero: str):
         """
         Remove a hero from the user's avoid list
 
@@ -403,7 +404,7 @@ def run_discord_bot(token):
         app_commands.Choice(name='easy', value='easy'),
         app_commands.Choice(name='hard', value='hard')
     ])
-    async def play_trivia(ctx, rounds: app_commands.Range[int, 1, 10],
+    async def play_trivia(ctx: discord.Interaction, rounds: app_commands.Range[int, 1, 10],
                           difficulty: str):
         """
         Respond with a number of trivia questions for the user to play
@@ -491,7 +492,7 @@ def run_discord_bot(token):
         app_commands.Choice(name='easy', value='easy'),
         app_commands.Choice(name='hard', value='hard')
     ])
-    async def play_guess(ctx, rounds: app_commands.Range[int, 1, 10],
+    async def play_guess(ctx: discord.Interaction, rounds: app_commands.Range[int, 1, 10],
                          difficulty: str):
 
         """
@@ -580,7 +581,7 @@ def run_discord_bot(token):
         app_commands.Choice(name='easy', value='easy'),
         app_commands.Choice(name='hard', value='hard')
     ])
-    async def play_mapguessr(ctx, rounds: app_commands.Range[int, 1, 10],
+    async def play_mapguessr(ctx: discord.Interaction, rounds: app_commands.Range[int, 1, 10],
                              difficulty: str):
         """
         Respond with a number of map guessing questions for the user to play
@@ -683,11 +684,11 @@ def run_discord_bot(token):
         total = ''
         # Get data
         for rank, user in enumerate(scoreboard):
-            if ctx.guild.get_member_named(user['username']) is None:
+            if ctx.guild.get_member_named(_fix_new_username(user['username'])) is None:
                 continue
             if rank < 3:
                 usernames += RANK_EMOJIS[rank]
-            usernames += f'{user["username"][:-5]}\n'
+            usernames += f'{user["username"].split("#")[0]}\n'
             if game is None:
                 success_rate = int(user['success'] / user['total'] * 100)
                 total += f'{user["total"]}\n'
