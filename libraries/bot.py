@@ -667,7 +667,7 @@ def run_discord_bot(token):
         app_commands.Choice(name='Guess The Hero', value='guess the hero'),
         app_commands.Choice(name='MapGuessr', value='mapguessr'),
     ])
-    async def get_scoreboard(ctx, game: app_commands.Choice[str] = None):
+    async def get_scoreboard(ctx: discord.Interaction, game: app_commands.Choice[str] = None):
         """
         Respond with a scoreboard of all the trivia players
 
@@ -683,6 +683,8 @@ def run_discord_bot(token):
         total = ''
         # Get data
         for rank, user in enumerate(scoreboard):
+            if ctx.guild.get_member_named(user['username']) is None:
+                continue
             if rank < 3:
                 usernames += RANK_EMOJIS[rank]
             usernames += f'{user["username"][:-5]}\n'
