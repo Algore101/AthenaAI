@@ -1,3 +1,5 @@
+# OUTDATED!
+The information you are reading here is outdated, meaning some commands have been changed or removed. Using `/help` on the bot will give you up-to-date information
 # AthenaAI
 A Discord bot that does a bunch of Overwatch 2 related things.
 ## Contents
