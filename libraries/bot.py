@@ -587,7 +587,7 @@ def run_discord_bot(token):
             await asyncio.sleep(3)
 
         # Send the final score
-        profiles.update_game_score(str(ctx.user), 'trivia', score, rounds)
+        profiles.update_game_score(str(ctx.user), 'guess the hero', score, rounds)
         result_embed = Embed(title=f'{ctx.user.name}\'s results',
                              description=random.choice(responses['end']).format(score=score, rounds=rounds),
                              colour=DEFAULT_EMBED_COLOUR)
@@ -684,7 +684,7 @@ def run_discord_bot(token):
             await asyncio.sleep(3)
 
         # Send the final score
-        profiles.update_game_score(str(ctx.user), 'trivia', score, rounds)
+        profiles.update_game_score(str(ctx.user), 'mapguessr', score, rounds)
         result_embed = Embed(title=f'{ctx.user.name}\'s results',
                              description=random.choice(responses['end']).format(score=score, rounds=rounds),
                              colour=DEFAULT_EMBED_COLOUR)
