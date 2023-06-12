@@ -697,8 +697,7 @@ def run_discord_bot(token):
                 total += f'{user[f"{game.value}_total"]}\n'
             rate += f'{success_rate}%\n'
         if usernames == '':
-            # TODO: Insert command IDs
-            commands = '</trivia:0> </guess:0> </mapguessr:0>'
+            commands = '</trivia:1117508277694115861> </guess:1117508277694115862> </mapguessr:1117508277694115863>'
             output = random.choice(responses['fail']) + '\n' + random.choice(responses['fail_action']) + commands
             await ctx.response.send_message(output)
             return
