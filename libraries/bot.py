@@ -1,5 +1,6 @@
 import random
 import os
+import asyncio
 import discord
 from discord.ext.commands import Bot
 from discord import app_commands, Embed, Color
@@ -465,25 +466,34 @@ def run_discord_bot(token):
             facts.remove(random_question)
 
             # Make the embed with the question and alternatives
-            embed = discord.Embed(title=f'Round {i + 1}', description=question)
+            embed = Embed(title=f'Round {i + 1}', description=question)
             embed.add_field(name='Answers', value=answer_text)
             view = classes.TriviaView(question, correct_letter, ctx.user)
-            await ctx.followup.send(embed=embed, view=view)
+            await ctx.edit_original_response(embed=embed, view=view)
             await view.wait()
+            await asyncio.sleep(0.9)
 
             # Check if the user answered correctly
             if view.response == correct_letter:
-                await ctx.followup.send(random.choice(responses['positive']))
+                result_embed = Embed(title=f'Round {i + 1} :white_check_mark:',
+                                     description=random.choice(responses['positive']))
                 score += 1
             else:
                 if i + 1 - score < 2:
-                    await ctx.followup.send(random.choice(responses['negative']))
+                    result_embed = Embed(title=f'Round {i + 1} :x:',
+                                         description=random.choice(responses['negative']))
                 else:
-                    await ctx.followup.send(random.choice(responses['more_wrong']))
+                    result_embed = Embed(title=f'Round {i + 1} :x:',
+                                         description=random.choice(responses['more_wrong']))
+            await ctx.edit_original_response(embed=result_embed, view=None)
+            await asyncio.sleep(3)
 
         # Send the final score
         profiles.update_game_score(str(ctx.user), 'trivia', score, rounds)
-        await ctx.followup.send(random.choice(responses['end']).format(score=score, rounds=rounds))
+        result_embed = Embed(title=f'{ctx.user.name}\'s results',
+                             description=random.choice(responses['end']).format(score=score, rounds=rounds),
+                             colour=DEFAULT_EMBED_COLOUR)
+        await ctx.edit_original_response(content=None, embed=result_embed, view=None)
 
     @bot.tree.command(name='guess', description='Play a game of \"Guess The Hero\"')
     @app_commands.describe(difficulty='The difficulty level of the questions',
@@ -553,26 +563,35 @@ def run_discord_bot(token):
             images.remove(random_question)
 
             # Make the embed for the question
-            embed = discord.Embed(title=f'Round {i + 1}')
+            embed = Embed(title=f'Round {i + 1}')
             embed.add_field(name='Answers', value=answer_text)
             embed.set_image(url=question)
             view = classes.TriviaView(question, correct_letter, ctx.user)
-            await ctx.followup.send(embed=embed, view=view)
+            await ctx.edit_original_response(embed=embed, view=view)
             await view.wait()
+            await asyncio.sleep(0.9)
 
             # Check if the user answered correctly
             if view.response == correct_letter:
-                await ctx.followup.send(random.choice(responses['positive']))
+                result_embed = Embed(title=f'Round {i + 1} :white_check_mark:',
+                                     description=random.choice(responses['positive']))
                 score += 1
             else:
                 if i + 1 - score < 2:
-                    await ctx.followup.send(random.choice(responses['negative']))
+                    result_embed = Embed(title=f'Round {i + 1} :x:',
+                                         description=random.choice(responses['negative']))
                 else:
-                    await ctx.followup.send(random.choice(responses['more_wrong']))
+                    result_embed = Embed(title=f'Round {i + 1} :x:',
+                                         description=random.choice(responses['more_wrong']))
+            await ctx.edit_original_response(embed=result_embed)
+            await asyncio.sleep(3)
 
         # Send the final score
-        profiles.update_game_score(str(ctx.user), 'guess the hero', score, rounds)
-        await ctx.followup.send(random.choice(responses['end']).format(score=score, rounds=rounds))
+        profiles.update_game_score(str(ctx.user), 'trivia', score, rounds)
+        result_embed = Embed(title=f'{ctx.user.name}\'s results',
+                             description=random.choice(responses['end']).format(score=score, rounds=rounds),
+                             colour=DEFAULT_EMBED_COLOUR)
+        await ctx.edit_original_response(content=None, embed=result_embed, view=None)
 
     @bot.tree.command(name='mapguessr', description='Play a game of \"MapGuessr\"')
     @app_commands.describe(difficulty='The difficulty level of the questions',
@@ -641,26 +660,35 @@ def run_discord_bot(token):
             maps.remove(random_question)
 
             # Make the embed for the question
-            embed = discord.Embed(title=f'Round {i + 1}')
+            embed = Embed(title=f'Round {i + 1}')
             embed.add_field(name='Answers', value=answer_text)
             embed.set_image(url=questions)
             view = classes.TriviaView(questions, correct_letter, ctx.user)
-            await ctx.followup.send(embed=embed, view=view)
+            await ctx.edit_original_response(embed=embed, view=view)
             await view.wait()
+            await asyncio.sleep(0.9)
 
             # Check if the user answered correctly
             if view.response == correct_letter:
-                await ctx.followup.send(random.choice(responses['positive']))
+                result_embed = Embed(title=f'Round {i + 1} :white_check_mark:',
+                                     description=random.choice(responses['positive']))
                 score += 1
             else:
                 if i + 1 - score < 2:
-                    await ctx.followup.send(random.choice(responses['negative']))
+                    result_embed = Embed(title=f'Round {i + 1} :x:',
+                                         description=random.choice(responses['negative']))
                 else:
-                    await ctx.followup.send(random.choice(responses['more_wrong']))
+                    result_embed = Embed(title=f'Round {i + 1} :x:',
+                                         description=random.choice(responses['more_wrong']))
+            await ctx.edit_original_response(embed=result_embed, view=None)
+            await asyncio.sleep(3)
 
         # Send the final score
-        profiles.update_game_score(str(ctx.user), 'mapguessr', score, rounds)
-        await ctx.followup.send(random.choice(responses['end']).format(score=score, rounds=rounds))
+        profiles.update_game_score(str(ctx.user), 'trivia', score, rounds)
+        result_embed = Embed(title=f'{ctx.user.name}\'s results',
+                             description=random.choice(responses['end']).format(score=score, rounds=rounds),
+                             colour=DEFAULT_EMBED_COLOUR)
+        await ctx.edit_original_response(content=None, embed=result_embed, view=None)
 
     @bot.tree.command(name='scoreboard', description='Show the top trivia players')
     @app_commands.choices(game=[
