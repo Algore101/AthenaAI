@@ -466,7 +466,7 @@ def run_discord_bot(token):
             facts.remove(random_question)
 
             # Make the embed with the question and alternatives
-            embed = Embed(title=f'Round {i + 1}', description=question)
+            embed = Embed(title=f'Round {i + 1}', description=question, colour=Color.from_rgb(43, 45, 49))
             embed.add_field(name='Answers', value=answer_text)
             view = classes.TriviaView(question, correct_letter, ctx.user)
             await ctx.edit_original_response(embed=embed, view=view)
@@ -476,15 +476,18 @@ def run_discord_bot(token):
             # Check if the user answered correctly
             if view.response == correct_letter:
                 result_embed = Embed(title=f'Round {i + 1} :white_check_mark:',
-                                     description=random.choice(responses['positive']))
+                                     description=random.choice(responses['positive']),
+                                     colour=Color.from_rgb(121, 180, 83))
                 score += 1
             else:
                 if i + 1 - score < 2:
                     result_embed = Embed(title=f'Round {i + 1} :x:',
-                                         description=random.choice(responses['negative']))
+                                         description=random.choice(responses['negative']),
+                                         colour=Color.from_rgb(222, 42, 66))
                 else:
                     result_embed = Embed(title=f'Round {i + 1} :x:',
-                                         description=random.choice(responses['more_wrong']))
+                                         description=random.choice(responses['more_wrong']),
+                                         colour=Color.from_rgb(222, 42, 66))
             await ctx.edit_original_response(embed=result_embed, view=None)
             await asyncio.sleep(3)
 
@@ -563,7 +566,7 @@ def run_discord_bot(token):
             images.remove(random_question)
 
             # Make the embed for the question
-            embed = Embed(title=f'Round {i + 1}')
+            embed = Embed(title=f'Round {i + 1}', colour=Color.from_rgb(43, 45, 49))
             embed.add_field(name='Answers', value=answer_text)
             embed.set_image(url=question)
             view = classes.TriviaView(question, correct_letter, ctx.user)
@@ -574,15 +577,18 @@ def run_discord_bot(token):
             # Check if the user answered correctly
             if view.response == correct_letter:
                 result_embed = Embed(title=f'Round {i + 1} :white_check_mark:',
-                                     description=random.choice(responses['positive']))
+                                     description=random.choice(responses['positive']),
+                                     colour=Color.from_rgb(121, 180, 83))
                 score += 1
             else:
                 if i + 1 - score < 2:
                     result_embed = Embed(title=f'Round {i + 1} :x:',
-                                         description=random.choice(responses['negative']))
+                                         description=random.choice(responses['negative']),
+                                         colour=Color.from_rgb(222, 42, 66))
                 else:
                     result_embed = Embed(title=f'Round {i + 1} :x:',
-                                         description=random.choice(responses['more_wrong']))
+                                         description=random.choice(responses['more_wrong']),
+                                         colour=Color.from_rgb(222, 42, 66))
             await ctx.edit_original_response(embed=result_embed)
             await asyncio.sleep(3)
 
@@ -660,7 +666,7 @@ def run_discord_bot(token):
             maps.remove(random_question)
 
             # Make the embed for the question
-            embed = Embed(title=f'Round {i + 1}')
+            embed = Embed(title=f'Round {i + 1}', colour=Color.from_rgb(43, 45, 49))
             embed.add_field(name='Answers', value=answer_text)
             embed.set_image(url=questions)
             view = classes.TriviaView(questions, correct_letter, ctx.user)
@@ -671,15 +677,18 @@ def run_discord_bot(token):
             # Check if the user answered correctly
             if view.response == correct_letter:
                 result_embed = Embed(title=f'Round {i + 1} :white_check_mark:',
-                                     description=random.choice(responses['positive']))
+                                     description=random.choice(responses['positive']),
+                                     colour=Color.from_rgb(121, 180, 83))
                 score += 1
             else:
                 if i + 1 - score < 2:
                     result_embed = Embed(title=f'Round {i + 1} :x:',
-                                         description=random.choice(responses['negative']))
+                                         description=random.choice(responses['negative']),
+                                         colour=Color.from_rgb(222, 42, 66))
                 else:
                     result_embed = Embed(title=f'Round {i + 1} :x:',
-                                         description=random.choice(responses['more_wrong']))
+                                         description=random.choice(responses['more_wrong']),
+                                         colour=Color.from_rgb(222, 42, 66))
             await ctx.edit_original_response(embed=result_embed, view=None)
             await asyncio.sleep(3)
 
