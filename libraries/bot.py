@@ -715,7 +715,10 @@ def run_discord_bot(token):
         """
         _log_line(f'scoreboard ({ctx.user})')
         responses = _get_responses()['scoreboard']
-        scoreboard = profiles.get_game_scoreboard(game.value if game is not None else None)
+        scoreboard = [
+            x for x in profiles.get_game_scoreboard(game.value if game is not None else None)
+            if ctx.guild.get_member_named(_fix_new_username(x['username'])) is not None
+        ]
         usernames = ''
         rate = ''
         total = ''
